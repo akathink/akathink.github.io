@@ -44,7 +44,7 @@
 <meta property="og:url" content="http://akathink.com/2016/07/28/彻底搞懂HTTP协议/index.html">
 <meta property="og:site_name" content="akathink's blog">
 <meta property="og:description" content="在做网络编程（无论传统的Web开发，还是当前比较流行的的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行走的我们，仅仅学会使用这些类库的招式显然是不够的，我们还要了解其精髓，去分析源码，看看到底是如何实现的，那么问题来了，如果我们">
-<meta property="og:updated_time" content="2016-07-28T13:06:12.000Z">
+<meta property="og:updated_time" content="2016-07-28T13:25:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="彻底搞懂HTTP协议">
 <meta name="twitter:description" content="在做网络编程（无论传统的Web开发，还是当前比较流行的的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行走的我们，仅仅学会使用这些类库的招式显然是不够的，我们还要了解其精髓，去分析源码，看看到底是如何实现的，那么问题来了，如果我们">
@@ -386,7 +386,12 @@
 <li>3 网络层<br>作用：网络层用来处理在网络上流动的数据包。数据包是网络传输的最小数据单位。该层规定了通过怎样的路径到达对方计算机，并把数据包传给对方。</li>
 <li>4 链路层<br>作用：用来处理连接网络的硬件部分。包括控制操作系统、硬件的设备驱动、NIC及光纤等物理可见部分。</li>
 </ul>
-<h2 id="2-TCP-IP-通信传输流"><a href="#2-TCP-IP-通信传输流" class="headerlink" title="2. TCP/IP 通信传输流"></a>2. TCP/IP 通信传输流</h2><h3 id="3-与HTTP关系密切的协议：IP、TCP和DNS"><a href="#3-与HTTP关系密切的协议：IP、TCP和DNS" class="headerlink" title="3. 与HTTP关系密切的协议：IP、TCP和DNS"></a>3. 与HTTP关系密切的协议：IP、TCP和DNS</h3><h3 id="a-负责传输的IP协议"><a href="#a-负责传输的IP协议" class="headerlink" title="a. 负责传输的IP协议"></a>a. 负责传输的IP协议</h3><h3 id="b-确保可靠性的TCP协议"><a href="#b-确保可靠性的TCP协议" class="headerlink" title="b. 确保可靠性的TCP协议"></a>b. 确保可靠性的TCP协议</h3><h3 id="c-负责域名解析的DNS服务"><a href="#c-负责域名解析的DNS服务" class="headerlink" title="c. 负责域名解析的DNS服务"></a>c. 负责域名解析的DNS服务</h3><h2 id="3-各种协议与HTTP协议的关系"><a href="#3-各种协议与HTTP协议的关系" class="headerlink" title="3. 各种协议与HTTP协议的关系"></a>3. 各种协议与HTTP协议的关系</h2><h2 id="4-URI-和-URL"><a href="#4-URI-和-URL" class="headerlink" title="4. URI 和 URL"></a>4. URI 和 URL</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>本文是在阅读《图解HTTP》一书的整体感悟总结。</p>
+<h2 id="2-TCP-IP-通信传输流"><a href="#2-TCP-IP-通信传输流" class="headerlink" title="2. TCP/IP 通信传输流"></a>2. TCP/IP 通信传输流</h2><h2 id="3-与HTTP关系密切的协议：IP、TCP和DNS"><a href="#3-与HTTP关系密切的协议：IP、TCP和DNS" class="headerlink" title="3. 与HTTP关系密切的协议：IP、TCP和DNS"></a>3. 与HTTP关系密切的协议：IP、TCP和DNS</h2><ul>
+<li>a 负责传输的IP协议</li>
+<li>b 确保可靠性的TCP协议</li>
+<li>c 负责域名解析的DNS服务</li>
+</ul>
+<h2 id="4-各种协议与HTTP协议的关系"><a href="#4-各种协议与HTTP协议的关系" class="headerlink" title="4. 各种协议与HTTP协议的关系"></a>4. 各种协议与HTTP协议的关系</h2><h2 id="5-URI-和-URL"><a href="#5-URI-和-URL" class="headerlink" title="5. URI 和 URL"></a>5. URI 和 URL</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>本文是在阅读《图解HTTP》一书的基础上进行总结的，不仅整体认识了HTTP，也方便下次复习的时候，能够用更短的时间去理解这些基础中的重点知识。</p>
 </span>
       
     </div>
@@ -657,7 +662,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-TCP-IP协议族"><span class="nav-number">1.</span> <span class="nav-text">一. TCP/IP协议族</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-TCP-IP的分层管理"><span class="nav-number">1.1.</span> <span class="nav-text">1. TCP/IP的分层管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-TCP-IP-通信传输流"><span class="nav-number">1.2.</span> <span class="nav-text">2. TCP/IP 通信传输流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-与HTTP关系密切的协议：IP、TCP和DNS"><span class="nav-number">1.2.1.</span> <span class="nav-text">3. 与HTTP关系密切的协议：IP、TCP和DNS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-负责传输的IP协议"><span class="nav-number">1.2.2.</span> <span class="nav-text">a. 负责传输的IP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-确保可靠性的TCP协议"><span class="nav-number">1.2.3.</span> <span class="nav-text">b. 确保可靠性的TCP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-负责域名解析的DNS服务"><span class="nav-number">1.2.4.</span> <span class="nav-text">c. 负责域名解析的DNS服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-各种协议与HTTP协议的关系"><span class="nav-number">1.3.</span> <span class="nav-text">3. 各种协议与HTTP协议的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-URI-和-URL"><span class="nav-number">1.4.</span> <span class="nav-text">4. URI 和 URL</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后记"><span class="nav-number">2.</span> <span class="nav-text">后记</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-TCP-IP协议族"><span class="nav-number">1.</span> <span class="nav-text">一. TCP/IP协议族</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-TCP-IP的分层管理"><span class="nav-number">1.1.</span> <span class="nav-text">1. TCP/IP的分层管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-TCP-IP-通信传输流"><span class="nav-number">1.2.</span> <span class="nav-text">2. TCP/IP 通信传输流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-与HTTP关系密切的协议：IP、TCP和DNS"><span class="nav-number">1.3.</span> <span class="nav-text">3. 与HTTP关系密切的协议：IP、TCP和DNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-各种协议与HTTP协议的关系"><span class="nav-number">1.4.</span> <span class="nav-text">4. 各种协议与HTTP协议的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-URI-和-URL"><span class="nav-number">1.5.</span> <span class="nav-text">5. URI 和 URL</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后记"><span class="nav-number">2.</span> <span class="nav-text">后记</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
