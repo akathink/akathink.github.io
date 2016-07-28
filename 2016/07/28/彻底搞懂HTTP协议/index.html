@@ -29,7 +29,7 @@
 
 
 
-  <meta name="keywords" content="HTTP,网络协议," />
+  <meta name="keywords" content="网络协议,HTTP协议," />
 
 
 
@@ -44,7 +44,7 @@
 <meta property="og:url" content="http://akathink.com/2016/07/28/彻底搞懂HTTP协议/index.html">
 <meta property="og:site_name" content="akathink's blog">
 <meta property="og:description" content="在做网络编程（无论传统的Web开发，还是当前比较流行的的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行走的我们，仅仅学会使用这些类库的招式显然是不够的，我们还要了解其精髓，去分析源码，看看到底是如何实现的，那么问题来了，如果我们">
-<meta property="og:updated_time" content="2016-07-28T13:43:30.000Z">
+<meta property="og:updated_time" content="2016-07-28T13:46:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="彻底搞懂HTTP协议">
 <meta name="twitter:description" content="在做网络编程（无论传统的Web开发，还是当前比较流行的的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行走的我们，仅仅学会使用这些类库的招式显然是不够的，我们还要了解其精髓，去分析源码，看看到底是如何实现的，那么问题来了，如果我们">
@@ -391,7 +391,7 @@
 <li>2 确保可靠性的TCP协议</li>
 <li>3 负责域名解析的DNS服务</li>
 </ul>
-<h2 id="4-各种协议与HTTP协议的关系"><a href="#4-各种协议与HTTP协议的关系" class="headerlink" title="4. 各种协议与HTTP协议的关系"></a>4. 各种协议与HTTP协议的关系</h2><h2 id="5-URI-和-URL"><a href="#5-URI-和-URL" class="headerlink" title="5. URI 和 URL"></a>5. URI 和 URL</h2><h1 id="二-HTTP协议"><a href="#二-HTTP协议" class="headerlink" title="二. HTTP协议"></a>二. HTTP协议</h1><h2 id="1-HTTP协议"><a href="#1-HTTP协议" class="headerlink" title="1. HTTP协议"></a>1. HTTP协议</h2><h2 id="2-HTTP报文"><a href="#2-HTTP报文" class="headerlink" title="2. HTTP报文"></a>2. HTTP报文</h2><h2 id="3-返回结果的HTTP状态码"><a href="#3-返回结果的HTTP状态码" class="headerlink" title="3. 返回结果的HTTP状态码"></a>3. 返回结果的HTTP状态码</h2><h2 id="4-与HTTP协作的Web服务器"><a href="#4-与HTTP协作的Web服务器" class="headerlink" title="4. 与HTTP协作的Web服务器"></a>4. 与HTTP协作的Web服务器</h2><h2 id="5-HTTP首部"><a href="#5-HTTP首部" class="headerlink" title="5. HTTP首部"></a>5. HTTP首部</h2><h2 id="6-确保Web安全的HTTPS"><a href="#6-确保Web安全的HTTPS" class="headerlink" title="6. 确保Web安全的HTTPS"></a>6. 确保Web安全的HTTPS</h2><h2 id="7-确认访问用户身份的认证"><a href="#7-确认访问用户身份的认证" class="headerlink" title="7. 确认访问用户身份的认证"></a>7. 确认访问用户身份的认证</h2><h2 id="8-基于HTTP的功能追加协议"><a href="#8-基于HTTP的功能追加协议" class="headerlink" title="8. 基于HTTP的功能追加协议"></a>8. 基于HTTP的功能追加协议</h2><h1 id="三-后记"><a href="#三-后记" class="headerlink" title="三. 后记"></a>三. 后记</h1><p>本文是在阅读《图解HTTP》一书的基础上进行总结的，不仅整体认识了HTTP，也方便下次复习的时候，能够用更短的时间去理解这些虽然基础但是很重要的知识。</p>
+<h2 id="4-各种协议与HTTP协议的关系"><a href="#4-各种协议与HTTP协议的关系" class="headerlink" title="4. 各种协议与HTTP协议的关系"></a>4. 各种协议与HTTP协议的关系</h2><h2 id="5-URI-和-URL"><a href="#5-URI-和-URL" class="headerlink" title="5. URI 和 URL"></a>5. URI 和 URL</h2><h1 id="二-HTTP协议"><a href="#二-HTTP协议" class="headerlink" title="二. HTTP协议"></a>二. HTTP协议</h1><h2 id="1-HTTP协议"><a href="#1-HTTP协议" class="headerlink" title="1. HTTP协议"></a>1. HTTP协议</h2><h2 id="2-HTTP报文"><a href="#2-HTTP报文" class="headerlink" title="2. HTTP报文"></a>2. HTTP报文</h2><h2 id="3-返回结果的HTTP状态码"><a href="#3-返回结果的HTTP状态码" class="headerlink" title="3. 返回结果的HTTP状态码"></a>3. 返回结果的HTTP状态码</h2><h2 id="4-与HTTP协作的Web服务器"><a href="#4-与HTTP协作的Web服务器" class="headerlink" title="4. 与HTTP协作的Web服务器"></a>4. 与HTTP协作的Web服务器</h2><h2 id="5-HTTP首部"><a href="#5-HTTP首部" class="headerlink" title="5. HTTP首部"></a>5. HTTP首部</h2><h2 id="6-确保Web安全的HTTPS"><a href="#6-确保Web安全的HTTPS" class="headerlink" title="6. 确保Web安全的HTTPS"></a>6. 确保Web安全的HTTPS</h2><h2 id="7-确认访问用户身份的认证"><a href="#7-确认访问用户身份的认证" class="headerlink" title="7. 确认访问用户身份的认证"></a>7. 确认访问用户身份的认证</h2><h2 id="8-基于HTTP的功能追加协议"><a href="#8-基于HTTP的功能追加协议" class="headerlink" title="8. 基于HTTP的功能追加协议"></a>8. 基于HTTP的功能追加协议</h2><h1 id="三-后记"><a href="#三-后记" class="headerlink" title="三. 后记"></a>三. 后记</h1><p>本文是在阅读《图解HTTP》一书的基础上进行总结的，不仅整体认识了HTTP，也方便下次复习的时候，能够用更短的时间去理解这些虽然基础但是却很重要的知识。</p>
 </span>
       
     </div>
@@ -400,9 +400,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/HTTP/" rel="tag">#HTTP</a>
-          
             <a href="/tags/网络协议/" rel="tag">#网络协议</a>
+          
+            <a href="/tags/HTTP协议/" rel="tag">#HTTP协议</a>
           
         </div>
       
@@ -507,35 +507,25 @@
   
         <div id="donate_guide" class="donate_bar center hidden">
             <!--
-            
-                <a href="http://o7keinrz4.bkt.clouddn.com/alipay.jpg" title="支付宝打赏" class="fancybox" rel="article0" 
-                    style="float:left;margin-left:25%;margin-right:10px;">
-                    <img src="http://o7keinrz4.bkt.clouddn.com/alipay.jpg" title="" height="164px" width="164px">
-                </a> 
               
 
             
-                <a href="http://o7keinrz4.bkt.clouddn.com/wechat.jpg" title="微信打赏" class="fancybox" rel="article0"
+                <a href="http://7xt310.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-28%20%E4%B8%8B%E5%8D%8811.12.01.png" title="微信打赏" class="fancybox" rel="article0"
                     style="margin-right:30%">
-                    <img src="http://o7keinrz4.bkt.clouddn.com/wechat.jpg" title="" height="164px" width="164px">
+                    <img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-28%20%E4%B8%8B%E5%8D%8811.12.01.png" title="" height="164px" width="164px">
                 </a>
             
             -->
             <table>
                 <tr>
                     <td>
-                        
-                            <a href="http://o7keinrz4.bkt.clouddn.com/alipay.jpg" title="支付宝打赏" class="fancybox" rel="article0" 
-                                style="float:left;margin-left:25%;margin-right:10px;">
-                                <img src="http://o7keinrz4.bkt.clouddn.com/alipay.jpg" title="" height="164px" width="164px">
-                            </a> 
                          
                     </td>
                     <td>
                         
-                            <a href="http://o7keinrz4.bkt.clouddn.com/wechat.jpg" title="微信打赏" class="fancybox" rel="article0"
+                            <a href="http://7xt310.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-28%20%E4%B8%8B%E5%8D%8811.12.01.png" title="微信打赏" class="fancybox" rel="article0"
                                 style="margin-right:30%">
-                                <img src="http://o7keinrz4.bkt.clouddn.com/wechat.jpg" title="" height="164px" width="164px">
+                                <img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-28%20%E4%B8%8B%E5%8D%8811.12.01.png" title="" height="164px" width="164px">
                             </a>
                         
                     </td>
@@ -634,7 +624,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
