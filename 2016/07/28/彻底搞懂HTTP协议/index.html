@@ -29,7 +29,7 @@
 
 
 
-  <meta name="keywords" content="HTTP 网络协议," />
+  <meta name="keywords" content="HTTP,网络协议," />
 
 
 
@@ -38,16 +38,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="在做网络编程（无论传统的Web开发，还是较为新兴的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行走的我们，仅仅学会使用这些类库的招式显然是不够的，我们还要了解其精髓，去分析源码，看看到底是如何实现的，那么问题来了，如果我们不懂H">
+<meta name="description" content="在做网络编程（无论传统的Web开发，还是当前比较流行的的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行走的我们，仅仅学会使用这些类库的招式显然是不够的，我们还要了解其精髓，去分析源码，看看到底是如何实现的，那么问题来了，如果我们">
 <meta property="og:type" content="article">
 <meta property="og:title" content="彻底搞懂HTTP协议">
 <meta property="og:url" content="http://akathink.com/2016/07/28/彻底搞懂HTTP协议/index.html">
 <meta property="og:site_name" content="akathink's blog">
-<meta property="og:description" content="在做网络编程（无论传统的Web开发，还是较为新兴的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行走的我们，仅仅学会使用这些类库的招式显然是不够的，我们还要了解其精髓，去分析源码，看看到底是如何实现的，那么问题来了，如果我们不懂H">
-<meta property="og:updated_time" content="2016-07-28T08:55:30.000Z">
+<meta property="og:description" content="在做网络编程（无论传统的Web开发，还是当前比较流行的的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行走的我们，仅仅学会使用这些类库的招式显然是不够的，我们还要了解其精髓，去分析源码，看看到底是如何实现的，那么问题来了，如果我们">
+<meta property="og:updated_time" content="2016-07-28T09:38:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="彻底搞懂HTTP协议">
-<meta name="twitter:description" content="在做网络编程（无论传统的Web开发，还是较为新兴的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行走的我们，仅仅学会使用这些类库的招式显然是不够的，我们还要了解其精髓，去分析源码，看看到底是如何实现的，那么问题来了，如果我们不懂H">
+<meta name="twitter:description" content="在做网络编程（无论传统的Web开发，还是当前比较流行的的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行走的我们，仅仅学会使用这些类库的招式显然是不够的，我们还要了解其精髓，去分析源码，看看到底是如何实现的，那么问题来了，如果我们">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -321,6 +321,33 @@
         </span>
 
         
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/HTTP协议/" itemprop="url" rel="index">
+                  <span itemprop="name">HTTP协议</span>
+                </a>
+              </span>
+
+              
+              
+                ， 
+              
+
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/HTTP协议/网络/" itemprop="url" rel="index">
+                  <span itemprop="name">网络</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
 
         
           
@@ -334,7 +361,7 @@
       
 
       
-        <span itemprop="articleBody"><p>在做网络编程（无论传统的Web开发，还是较为新兴的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行走的我们，仅仅学会使用这些类库的招式显然是不够的，我们还要了解其精髓，去分析源码，看看到底是如何实现的，那么问题来了，如果我们不懂HTTP协议的基础及核心内容，我们又该如何去分析那些源代码呢？无论哪个类库，最终的实现机制都是建立在对HTTP协议熟练掌握的基础上的。那么，让我们一起去彻底征服HTTP协议吧。</p>
+        <span itemprop="articleBody"><p>在做网络编程（无论传统的Web开发，还是当前比较流行的的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行走的我们，仅仅学会使用这些类库的招式显然是不够的，我们还要了解其精髓，去分析源码，看看到底是如何实现的，那么问题来了，如果我们不懂HTTP协议的基础及核心内容，我们又该如何去分析那些源代码呢？无论哪个类库，最终的实现机制都是建立在对HTTP协议熟练掌握的基础上的。那么，让我们一起去彻底征服HTTP协议吧。</p>
 <p>在了解之前，我先提几个问题，方便下面分析的时候，能够更好的去理解HTTP协议。</p>
 <ul>
 <li>1 如何理解HTTP协议的工作机制？</li>
@@ -350,7 +377,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/HTTP-网络协议/" rel="tag">#HTTP 网络协议</a>
+            <a href="/tags/HTTP/" rel="tag">#HTTP</a>
+          
+            <a href="/tags/网络协议/" rel="tag">#网络协议</a>
           
         </div>
       
@@ -575,14 +604,14 @@
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
