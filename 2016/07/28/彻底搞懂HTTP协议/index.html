@@ -48,7 +48,7 @@
 <meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%E5%9B%BE2.jpg">
 <meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%E5%9B%BE1.jpg">
 <meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%B8%B8%E7%94%A8%E7%8A%B6%E6%80%81%E7%A0%81.png">
-<meta property="og:updated_time" content="2016-07-30T03:28:52.000Z">
+<meta property="og:updated_time" content="2016-07-30T03:32:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="彻底搞懂HTTP协议">
 <meta name="twitter:description" content="在做网络编程（无论传统的Web开发，还是当前比较流行的的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行走的我们，仅仅学会使用这些类库的招式显然是不够的，我们还要了解其精髓，去分析源码，看看到底是如何实现的，那么问题来了，如果我们">
@@ -440,7 +440,7 @@
 </ul>
 <p>为了解决上述TCP连接的问题，HTTP想出了持久连接（HTTP keep-alive）的方法。持久连接的特点是：只要任意一端没有明确提出断开连接，则保持TCP连接状态。<br>管线化   持久连接使得多数请求以管线化方式发送成为可能。从前发送请求后需要等待并收到响应后，才能发送下一个请求。管线化技术出现后，不用等待响应亦可直接发送下一个请求，这样就能够同时并行发送多个请求，而不需要一个接一个地等待响应了。</p>
 <p><strong>HTTP是无状态协议</strong>，不对之前发送的请求和响应的状态进行管理。不可否认无状态协议当然也有它自己的优点。由于不保存状态，自然可减少服务器的CPU及内存资源的消耗。保留无状态协议这个特征的同时又要解决类似的矛盾问题，于是引入了Cookie技术。Cookie技术通过在请求和响应报文中写入Cookie信息来控制客户端的状态。</p>
-<h2 id="2-HTTP报文"><a href="#2-HTTP报文" class="headerlink" title="2. HTTP报文"></a>2. HTTP报文</h2><p>用于HTTP协议交互的信息被称为HTTP报文，客户端请求的报文称之为请求报文，服务端响应的报文称之为响应报文。HTTP报文大致可以分为<font color="#00ffff" size="7">报文首部</font>和<font color="#00ffff" size="7">报文主体</font>两部分。二者由最初出现的空行（CR＋LF）来划分。通常，并不一定要有报文主体。下面来看一下请求报文和响应报文的结构图：<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%E5%9B%BE2.jpg" alt="请求报文结构图"><br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%E5%9B%BE1.jpg" alt="响应报文结构图"></p>
+<h2 id="2-HTTP报文"><a href="#2-HTTP报文" class="headerlink" title="2. HTTP报文"></a>2. HTTP报文</h2><p>用于HTTP协议交互的信息被称为HTTP报文，客户端请求的报文称之为请求报文，服务端响应的报文称之为响应报文。HTTP报文大致可以分为<font color="#00ffff" size="4">报文首部</font>和<font color="#00ffff" size="4">报文主体</font>两部分。二者由最初出现的空行（CR＋LF）来划分。通常，并不一定要有报文主体。下面来看一下请求报文和响应报文的结构图：<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%E5%9B%BE2.jpg" alt="请求报文结构图"><br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%E5%9B%BE1.jpg" alt="响应报文结构图"></p>
 <h3 id="编码提升传输速率"><a href="#编码提升传输速率" class="headerlink" title="编码提升传输速率"></a>编码提升传输速率</h3><ul>
 <li>gzip(GNU zip)</li>
 <li>compress (Unix系统的标准压缩)</li>
@@ -458,11 +458,10 @@
 <h2 id="4-与HTTP协作的Web服务器"><a href="#4-与HTTP协作的Web服务器" class="headerlink" title="4. 与HTTP协作的Web服务器"></a>4. 与HTTP协作的Web服务器</h2><h3 id="用单台虚拟主机实现多个域名"><a href="#用单台虚拟主机实现多个域名" class="headerlink" title="用单台虚拟主机实现多个域名"></a><strong>用单台虚拟主机实现多个域名</strong></h3><p>一台Web服务器可搭建多个独立域名的Web网站，也可作为通信路径上的中转服务器提升传输效率。如果我们在一台服务器上托管了两个域名，当收到请求时就需要弄清楚究竟要访问哪个域名，因此必须在Host首部内完整指定主机名或域名的URI。</p>
 <h3 id="通信数据转发程序：代理、网关、隧道"><a href="#通信数据转发程序：代理、网关、隧道" class="headerlink" title="通信数据转发程序：代理、网关、隧道"></a><strong>通信数据转发程序：代理、网关、隧道</strong></h3><p>HTTP通信时，除客户端和服务器以外，还有一些用于通信数据转发的 <strong>应用程序和服务器</strong>，例如代理、网关和隧道，它们可以配合服务器工作。这些应用程序和服务器可以将请求转发给通信线路上的下一站服务器，并且能接收服务器返回的响应并转发给客户端。</p>
 <ul>
-<li><strong>代理:</strong> 是一种有转发功能的应用程序<br>代理服务器的基本行为就是接收客户端发送的请求后转发给其他服务器。<strong>代理不改变请求URI</strong> ，会直接转发给前方持有资源的目标服务器。</li>
-</ul>
-<p>使用代理服务器的理由：利用缓存技术减少网络带宽的流量。<br>代理有多种使用方法，按两种基准分类。一类是 <strong>是否使用缓存</strong> ，另一种是 <strong>是否会修改报文</strong> 。<br>缓存代理：代理转发响应时，缓存代理会预先将资源的副本保存在代理服务器上，下次请求相同的资源时，则将之前缓存的资源作为响应返回。<br>透明代理：转发请求或响应时，不对报文做任何加工的代理类型被称为透明代理，否则称为非透明代理。</p>
-<ul>
-<li><strong>网关:</strong> 是转发其他服务器通信数据的服务器</li>
+<li><p><strong>代理:</strong> 是一种有转发功能的应用程序<br>代理服务器的基本行为就是接收客户端发送的请求后转发给其他服务器。<strong>代理不改变请求URI</strong> ，会直接转发给前方持有资源的目标服务器。<br><font color="#9ACD32" size="4">使用代理服务器的理由：利用缓存技术减少网络带宽的流量。</font><br>代理有多种使用方法，按两种基准分类。一类是 <strong>是否使用缓存</strong> ，另一种是 <strong>是否会修改报文</strong> 。<br>缓存代理：代理转发响应时，缓存代理会预先将资源的副本保存在代理服务器上，下次请求相同的资源时，则将之前缓存的资源作为响应返回。<br>透明代理：转发请求或响应时，不对报文做任何加工的代理类型被称为透明代理，否则称为非透明代理。</p>
+</li>
+<li><p><strong>网关:</strong> 是转发其他服务器通信数据的服务器</p>
+</li>
 <li><strong>隧道:</strong> 是在相隔甚远的客户端和服务器两者之间进行中转，并保持双方通信连接的应用程序。<h3 id="保存资源的缓存"><a href="#保存资源的缓存" class="headerlink" title="保存资源的缓存"></a><strong>保存资源的缓存</strong></h3></li>
 </ul>
 <h2 id="5-HTTP首部"><a href="#5-HTTP首部" class="headerlink" title="5. HTTP首部"></a>5. HTTP首部</h2><h2 id="6-确保Web安全的HTTPS"><a href="#6-确保Web安全的HTTPS" class="headerlink" title="6. 确保Web安全的HTTPS"></a>6. 确保Web安全的HTTPS</h2><h2 id="7-确认访问用户身份的认证"><a href="#7-确认访问用户身份的认证" class="headerlink" title="7. 确认访问用户身份的认证"></a>7. 确认访问用户身份的认证</h2><h2 id="8-基于HTTP的功能追加协议"><a href="#8-基于HTTP的功能追加协议" class="headerlink" title="8. 基于HTTP的功能追加协议"></a>8. 基于HTTP的功能追加协议</h2><h1 id="三-后记"><a href="#三-后记" class="headerlink" title="三. 后记"></a>三. 后记</h1><p>本文是在阅读《图解HTTP》一书的基础上并同时参考一些优秀文章之后进行总结的，不仅整体认识了HTTP，也方便下次复习的时候，能够用更短的时间去理解这些虽然基础但是却很重要的知识。</p>
