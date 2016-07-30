@@ -48,7 +48,7 @@
 <meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%E5%9B%BE2.jpg">
 <meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%E5%9B%BE1.jpg">
 <meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%B8%B8%E7%94%A8%E7%8A%B6%E6%80%81%E7%A0%81.png">
-<meta property="og:updated_time" content="2016-07-30T03:27:39.000Z">
+<meta property="og:updated_time" content="2016-07-30T03:28:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="彻底搞懂HTTP协议">
 <meta name="twitter:description" content="在做网络编程（无论传统的Web开发，还是当前比较流行的的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行走的我们，仅仅学会使用这些类库的招式显然是不够的，我们还要了解其精髓，去分析源码，看看到底是如何实现的，那么问题来了，如果我们">
@@ -440,7 +440,7 @@
 </ul>
 <p>为了解决上述TCP连接的问题，HTTP想出了持久连接（HTTP keep-alive）的方法。持久连接的特点是：只要任意一端没有明确提出断开连接，则保持TCP连接状态。<br>管线化   持久连接使得多数请求以管线化方式发送成为可能。从前发送请求后需要等待并收到响应后，才能发送下一个请求。管线化技术出现后，不用等待响应亦可直接发送下一个请求，这样就能够同时并行发送多个请求，而不需要一个接一个地等待响应了。</p>
 <p><strong>HTTP是无状态协议</strong>，不对之前发送的请求和响应的状态进行管理。不可否认无状态协议当然也有它自己的优点。由于不保存状态，自然可减少服务器的CPU及内存资源的消耗。保留无状态协议这个特征的同时又要解决类似的矛盾问题，于是引入了Cookie技术。Cookie技术通过在请求和响应报文中写入Cookie信息来控制客户端的状态。</p>
-<h2 id="2-HTTP报文"><a href="#2-HTTP报文" class="headerlink" title="2. HTTP报文"></a>2. HTTP报文</h2><p>用于HTTP协议交互的信息被称为HTTP报文，客户端请求的报文称之为请求报文，服务端响应的报文称之为响应报文。HTTP报文大致可以分为<font color="#00ffff" size="16">报文首部</font>和<font color="#00ffff" size="16">报文主体</font>两部分。二者由最初出现的空行（CR＋LF）来划分。通常，并不一定要有报文主体。下面来看一下请求报文和响应报文的结构图：<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%E5%9B%BE2.jpg" alt="请求报文结构图"><br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%E5%9B%BE1.jpg" alt="响应报文结构图"></p>
+<h2 id="2-HTTP报文"><a href="#2-HTTP报文" class="headerlink" title="2. HTTP报文"></a>2. HTTP报文</h2><p>用于HTTP协议交互的信息被称为HTTP报文，客户端请求的报文称之为请求报文，服务端响应的报文称之为响应报文。HTTP报文大致可以分为<font color="#00ffff" size="7">报文首部</font>和<font color="#00ffff" size="7">报文主体</font>两部分。二者由最初出现的空行（CR＋LF）来划分。通常，并不一定要有报文主体。下面来看一下请求报文和响应报文的结构图：<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%E5%9B%BE2.jpg" alt="请求报文结构图"><br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%E5%9B%BE1.jpg" alt="响应报文结构图"></p>
 <h3 id="编码提升传输速率"><a href="#编码提升传输速率" class="headerlink" title="编码提升传输速率"></a>编码提升传输速率</h3><ul>
 <li>gzip(GNU zip)</li>
 <li>compress (Unix系统的标准压缩)</li>
