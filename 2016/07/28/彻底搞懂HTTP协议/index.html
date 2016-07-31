@@ -48,7 +48,8 @@
 <meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%E5%9B%BE2.jpg">
 <meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%E5%9B%BE1.jpg">
 <meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%B8%B8%E7%94%A8%E7%8A%B6%E6%80%81%E7%A0%81.png">
-<meta property="og:updated_time" content="2016-07-31T04:04:08.000Z">
+<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/HTTP%EF%BC%8F1.1%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png">
+<meta property="og:updated_time" content="2016-07-31T14:51:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="彻底搞懂HTTP协议">
 <meta name="twitter:description" content="在做网络编程（无论传统的Web开发，还是当前比较流行的的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行走的我们，仅仅学会使用这些类库的招式显然是不够的，我们还要了解其精髓，去分析源码，看看到底是如何实现的，那么问题来了，如果我们">
@@ -464,7 +465,7 @@
 </li>
 <li><strong>隧道:</strong> 是在相隔甚远的客户端和服务器两者之间进行中转，并保持双方通信连接的应用程序。<br>隧道可按要求建立起一条与其他服务器的通信线路，届时使用SSL等加密手段进行通信。隧道的目的是确保确保能与服务器进行安全通信，隧道本身不会解析HTTP请求，请求保持原样中转给之后的服务器。<h3 id="保存资源的缓存"><a href="#保存资源的缓存" class="headerlink" title="保存资源的缓存"></a><strong>保存资源的缓存</strong></h3>利用缓存可减少对源服务器的访问，可以节省通信流量和通信时间。<br>使用缓存的时候，要注意缓存的有效期限，确保我们发起请求获取的是最新的数据资源。</li>
 </ul>
-<h2 id="5-HTTP首部"><a href="#5-HTTP首部" class="headerlink" title="5. HTTP首部"></a>5. HTTP首部</h2><p>我们首先来看一下请求报文和响应报文到底长什么模样，下面的代码是通过Firefox插件Firebug来抓去的百度页面信息：</p>
+<h2 id="5-HTTP首部"><a href="#5-HTTP首部" class="headerlink" title="5. HTTP首部"></a>5. HTTP首部</h2><p>我们首先来看一下请求报文和响应报文到底长什么模样，下面的示例代码是通过Firefox插件Firebug来抓去的百度页面首部信息：</p>
 <ul>
 <li>请求报文</li>
 </ul>
@@ -473,7 +474,16 @@
 <li>响应报文</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</div><div class="line"></div><div class="line">Server: bfe/<span class="number">1.0</span><span class="number">.8</span><span class="number">.14</span></div><div class="line"></div><div class="line"><span class="built_in">Date</span>: Sun, <span class="number">31</span> Jul <span class="number">2016</span> <span class="number">03</span>:<span class="number">41</span>:<span class="number">53</span> GMT</div><div class="line"></div><div class="line">Content-Type: baiduApp/json; v6<span class="number">.27</span><span class="number">.2</span><span class="number">.14</span>; charset=UTF<span class="number">-8</span></div><div class="line"></div><div class="line">Content-Length: <span class="number">95</span></div><div class="line"></div><div class="line">Connection: keep-alive</div><div class="line"></div><div class="line">Cache-Control: private</div><div class="line"></div><div class="line">Expires: Sun, <span class="number">31</span> Jul <span class="number">2016</span> <span class="number">04</span>:<span class="number">41</span>:<span class="number">53</span> GMT</div><div class="line"></div><div class="line"><span class="built_in">Set</span>-Cookie: __bsi=<span class="number">12018325985460509248</span>_00_0_I_R_4_0303_C02F_N_I_I_0; expires=Sun, <span class="number">31</span>-Jul<span class="number">-16</span> <span class="number">03</span>:<span class="number">41</span>:<span class="number">58</span> GMT; domain=www.baidu.com; path=<span class="regexp">/</span></div></pre></td></tr></table></figure>
-<h2 id="6-确保Web安全的HTTPS"><a href="#6-确保Web安全的HTTPS" class="headerlink" title="6. 确保Web安全的HTTPS"></a>6. 确保Web安全的HTTPS</h2><h2 id="7-确认访问用户身份的认证"><a href="#7-确认访问用户身份的认证" class="headerlink" title="7. 确认访问用户身份的认证"></a>7. 确认访问用户身份的认证</h2><h2 id="8-基于HTTP的功能追加协议"><a href="#8-基于HTTP的功能追加协议" class="headerlink" title="8. 基于HTTP的功能追加协议"></a>8. 基于HTTP的功能追加协议</h2><h1 id="三-后记"><a href="#三-后记" class="headerlink" title="三. 后记"></a>三. 后记</h1><p>本文是在阅读《图解HTTP》一书的基础上并同时参考一些优秀文章之后进行总结的，不仅整体认识了HTTP，也方便下次复习的时候，能够用更短的时间去理解这些虽然基础但是却很重要的知识。</p>
+<p>结合上面的HTTP报文结构图我们可以知道，两段代码的第一行分别对应请求行和响应行，下面则为首部字段。<br>通过首部字段的名字我们也可以知道，首部字段起着传递额外信息的重要作用，下面我们来简单了解一下HTTP首部字段：<br><img src="http://7xt310.com1.z0.glb.clouddn.com/HTTP%EF%BC%8F1.1%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png" alt="HTTP首部字段"></p>
+<h2 id="6-确保Web安全的HTTPS"><a href="#6-确保Web安全的HTTPS" class="headerlink" title="6. 确保Web安全的HTTPS"></a>6. 确保Web安全的HTTPS</h2><p>通过上面的分析，我们了解到HTTP具有相当优秀和方便的一面，然而，HTTP并非只有好的一面，事物皆具两面性，主要存在以下几点不足：</p>
+<ul>
+<li>通信使用明文（不加密），内容可能会被窃听</li>
+<li>不验证通信方的身份，因此有可能遭遇伪装</li>
+<li>无法证明报文的完整性，所以有可能已遭篡改               </li>
+</ul>
+<p><strong><font color="#9ACD32" size="4">HTTP＋加密＋认证＋完整性保护＝HTTPS</font></strong><br>HTTPS并非是应用层的一种新协议。只是HTTP通信接口部分用SSL和TSL协议代替而已，通常，HTTP直接和TCP通信，当使用SSL时，则演变成先和SSL通信，再由SSL和TCP通信了。简言之，所谓HTTPS其实就是身披SSL协议这层外壳的HTTP。<br>当采用SSL后，HTTP就拥有了HTTPS的加密、证书和完整性保护这些功能。而且SSL协议是独立于HTTP的协议，所以不光是HTTP协议，其他运行在应用层的SMTP和Telnet等协议均可配合SSL协议使用。可以说SSL是当今世界上应用最为广泛的网络安全技术。</p>
+<p>在讲解SSL之前我们需要首先了解一下加密方法，加密分为对称加密和非对称加密。HTTPS协议则是采用的两者混合的实现方式，为什么要结合两种的实现方式呢？这是因为它们都各自存在自己的优缺点。对于对称加密来说，密钥的传输交换是不安全的，但是效率比较高，而对于非对称加密，是不用担心传输的密钥安全性的问题的，因为我们传递的是公开密钥，任何人都可以获得，但是缺点是效率比较低。对于公钥私钥、数字签名，这个哥们已经总结的相当好了，可以参考一下<a href="http://www.cnblogs.com/f1194361820/archive/2015/01/29/4260025.html" target="_blank" rel="external">文章链接</a>。</p>
+<h2 id="7-确认访问用户身份的认证"><a href="#7-确认访问用户身份的认证" class="headerlink" title="7. 确认访问用户身份的认证"></a>7. 确认访问用户身份的认证</h2><h2 id="8-基于HTTP的功能追加协议"><a href="#8-基于HTTP的功能追加协议" class="headerlink" title="8. 基于HTTP的功能追加协议"></a>8. 基于HTTP的功能追加协议</h2><h1 id="三-后记"><a href="#三-后记" class="headerlink" title="三. 后记"></a>三. 后记</h1><p>本文是在阅读《图解HTTP》一书的基础上并同时参考一些优秀文章之后进行总结的，不仅整体认识了HTTP，也方便下次复习的时候，能够用更短的时间去理解这些虽然基础但是却很重要的知识。</p>
 <h1 id="四：参考"><a href="#四：参考" class="headerlink" title="四：参考"></a>四：参考</h1><p><a href="http://www.cnblogs.com/jingmoxukong/p/5115055.html" target="_blank" rel="external">http://www.cnblogs.com/jingmoxukong/p/5115055.html</a><br><a href="http://www.cnblogs.com/gaojing/archive/2012/02/04/2413626.html" target="_blank" rel="external">http://www.cnblogs.com/gaojing/archive/2012/02/04/2413626.html</a><br><a href="http://network.chinabyte.com/401/13238901.shtml" target="_blank" rel="external">http://network.chinabyte.com/401/13238901.shtml</a></p>
 </span>
       
