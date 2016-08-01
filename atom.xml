@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>akathink&#39;s blog</title>
+  <subtitle>AkaThink</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://akathink.com/"/>
+  <updated>2016-08-01T09:54:07.000Z</updated>
+  <id>http://akathink.com/</id>
+  
+  <author>
+    <name>LiuQingJie</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>排序一：冒泡排序</title>
+    <link href="http://akathink.com/2016/07/29/%E6%8E%92%E5%BA%8F%E4%B8%80%EF%BC%9A%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/"/>
+    <id>http://akathink.com/2016/07/29/排序一：冒泡排序/</id>
+    <published>2016-07-29T05:33:52.000Z</published>
+    <updated>2016-08-01T09:54:07.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h1><p>冒泡排序是一种交换排序。<br>什么是交换排序呢？<br>交换排序：两两比较待排序的关键字，并交换不满足次序要求的那对数，直到整个表都满足次序要求为止。</p>
+<h2 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a><strong><font color="#00ffff" size="4">算法思想</font></strong></h2><p>两两比较 <strong><font color="#00ffff" size="4">相邻</font></strong> 记录的关键字，如果反序则交换，直到没有反序的记录为止。<br>假设有n个元素，则最差的情况下则需要n－1趟排序，每趟参与排序的元素个数＝n - 已经排序的趟数。好的情况趟数则在0～n这个范围内。</p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="冒泡排序示意图"></p>
+<p>以上图为例，我们一起看下冒泡排序的实际流程：<br>假设有一个无序序列｛5，4，1，3，2｝<br>第一轮排序：通过两两相临比较，找到最小的数值 1，将其放在序列的第一位；<br>第二轮排序：通过两两相临比较，找到第二小的数值 2，将其放在序列的第二位；<br>第三轮排序：通过两两相邻比较，找到第三小的数值 3，将其放在序列的第三位；<br>……<br>每一轮排序，我们都能找到剩余未排序的最小数值，直至整个序列处于有序状态，排序结束。</p>
+<p>若想将上面的流程转换为代码，我们则需要：</p>
+<ul>
+<li>1 总共需要多少趟排序，则需要一个外部循环控制趟的次数;<br>每趟获得一个最小值，最后一个必然是最大值，因此坐标从0开始，到n-1;</li>
+<li>2 每趟需要遍历多少元素，找到本趟中的最小值，则需要一个内部循环;<br>因为每趟排序我们都能找到剩余序列中的最小值，并排放在序列的前面位置，所以呢，我们每趟排序从后往前扫描，扫描到已经排好序的位置即可。因此坐标从n－1开始，直至已经排好序的位置。</li>
+</ul>
+<h1 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h1><h2 id="冒泡排序算法的性能"><a href="#冒泡排序算法的性能" class="headerlink" title="冒泡排序算法的性能"></a><strong><font color="#00ffff" size="4">冒泡排序算法的性能</font></strong></h2><p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E6%80%A7%E8%83%BD.jpg" alt="冒泡排序算法的性能"></p>
+<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a><strong><font color="#00ffff" size="4">时间复杂度</font></strong></h2><p>若文件的初始状态是正序的，一趟扫描即可完成排序。所需的关键字比较次数C和记录移动次数M均达到最小值：Cmin = N - 1, Mmin = 0。所以，冒泡排序最好时间复杂度为O(N)。<br>若初始文件是反序的，需要进行 N -1 趟排序。每趟排序要进行 N - i 次关键字的比较(1 ≤ i ≤ N - 1)，且每次比较都必须移动记录三次来达到交换记录位置。在这种情况下，比较和移动次数均达到最大值：<br>Cmax = N(N-1)/2 = O(N2)<br>Mmax = 3N(N-1)/2 = O(N2)<br>冒泡排序的最坏时间复杂度为O(N2)。<br>因此，冒泡排序的平均时间复杂度为O(N2)。<br>总结起来，其实就是一句话：当数据越接近正序时，冒泡排序性能越好。</p>
+<h2 id="算法稳定性"><a href="#算法稳定性" class="headerlink" title="算法稳定性"></a><strong><font color="#00ffff" size="4">算法稳定性</font></strong></h2><p>冒泡排序就是把小的元素往前调或者把大的元素往后调。比较是相邻的两个元素比较，交换也发生在这两个元素之间。<br>所以相同元素的前后顺序并没有改变，所以冒泡排序是一种稳定排序算法。</p>
+<h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><p>对冒泡排序常见的改进方法是加入标志性变量exchange，用于标志某一趟排序过程中是否有数据交换。<br>如果进行某一趟排序时并没有进行数据交换，则说明所有数据已经有序，可立即结束排序，避免不必要的比较过程。</p>
+<h1 id="完整参考代码"><a href="#完整参考代码" class="headerlink" title="完整参考代码"></a>完整参考代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.akathink.sort;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BubbleSort</span> </span>&#123;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 未优化的冒泡排序算法</div><div class="line">	 * <span class="doctag">@param</span> pDataList 待排序的无序序列</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubbleSort1</span><span class="params">(List&lt;Integer&gt; pDataList)</span></span>&#123;</div><div class="line">		<span class="comment">//排序趟数</span></div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>,size = pDataList.size() - <span class="number">1</span>;i &lt; size;i++)&#123;</div><div class="line">			<span class="comment">//在剩余序列中获取最小值</span></div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = pDataList.size() - <span class="number">1</span>;j &gt; i;j--)&#123;<span class="comment">//注意j是从后往前循环</span></div><div class="line">				<span class="keyword">if</span>(pDataList.get(j-<span class="number">1</span>) &gt; pDataList.get(j))&#123;</div><div class="line">					<span class="keyword">int</span> temp = pDataList.get(j-<span class="number">1</span>);</div><div class="line">					pDataList.set(j-<span class="number">1</span>, pDataList.get(j));</div><div class="line">					pDataList.set(j, temp);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			System.out.format(<span class="string">"第 %d 趟：\t"</span>, i);</div><div class="line">			printAll(pDataList);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * 优化后的冒泡排序算法</div><div class="line">	 * <span class="doctag">@param</span> pDataList 待排序的无序序列</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubbleSort2</span><span class="params">(List&lt;Integer&gt; pDataList)</span></span>&#123;</div><div class="line">		<span class="keyword">boolean</span> changeFlag = <span class="keyword">false</span>;</div><div class="line">		<span class="comment">//排序趟数</span></div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>,size = pDataList.size() - <span class="number">1</span>;i &lt; size;i++)&#123;</div><div class="line">			changeFlag = <span class="keyword">false</span>;</div><div class="line">			<span class="comment">//在剩余序列中获取最小值</span></div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = pDataList.size() - <span class="number">1</span>;j &gt; i;j--)&#123;<span class="comment">//注意j是从后往前循环</span></div><div class="line">				<span class="keyword">if</span>(pDataList.get(j-<span class="number">1</span>) &gt; pDataList.get(j))&#123;</div><div class="line">					<span class="keyword">int</span> temp = pDataList.get(j-<span class="number">1</span>);</div><div class="line">					pDataList.set(j-<span class="number">1</span>, pDataList.get(j));</div><div class="line">					pDataList.set(j, temp);</div><div class="line">					changeFlag = <span class="keyword">true</span>;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			<span class="comment">// 如果标志为false，说明本轮遍历没有交换，已经是有序数列，可以结束排序</span></div><div class="line">			<span class="keyword">if</span>(!changeFlag)&#123;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">			System.out.format(<span class="string">"第 %d 趟：\t"</span>, i);</div><div class="line">			printAll(pDataList);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printAll</span><span class="params">(List&lt;Integer&gt; pDataList)</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> value : pDataList)&#123;</div><div class="line">			System.out.print(value + <span class="string">"\t"</span>);</div><div class="line">		&#125;</div><div class="line">		 System.out.println();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		List&lt;Integer&gt; dataList = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">		dataList.add(<span class="number">5</span>);</div><div class="line">		dataList.add(<span class="number">4</span>);</div><div class="line">		dataList.add(<span class="number">1</span>);</div><div class="line">		dataList.add(<span class="number">3</span>);</div><div class="line">		dataList.add(<span class="number">2</span>);</div><div class="line">		System.out.print(<span class="string">"排序前:\t"</span>);</div><div class="line">		printAll(dataList);</div><div class="line">		bubbleSort2(dataList);</div><div class="line">		System.out.print(<span class="string">"排序后:\t"</span>);</div><div class="line">		printAll(dataList);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>运行结果</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">排序前:	  <span class="number">5</span>	<span class="number">4</span>	<span class="number">1</span>	<span class="number">3</span>	<span class="number">2</span></div><div class="line">第 <span class="number">0</span> 趟：	<span class="number">1</span>	<span class="number">5</span>	<span class="number">4</span>	<span class="number">2</span>	<span class="number">3</span></div><div class="line">第 <span class="number">1</span> 趟：	<span class="number">1</span>	<span class="number">2</span>	<span class="number">5</span>	<span class="number">4</span>	<span class="number">3</span></div><div class="line">第 <span class="number">2</span> 趟：	<span class="number">1</span>	<span class="number">2</span>	<span class="number">3</span>	<span class="number">5</span>	<span class="number">4</span></div><div class="line">第 <span class="number">3</span> 趟：	<span class="number">1</span>	<span class="number">2</span>	<span class="number">3</span>	<span class="number">4</span>	<span class="number">5</span></div><div class="line">排序后:	  <span class="number">1</span>	<span class="number">2</span>	<span class="number">3</span>	<span class="number">4</span>	<span class="number">5</span></div></pre></td></tr></table></figure></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>《大话数据结构》<br><a href="http://www.cnblogs.com/jingmoxukong/p/4302718.html" target="_blank" rel="external">http://www.cnblogs.com/jingmoxukong/p/4302718.html</a></p>
+<h1 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h1><p><a href="http://www.akathink.com/2016/07/29/内功修养：数据结构总结之排序算法/" target="_blank" rel="external">内功修养：数据结构总结之排序算法</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;要点&quot;&gt;&lt;a href=&quot;#要点&quot; class=&quot;headerlink&quot; title=&quot;要点&quot;&gt;&lt;/a&gt;要点&lt;/h1&gt;&lt;p&gt;冒泡排序是一种交换排序。&lt;br&gt;什么是交换排序呢？&lt;br&gt;交换排序：两两比较待排序的关键字，并交换不满足次序要求的那对数，直到整个表都满足次
+    
+    </summary>
+    
+      <category term="内功修养" scheme="http://akathink.com/categories/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/"/>
+    
+      <category term="数据结构" scheme="http://akathink.com/categories/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="排序" scheme="http://akathink.com/categories/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/"/>
+    
+    
+      <category term="数据结构" scheme="http://akathink.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="排序" scheme="http://akathink.com/tags/%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="内功修养" scheme="http://akathink.com/tags/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>“内功修养：数据结构总结之排序算法”</title>
+    <link href="http://akathink.com/2016/07/29/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB%EF%BC%9A%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93%E4%B9%8B%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
+    <id>http://akathink.com/2016/07/29/内功修养：数据结构总结之排序算法/</id>
+    <published>2016-07-29T05:32:42.000Z</published>
+    <updated>2016-07-29T07:04:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E6%8E%92%E5%BA%8F.png" alt="排序的分类"></p>
+<h1 id="稳定排序和不稳定排序"><a href="#稳定排序和不稳定排序" class="headerlink" title="稳定排序和不稳定排序"></a>稳定排序和不稳定排序</h1><p>如果Ri = Rj,Ri排序前在位置前，排序后还是要在Rj位置前，我们称该排序算法属于稳定排序，否则称为不稳定排序。</p>
+<h1 id="排序算法目录："><a href="#排序算法目录：" class="headerlink" title="排序算法目录："></a>排序算法目录：</h1><ul>
+<li><a href="http://www.akathink.com/2016/07/29/排序一-冒泡排序/" target="_blank" rel="external">排序一 冒泡排序</a></li>
+<li>排序二 快速排序</li>
+<li>排序三 直接插入排序</li>
+<li>排序四 希尔排序</li>
+<li>排序五 简单选择排序</li>
+<li>排序六 堆排序</li>
+<li>排序七 归并排序</li>
+<li>排序八 基数排序</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>《大话数据结构》</p>
+<h1 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h1><p><a href="http://www.cnblogs.com/codingmylife/archive/2012/10/21/2732980.html" target="_blank" rel="external">http://www.cnblogs.com/codingmylife/archive/2012/10/21/2732980.html</a><br><a href="http://www.cnblogs.com/jingmoxukong/p/4329079.html" target="_blank" rel="external">http://www.cnblogs.com/jingmoxukong/p/4329079.html</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xt310.com1.z0.glb.clouddn.com/%E6%8E%92%E5%BA%8F.png&quot; alt=&quot;排序的分类&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;稳定排序和不稳定排序&quot;&gt;&lt;a href=&quot;#稳定排序和不稳定排序&quot; class=
+    
+    </summary>
+    
+      <category term="内功修养" scheme="http://akathink.com/categories/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/"/>
+    
+      <category term="数据结构" scheme="http://akathink.com/categories/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="排序" scheme="http://akathink.com/categories/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F/"/>
+    
+    
+      <category term="数据结构" scheme="http://akathink.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="排序" scheme="http://akathink.com/tags/%E6%8E%92%E5%BA%8F/"/>
+    
+      <category term="内功修养" scheme="http://akathink.com/tags/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>彻底搞懂HTTP协议</title>
+    <link href="http://akathink.com/2016/07/28/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82HTTP%E5%8D%8F%E8%AE%AE/"/>
+    <id>http://akathink.com/2016/07/28/彻底搞懂HTTP协议/</id>
+    <published>2016-07-28T08:16:42.000Z</published>
+    <updated>2016-07-31T15:07:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在做网络编程（无论传统的Web开发，还是当前比较流行的的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行走的我们，仅仅学会使用这些类库的招式显然是不够的，我们还要了解其精髓，去分析源码，看看到底是如何实现的，那么问题来了，如果我们不懂HTTP协议的基础及核心内容，我们又该如何去分析那些源代码呢？无论哪个类库，最终的实现机制都是建立在对HTTP协议熟练掌握的基础上的。那么，让我们一起去彻底征服HTTP协议吧。</p>
+<p>在了解之前，我先提几个问题，方便下面分析的时候，能够更好的去理解HTTP协议。</p>
+<ul>
+<li>1 如何理解HTTP协议的工作机制？</li>
+<li>2 如何建立一个网络请求，建立一个网络请求需要初始化哪些东西？</li>
+<li>3 如何将HTTP请求发送出去？</li>
+<li>4 如何接受到HTTP请求的响应信息?</li>
+</ul>
+<p>为了更好的理解HTTP协议，我们先简单的了解一下TCP／IP协议族。通常我们所使用的网络都是在TCP／IP协议族的基础上运作的，HTTP也不例外。</p>
+<h1 id="一-TCP-IP协议族"><a href="#一-TCP-IP协议族" class="headerlink" title="一. TCP/IP协议族"></a>一. TCP/IP协议族</h1><p>客户端与服务器端进行相互通信，双方必须遵循相同的规则，比如：</p>
+<ul>
+<li>1 如何探测到通信目标</li>
+<li>2 由哪一边先发起通信</li>
+<li>3 使用哪种语言进行通信</li>
+<li>4 怎样结束通信</li>
+<li>5 不同的硬件、操作系统之间如何通信</li>
+</ul>
+<p>而这一切都需要一种特定的规则来约束，我们称该规则为协议。</p>
+<h2 id="1-TCP-IP的分层管理"><a href="#1-TCP-IP的分层管理" class="headerlink" title="1. TCP/IP的分层管理"></a>1. TCP/IP的分层管理</h2><p>TCP/IP协议族最重要的一个特性就是分层。TCP／IP协议族按层次分别分为以下四层：应用层、传输层、网络层和数据链路层（OSI参考模型分为七层）。</p>
+<ul>
+<li>1 应用层<br>作用：应用层决定了向用户提供应用服务时通信的活动。eg. DNS、FTP、HTTP。</li>
+<li>2 传输层<br>作用：传输层对上层应用层，提供处于网络连接中的两台计算机之间的数据传输。eg. UDP、TCP。</li>
+<li>3 网络层<br>作用：网络层用来处理在网络上流动的数据包。数据包是网络传输的最小数据单位。该层规定了通过怎样的路径到达对方计算机，并把数据包传给对方。</li>
+<li>4 链路层<br>作用：用来处理连接网络的硬件部分。包括控制操作系统、硬件的设备驱动、NIC及光纤等物理可见部分。</li>
+</ul>
+<h2 id="2-TCP-IP-通信传输流"><a href="#2-TCP-IP-通信传输流" class="headerlink" title="2. TCP/IP 通信传输流"></a>2. TCP/IP 通信传输流</h2><p><img src="http://7xt310.com1.z0.glb.clouddn.com/TCP:IP%E4%BC%A0%E8%BE%93%E6%B5%81.jpg" alt=""></p>
+<h2 id="3-与HTTP关系密切的协议：IP、TCP和DNS"><a href="#3-与HTTP关系密切的协议：IP、TCP和DNS" class="headerlink" title="3. 与HTTP关系密切的协议：IP、TCP和DNS"></a>3. 与HTTP关系密切的协议：IP、TCP和DNS</h2><ul>
+<li>1 负责传输的IP协议<blockquote>
+<p>按层次分，IP位于网络层；<br>IP协议的作用是把各种数据包传送给对方，而要确保传送到对方那里，则需要满足各类条件，其中两个重要的条件是IP地址和MAC地址；<br>IP间的通信依赖MAC地址，采用ARP协议凭借MAC地址进行通信。</p>
+</blockquote>
+</li>
+<li>2 确保可靠性的TCP协议<blockquote>
+<p>按层次分，TCP位于传输层，提供可靠的字节流服务<br>所谓字节流服务是指，为了方便传输，将大块数据分割成以报文段为单位的数据包进行管理。而可靠的传输服务是指，能够把数据准确可靠地传给对方。<br>一言以蔽之，TCP协议为了更容易传送大数据才把数据分割，而且TCP协议能够确认数据是否送达到对方。</p>
+</blockquote>
+</li>
+<li>3 负责域名解析的DNS服务<blockquote>
+<p>DNS同HTTP协议一样位于应用层，提供域名到IP地址之间的解析服务。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-各种协议与HTTP协议的关系"><a href="#4-各种协议与HTTP协议的关系" class="headerlink" title="4. 各种协议与HTTP协议的关系"></a>4. 各种协议与HTTP协议的关系</h2><blockquote>
+<p>HTTP在发送请求时，如果请求的地址写的是域名，则先访问DNS服务器获取目标服务器的IP地址，然后生成HTTP请求报文，发送给TCP层,按照TCP/IP通信传输流传输给目标服务器。</p>
+</blockquote>
+<h2 id="5-URI-和-URL"><a href="#5-URI-和-URL" class="headerlink" title="5. URI 和 URL"></a>5. URI 和 URL</h2><h3 id="5-1-URI（统一资源标识符）"><a href="#5-1-URI（统一资源标识符）" class="headerlink" title="5.1 URI（统一资源标识符）"></a>5.1 URI（统一资源标识符）</h3><ul>
+<li>Uniform<br>规定统一的格式可方便处理多种不同类型的资源，而不用根据上下文环境来识别资源指定的访问方式。</li>
+<li>Resource<br>资源的定义“可标识的人和东西”，资源不仅可以是单一的，也可以是多数的集合体。</li>
+<li>Identifier<br>表示可标识的对象。</li>
+</ul>
+<p>综上：URI就是由某个协议方案表示的资源的定位标识符。</p>
+<h3 id="5-2URI-和-URL的关系"><a href="#5-2URI-和-URL的关系" class="headerlink" title="5.2URI 和 URL的关系"></a>5.2URI 和 URL的关系</h3><ul>
+<li>URI用字符串标识某一互联网资源，而URL表示资源的地址（互联网上所处的位置），可见是URI的子集。</li>
+<li>URL是一种具体的URI，它不仅唯一标识资源，而且还提供了定位该资源的信息。URI是一种语义上的抽象概念，可以是绝对的，也可以是相对的，而URL则必须提供足够的信息来定位，所以，是绝对的，而通常说的relative URL，则是针对另一个absolute URL，本质上还是绝对的。</li>
+</ul>
+<h1 id="二-HTTP协议"><a href="#二-HTTP协议" class="headerlink" title="二. HTTP协议"></a>二. HTTP协议</h1><h2 id="1-HTTP协议"><a href="#1-HTTP协议" class="headerlink" title="1. HTTP协议"></a>1. HTTP协议</h2><ul>
+<li>HTTP是什么？<br>HTTP（HyperText Transfer Protocol，超文本传输协议）是WWW (World Wide Web)实现数据通信的基石。<br>它是一种应用层协议（OSI七层模型的最顶层），它基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件, 查询结果等）。</li>
+<li>HTTP协议用于客户端和服务端之间的通信，通过请求和响应的交互达成通信（肯定是先从客户端开始建立通信的，服务器端在没有接收到任何请求之前不会发送响应）。</li>
+<li>HTTP是不保存状态的协议，为了实现期望的保存状态的功能，引入了Cookie技术。</li>
+<li>告知服务器意图的HTTP方法<br><strong><font color="#9ACD32" size="4">GET</font></strong>:用来请求访问已被URI识别的资源，指定的资源经服务器解析后返回响应内容；<br><strong><font color="#9ACD32" size="4">POST</font></strong>:传输实体主体；<br><strong><font color="#9ACD32" size="4">PUT</font></strong>:传输文件，鉴于HTTP／1.1的PUT方法自身不带验证机制，任何人都可以上传文件，存在安全性问题，因此一般的网站不建议使用该方法。若配合Web应用程序的验证机制，或架构设计采用REST标准的同类Web网站，就可能会开放使用PUT方法。<br><strong><font color="#9ACD32" size="4">HEAD</font></strong>:获得报文首部，和GET方法一样，只是不返回报文主体部分，用于确认URI的有效性及资源更新的日期时间等。<br><strong><font color="#9ACD32" size="4">DELETE</font></strong>:删除文件，和PUT方法一样不带验证机制。<br><strong><font color="#9ACD32" size="4">OPTIONS</font></strong>:用来查询针对请求URI指定的资源支持的方法。<br><strong><font color="#9ACD32" size="4">TRACE</font></strong>:追踪路径，客户端通过TRACE方法可以查询发送出去的请求是怎样被加工修改／篡改的。这是因为，想要连接到源目标服务器可能会通过代理中转，TRACE方法就是用来确认连接过程中发生的一系列操作。<br><strong><font color="#9ACD32" size="4">CONNECT</font></strong>: 要求用隧道协议连接代理。CONNECT方法在与代理服务器通信时建立隧道，实现用隧道协议进行TCP通信。主要使用SSL和TLS协议把通信内容经网络隧道传输。</li>
+<li>持久连接节省通信量<br>在HTTP协议的初始版本中，每进行一次HTTP通信就要断开一次TCP连接。<br>假设这样的一个应用场景：使用浏览器请求一个包含多张图片的HTML页面时，在发送请求访问HTML页面资源的同时，也会请求该HTML里面包含的其他资源。因此，每次的请求都会造成无谓的TCP连接建立和断开，增加通信量的开销。</li>
+</ul>
+<p>为了解决上述TCP连接的问题，HTTP想出了持久连接（HTTP keep-alive）的方法。持久连接的特点是：只要任意一端没有明确提出断开连接，则保持TCP连接状态。<br>管线化   持久连接使得多数请求以管线化方式发送成为可能。从前发送请求后需要等待并收到响应后，才能发送下一个请求。管线化技术出现后，不用等待响应亦可直接发送下一个请求，这样就能够同时并行发送多个请求，而不需要一个接一个地等待响应了。</p>
+<p><strong><font color="#9ACD32" size="4">HTTP是无状态协议</font></strong>，不对之前发送的请求和响应的状态进行管理。不可否认无状态协议当然也有它自己的优点。由于不保存状态，自然可减少服务器的CPU及内存资源的消耗。保留无状态协议这个特征的同时又要解决类似的矛盾问题，于是引入了Cookie技术。Cookie技术通过在请求和响应报文中写入Cookie信息来控制客户端的状态。</p>
+<h2 id="2-HTTP报文"><a href="#2-HTTP报文" class="headerlink" title="2. HTTP报文"></a>2. HTTP报文</h2><p>用于HTTP协议交互的信息被称为HTTP报文，客户端请求的报文称之为请求报文，服务端响应的报文称之为响应报文。HTTP报文大致可以分为<font color="#00ffff" size="4">报文首部</font>和<font color="#00ffff" size="4">报文主体</font>两部分。二者由最初出现的空行（CR＋LF）来划分。通常，并不一定要有报文主体。下面来看一下请求报文和响应报文的结构图：<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%E5%9B%BE2.jpg" alt="请求报文结构图"><br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%E5%9B%BE1.jpg" alt="响应报文结构图"></p>
+<h3 id="编码提升传输速率"><a href="#编码提升传输速率" class="headerlink" title="编码提升传输速率"></a>编码提升传输速率</h3><ul>
+<li>gzip(GNU zip)</li>
+<li>compress (Unix系统的标准压缩)</li>
+<li>deflate(zlib)</li>
+<li>identity(不进行编码)</li>
+</ul>
+<h3 id="分割发送的分块传输编码"><a href="#分割发送的分块传输编码" class="headerlink" title="分割发送的分块传输编码"></a>分割发送的分块传输编码</h3><h3 id="发送多种数据的多部分对象集合"><a href="#发送多种数据的多部分对象集合" class="headerlink" title="发送多种数据的多部分对象集合"></a>发送多种数据的多部分对象集合</h3><h3 id="获取部分内容的范围请求"><a href="#获取部分内容的范围请求" class="headerlink" title="获取部分内容的范围请求"></a>获取部分内容的范围请求</h3><p>在实现<font color="#9ACD32" size="4">断点续传</font>的功能的时候，就需要使用范围请求这个字段了。eg.Range: byte = 5001 - 10000</p>
+<h2 id="3-返回结果的HTTP状态码"><a href="#3-返回结果的HTTP状态码" class="headerlink" title="3. 返回结果的HTTP状态码"></a>3. 返回结果的HTTP状态码</h2><ul>
+<li>1XX 表示服务器已经接收了客户端请求，客户端可继续发送请求</li>
+<li>2XX 请求正常处理完毕</li>
+<li>3XX 需要进行附加操作以完成请求</li>
+<li>4XX 表示客户端的请求有非法内容</li>
+<li>5XX 服务器处理请求出错<br>下图为一些常用的状态码：<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%B8%B8%E7%94%A8%E7%8A%B6%E6%80%81%E7%A0%81.png" alt="常用的状态码"></li>
+</ul>
+<h2 id="4-与HTTP协作的Web服务器"><a href="#4-与HTTP协作的Web服务器" class="headerlink" title="4. 与HTTP协作的Web服务器"></a>4. 与HTTP协作的Web服务器</h2><h3 id="用单台虚拟主机实现多个域名"><a href="#用单台虚拟主机实现多个域名" class="headerlink" title="用单台虚拟主机实现多个域名"></a><strong>用单台虚拟主机实现多个域名</strong></h3><p>一台Web服务器可搭建多个独立域名的Web网站，也可作为通信路径上的中转服务器提升传输效率。如果我们在一台服务器上托管了两个域名，当收到请求时就需要弄清楚究竟要访问哪个域名，因此必须在Host首部内完整指定主机名或域名的URI。</p>
+<h3 id="通信数据转发程序：代理、网关、隧道"><a href="#通信数据转发程序：代理、网关、隧道" class="headerlink" title="通信数据转发程序：代理、网关、隧道"></a><strong>通信数据转发程序：代理、网关、隧道</strong></h3><p>HTTP通信时，除客户端和服务器以外，还有一些用于通信数据转发的 <strong>应用程序和服务器</strong>，例如代理、网关和隧道，它们可以配合服务器工作。这些应用程序和服务器可以将请求转发给通信线路上的下一站服务器，并且能接收服务器返回的响应并转发给客户端。</p>
+<ul>
+<li><p><strong>代理:</strong> 是一种有转发功能的应用程序<br>代理服务器的基本行为就是接收客户端发送的请求后转发给其他服务器。<strong>代理不改变请求URI</strong> ，会直接转发给前方持有资源的目标服务器。<br><font color="#9ACD32" size="4">使用代理服务器的理由：利用缓存技术减少网络带宽的流量。</font><br>代理有多种使用方法，按两种基准分类。一类是 <strong>是否使用缓存</strong> ，另一种是 <strong>是否会修改报文</strong> 。<br>缓存代理：代理转发响应时，缓存代理会预先将资源的副本保存在代理服务器上，下次请求相同的资源时，则将之前缓存的资源作为响应返回。<br>透明代理：转发请求或响应时，不对报文做任何加工的代理类型被称为透明代理，否则称为非透明代理。</p>
+</li>
+<li><p><strong>网关:</strong> 是转发其他服务器通信数据的服务器<br>利用网关可以由HTTP请求转化为其他协议通信。<br>网关的工作机制和代理十分相似，而网关能使通信线路上的服务器提供非HTTP协议服务。</p>
+</li>
+<li><strong>隧道:</strong> 是在相隔甚远的客户端和服务器两者之间进行中转，并保持双方通信连接的应用程序。<br>隧道可按要求建立起一条与其他服务器的通信线路，届时使用SSL等加密手段进行通信。隧道的目的是确保确保能与服务器进行安全通信，隧道本身不会解析HTTP请求，请求保持原样中转给之后的服务器。<h3 id="保存资源的缓存"><a href="#保存资源的缓存" class="headerlink" title="保存资源的缓存"></a><strong>保存资源的缓存</strong></h3>利用缓存可减少对源服务器的访问，可以节省通信流量和通信时间。<br>使用缓存的时候，要注意缓存的有效期限，确保我们发起请求获取的是最新的数据资源。</li>
+</ul>
+<h2 id="5-HTTP首部"><a href="#5-HTTP首部" class="headerlink" title="5. HTTP首部"></a>5. HTTP首部</h2><p>我们首先来看一下请求报文和响应报文到底长什么模样，下面的示例代码是通过Firefox插件Firebug来抓去的百度页面首部信息：</p>
+<ul>
+<li>请求报文</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">GET /his?wd=&amp;from=pc_web&amp;rf=3&amp;hisdata=&amp;json=1&amp;p=3&amp;sid=20740_20742_1424_18280_20417_17001_15840_11910_20744_20705&amp;csor=0&amp;cb=jQuery110206488567241711853_1469936513370&amp;_=1469936513371 HTTP/1.1</div><div class="line"></div><div class="line">Host: www.baidu.com</div><div class="line"></div><div class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:47.0) Gecko/20100101 Firefox/47.0</div><div class="line"></div><div class="line">Accept: text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */／*; q=0.01</div><div class="line"></div><div class="line">Accept-Language: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</div><div class="line"></div><div class="line">Accept-Encoding: gzip, deflate, br</div><div class="line"></div><div class="line">X-Requested-With: XMLHttpRequest</div><div class="line"></div><div class="line">Referer: https://www.baidu.com/</div><div class="line"></div><div class="line">Cookie: BAIDUID=DB24D5F4AB36694CF00C4877ADA56562:FG=1; BIDUPSID=DB24D5F4AB36694CF00C4877ADA56562; PSTM=1469936050; BDRCVFR[gltLrB7qNCt]=mk3SLVN4HKm; BD_CK_SAM=1; H_PS_PSSID=20740_20742_1424_18280_20417_17001_15840_11910_20744_20705; BD_UPN=133252; H_PS_645EC=96a0XJobAseSCdbn9%2FviULLD7KreCHN4V4HzQtcGacKF8tGu13Nzd6j9PoB2SPPVj1d5; BD_HOME=0; __bsi=11860814506529643127_00_0_I_R_25_0303_C02F_N_I_I_0</div><div class="line"></div><div class="line">Connection: keep-alive</div></pre></td></tr></table></figure>
+<ul>
+<li>响应报文</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</div><div class="line"></div><div class="line">Server: bfe/<span class="number">1.0</span><span class="number">.8</span><span class="number">.14</span></div><div class="line"></div><div class="line"><span class="built_in">Date</span>: Sun, <span class="number">31</span> Jul <span class="number">2016</span> <span class="number">03</span>:<span class="number">41</span>:<span class="number">53</span> GMT</div><div class="line"></div><div class="line">Content-Type: baiduApp/json; v6<span class="number">.27</span><span class="number">.2</span><span class="number">.14</span>; charset=UTF<span class="number">-8</span></div><div class="line"></div><div class="line">Content-Length: <span class="number">95</span></div><div class="line"></div><div class="line">Connection: keep-alive</div><div class="line"></div><div class="line">Cache-Control: private</div><div class="line"></div><div class="line">Expires: Sun, <span class="number">31</span> Jul <span class="number">2016</span> <span class="number">04</span>:<span class="number">41</span>:<span class="number">53</span> GMT</div><div class="line"></div><div class="line"><span class="built_in">Set</span>-Cookie: __bsi=<span class="number">12018325985460509248</span>_00_0_I_R_4_0303_C02F_N_I_I_0; expires=Sun, <span class="number">31</span>-Jul<span class="number">-16</span> <span class="number">03</span>:<span class="number">41</span>:<span class="number">58</span> GMT; domain=www.baidu.com; path=<span class="regexp">/</span></div></pre></td></tr></table></figure>
+<p>结合上面的HTTP报文结构图我们可以知道，两段代码的第一行分别对应请求行和响应行，下面则为首部字段。<br>通过首部字段的名字我们也可以知道，首部字段起着传递额外信息的重要作用，下面我们来简单了解一下HTTP首部字段：<br><img src="http://7xt310.com1.z0.glb.clouddn.com/HTTP%EF%BC%8F1.1%E9%A6%96%E9%83%A8%E5%AD%97%E6%AE%B5.png" alt="HTTP首部字段"></p>
+<h2 id="6-确保Web安全的HTTPS"><a href="#6-确保Web安全的HTTPS" class="headerlink" title="6. 确保Web安全的HTTPS"></a>6. 确保Web安全的HTTPS</h2><p>通过上面的分析，我们了解到HTTP具有相当优秀和方便的一面，然而，HTTP并非只有好的一面，事物皆具两面性，主要存在以下几点不足：</p>
+<ul>
+<li>通信使用明文（不加密），内容可能会被窃听</li>
+<li>不验证通信方的身份，因此有可能遭遇伪装</li>
+<li>无法证明报文的完整性，所以有可能已遭篡改               </li>
+</ul>
+<p><strong><font color="#9ACD32" size="4">HTTP＋加密＋认证＋完整性保护＝HTTPS</font></strong><br>HTTPS并非是应用层的一种新协议。只是HTTP通信接口部分用SSL和TSL协议代替而已，通常，HTTP直接和TCP通信，当使用SSL时，则演变成先和SSL通信，再由SSL和TCP通信了。简言之，所谓HTTPS其实就是身披SSL协议这层外壳的HTTP。<br>当采用SSL后，HTTP就拥有了HTTPS的加密、证书和完整性保护这些功能。而且SSL协议是独立于HTTP的协议，所以不光是HTTP协议，其他运行在应用层的SMTP和Telnet等协议均可配合SSL协议使用。可以说SSL是当今世界上应用最为广泛的网络安全技术。</p>
+<p>在讲解SSL之前我们需要首先了解一下加密方法，加密分为<font color="#9ACD32" size="4">对称加密</font>和<font color="#9ACD32" size="4">非对称加密</font>。HTTPS协议则是采用的两者混合的实现方式，为什么要结合两种的实现方式呢？这是因为它们都各自存在自己的优缺点。对于对称加密来说，密钥的传输交换是不安全的，但是效率比较高，而对于非对称加密，是不用担心传输的密钥安全性的问题的，因为我们传递的是公开密钥，任何人都可以获得，但是缺点是效率比较低。对于公钥私钥、数字签名，这个哥们已经总结的相当好了，可以参考一下这篇<a href="http://www.cnblogs.com/f1194361820/archive/2015/01/29/4260025.html" target="_blank" rel="external"><font color="#9ACD32" size="4">文章</font></a>。</p>
+<h2 id="7-确认访问用户身份的认证"><a href="#7-确认访问用户身份的认证" class="headerlink" title="7. 确认访问用户身份的认证"></a>7. 确认访问用户身份的认证</h2><p><font color="#00ffff" size="4">何为认证？简单来说就是证明你是你自己！</font>核对的信息通常有密码、动态令牌、数字证书、生物认证、IC卡等信息。<br>HTTP／1.1使用的认证方式如下：</p>
+<ul>
+<li>BASIC认证（基本认证）</li>
+<li>DIGEST认证（摘要认证）</li>
+<li>SSL客户端认证</li>
+<li>FormBase认证（基于表单认证）</li>
+</ul>
+<h2 id="8-基于HTTP的功能追加协议"><a href="#8-基于HTTP的功能追加协议" class="headerlink" title="8. 基于HTTP的功能追加协议"></a>8. 基于HTTP的功能追加协议</h2><p>待续…<br>下面将会整体做个总结，完整的说明HTTP的工作机制。</p>
+<h1 id="三-后记"><a href="#三-后记" class="headerlink" title="三. 后记"></a>三. 后记</h1><p>本文是在阅读《图解HTTP》一书的基础上并同时参考一些优秀文章之后进行总结的，不仅整体认识了HTTP，也方便下次复习的时候，能够用更短的时间去理解这些虽然基础但是却很重要的知识。</p>
+<h1 id="四：参考"><a href="#四：参考" class="headerlink" title="四：参考"></a>四：参考</h1><p><a href="http://www.cnblogs.com/jingmoxukong/p/5115055.html" target="_blank" rel="external">http://www.cnblogs.com/jingmoxukong/p/5115055.html</a><br><a href="http://www.cnblogs.com/gaojing/archive/2012/02/04/2413626.html" target="_blank" rel="external">http://www.cnblogs.com/gaojing/archive/2012/02/04/2413626.html</a><br><a href="http://network.chinabyte.com/401/13238901.shtml" target="_blank" rel="external">http://network.chinabyte.com/401/13238901.shtml</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在做网络编程（无论传统的Web开发，还是当前比较流行的的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行
+    
+    </summary>
+    
+      <category term="内功修养" scheme="http://akathink.com/categories/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/"/>
+    
+      <category term="HTTP协议" scheme="http://akathink.com/categories/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/HTTP%E5%8D%8F%E8%AE%AE/"/>
+    
+      <category term="网络" scheme="http://akathink.com/categories/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/HTTP%E5%8D%8F%E8%AE%AE/%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="HTTP协议" scheme="http://akathink.com/tags/HTTP%E5%8D%8F%E8%AE%AE/"/>
+    
+      <category term="网络协议" scheme="http://akathink.com/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"/>
+    
+      <category term="内功修养" scheme="http://akathink.com/tags/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/"/>
+    
+  </entry>
+  
+</feed>
