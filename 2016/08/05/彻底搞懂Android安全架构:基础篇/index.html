@@ -76,8 +76,11 @@
 <meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E4%BD%BF%E7%94%A8%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6.jpg">
 <meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E7%AD%BE%E5%90%8D%E7%9A%84%E5%90%8C%E6%97%B6%EF%BC%8C%E5%86%8D%E4%BD%BF%E7%94%A8%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6.jpg">
 <meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E7%94%A8CA%E7%9A%84%E5%85%AC%E9%92%A5%E8%A7%A3%E5%BC%80%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6.jpg">
+<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%AE%9E%E9%99%85%E7%9A%84%E4%BC%9A%E8%AF%9D%E5%9C%BA%E6%99%AF.jpg">
+<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%88%A9%E7%94%A8%E5%85%AC%E9%92%A5%E6%9D%A5%E4%BA%A4%E6%8D%A2%E4%BC%9A%E8%AF%9D%E5%AF%86%E9%92%A5.jpg">
+<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%85%B6%E4%BB%96%E7%9A%84%E5%AF%86%E9%92%A5%E4%BA%A4%E6%8D%A2.jpg">
 <meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81%E6%9C%AF%E7%9A%84%E4%B8%A4%E9%9D%A2%E6%80%A7.png">
-<meta property="og:updated_time" content="2016-08-05T12:21:41.000Z">
+<meta property="og:updated_time" content="2016-08-05T13:02:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="彻底搞懂Android安全架构:基础篇">
 <meta name="twitter:description" content="安全要解决什么问题？
@@ -441,13 +444,13 @@
 <li>加密：将原文转换成密文的实施过程。</li>
 <li>解密：将密文转换成明文的实施过程。</li>
 </ul>
-<h1 id="密码术"><a href="#密码术" class="headerlink" title="密码术"></a>密码术</h1><p>说到密码术似乎感觉很高大上，这不都是各种谍战片里面经常出现的吗？其实，在我们现实生活中，多多少少也会接触一些简单的密码术，例如：字母加密、藏头诗、倒写文等。我们可以采用任何规则来定义密码术，但为什么我们自己不发明和使用新的密码术呢？</p>
+<h1 id="密码术"><a href="#密码术" class="headerlink" title="密码术"></a>密码术</h1><p>说到密码术似乎感觉很高大上，这不都是各种谍战片里面经常出现的吗？其实，在我们现实生活中，多多少少也会接触一些简单的密码术，例如：字母加密、藏头诗、倒写文等。我们可以采用任何规则来定义密码术，但是通常我们并不会自己去写新的密码术，为什么呢？</p>
 <p>这主要是因为：</p>
 <ol>
 <li>安全性：没有经过验证的密码术，确保不了该密码术一定安全。</li>
 <li>密码术里面是否有后门，因为自己定义的密码术不公开，不知道里面是否包含一些其他后门的类似程序。</li>
 </ol>
-<p>概括来讲，加密主要分为：置换加密、转置加密、乘积加密（多次置换加密和转置加密的混合使用）。</p>
+<p>概括来讲，加密主要分为：<strong><font color="#00ffff" size="4">置换加密</font></strong> 、<strong><font color="#00ffff" size="4">转置加密</font></strong>、<strong><font color="#00ffff" size="4">乘积加密</font></strong>（多次置换加密和转置加密的混合使用）。</p>
 <h1 id="加密模型"><a href="#加密模型" class="headerlink" title="加密模型"></a>加密模型</h1><p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%8A%A0%E5%AF%86%E6%A8%A1%E5%9E%8B.png" alt="加密模型"></p>
 <h2 id="对称加密模型"><a href="#对称加密模型" class="headerlink" title="对称加密模型"></a>对称加密模型</h2><ul>
 <li><p>DES</p>
@@ -460,7 +463,19 @@
 </li>
 </ul>
 <h2 id="非对称加密模型"><a href="#非对称加密模型" class="headerlink" title="非对称加密模型"></a>非对称加密模型</h2><p>下面首先通过一个例子来简单说明公钥私钥、数字签名、消息摘要是什么，然后再详细分析非对称加密模型里面的重要知识点:</p>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%AF%86%E9%92%A5%E7%94%B1%E8%B0%81%E4%BA%A7%E7%94%9F.jpg" alt="产生公钥和私钥"><br>鲍勃采用某种产生密钥的算法，生成两把密钥：一把是公钥，一把是私钥。<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%B0%86%E5%85%AC%E9%92%A5%E5%85%AC%E5%BC%80.jpg" alt="将公钥公开"><br>鲍勃将自己的公钥发送给他的朋友－－帕蒂、道格、苏珊－－每人一把，以后谁想给鲍勃写私密邮件，则可以使用该公钥进行加密。<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E4%BD%BF%E7%94%A8%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86.jpg" alt="采用公钥加密"><br>现在苏珊想给鲍勃写一封保密邮件，他写完之后用鲍勃的公钥加密，就可以达到保密的效果。<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E9%87%87%E7%94%A8%E7%A7%81%E9%92%A5%E8%A7%A3%E5%AF%86.jpg" alt="采用私钥解密"><br>鲍勃收到信之后，用自己的私钥解密，看到了信件的内容。这里要强调的是，只要鲍勃的私钥不泄漏，这封信就是安全的，即使落在别人的手里，也无法解密。<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E4%BD%BF%E7%94%A8%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%EF%BC%8C%E7%94%9F%E6%88%90%E6%91%98%E8%A6%81.jpg" alt="使用数字签名，生成摘要"><br>鲍勃给苏珊回信，决定采用“数字签名”。他写完之后先用Hash函数，生成信件的摘要（Digest）。<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%AF%B9%E6%91%98%E8%A6%81%E5%8A%A0%E5%AF%86%EF%BC%8C%E7%94%9F%E6%88%90%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D.jpg" alt="对摘要进行加密，生成数字签名"><br>然后，鲍勃再使用私钥对这个摘要加密，生成“数字签名”。<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%B0%86%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E9%99%84%E5%9C%A8%E4%BF%A1%E4%BB%B6%E7%9A%84%E4%B8%8B%E9%9D%A2.jpg" alt="将数字签名附在信件的下面"><br>鲍勃将这个签名附在邮件下方，一起发给苏珊。<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E9%87%87%E7%94%A8%E5%85%AC%E9%92%A5%E8%A7%A3%E5%AF%86.jpg" alt="采用公钥解密"><br>苏珊收信后，取下数字签名，用鲍勃的公钥解密，得到信件的摘要。由此证明，这封信确实是鲍勃发出的。<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E6%AF%94%E5%AF%B9%E6%91%98%E8%A6%81%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C.jpg" alt="比对摘要是否相同"><br>苏珊再对信件本身使用Hash函数，将得到的结果，与上一步得到的摘要进行比对。如果两者一致，就证明这封信未被修改过。<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%81%87%E7%9A%84%E5%85%AC%E9%92%A5.jpg" alt="假的公钥"><br>复杂的情况出现了，道格想欺骗苏珊，他偷偷使用了苏珊的电脑，用自己的公钥换走了鲍勃的公钥。此时苏珊实际拥有的是道格的公钥，但是还以为这是鲍勃的公钥。因此，道格就可以冒充鲍勃，用自己的私钥做成”数字签名”，写信给苏珊，让苏珊用假的鲍勃公钥进行解密。<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E4%BD%BF%E7%94%A8%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6.jpg" alt="使用数字证书"><br>后来，苏珊感觉不对劲，发现自己无法确定公钥是否真的属于鲍勃。她想到了一个办法，要求鲍勃去找”证书中心”（certificate authority，简称CA），为公钥做认证。证书中心用自己的私钥，对鲍勃的公钥和一些相关信息一起加密，生成”数字证书”（Digital Certificate）。<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E7%AD%BE%E5%90%8D%E7%9A%84%E5%90%8C%E6%97%B6%EF%BC%8C%E5%86%8D%E4%BD%BF%E7%94%A8%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6.jpg" alt="签名的同时，再加上数字证书"><br>鲍勃拿到数字证书以后，就可以放心了。以后再给苏珊写信，只要在签名的同时，再附上数字证书就行了。<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E7%94%A8CA%E7%9A%84%E5%85%AC%E9%92%A5%E8%A7%A3%E5%BC%80%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6.jpg" alt="用CA的公钥揭开数字证书将"><br>苏珊收信后，用CA的公钥解开数字证书，就可以拿到鲍勃真实的公钥了，然后就能证明”数字签名”是否真的是鲍勃签的。</p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%AF%86%E9%92%A5%E7%94%B1%E8%B0%81%E4%BA%A7%E7%94%9F.jpg" alt="产生公钥和私钥"><br>鲍勃采用某种产生密钥的算法，生成两把密钥：一把是公钥，一把是私钥。</p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%B0%86%E5%85%AC%E9%92%A5%E5%85%AC%E5%BC%80.jpg" alt="将公钥公开"><br>鲍勃将自己的公钥发送给他的朋友－－帕蒂、道格、苏珊－－每人一把，以后谁想给鲍勃写私密邮件，则可以使用该公钥进行加密。</p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E4%BD%BF%E7%94%A8%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86.jpg" alt="采用公钥加密"><br>现在苏珊想给鲍勃写一封保密邮件，他写完之后用鲍勃的公钥加密，就可以达到保密的效果。</p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E9%87%87%E7%94%A8%E7%A7%81%E9%92%A5%E8%A7%A3%E5%AF%86.jpg" alt="采用私钥解密"><br>鲍勃收到信之后，用自己的私钥解密，看到了信件的内容。这里要强调的是，只要鲍勃的私钥不泄漏，这封信就是安全的，即使落在别人的手里，也无法解密。</p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E4%BD%BF%E7%94%A8%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%EF%BC%8C%E7%94%9F%E6%88%90%E6%91%98%E8%A6%81.jpg" alt="使用数字签名，生成摘要"><br>鲍勃给苏珊回信，决定采用“数字签名”。他写完之后先用Hash函数，生成信件的摘要（Digest）。</p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%AF%B9%E6%91%98%E8%A6%81%E5%8A%A0%E5%AF%86%EF%BC%8C%E7%94%9F%E6%88%90%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D.jpg" alt="对摘要进行加密，生成数字签名"><br>然后，鲍勃再使用私钥对这个摘要加密，生成“数字签名”。</p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%B0%86%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E9%99%84%E5%9C%A8%E4%BF%A1%E4%BB%B6%E7%9A%84%E4%B8%8B%E9%9D%A2.jpg" alt="将数字签名附在信件的下面"><br>鲍勃将这个签名附在邮件下方，一起发给苏珊。</p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E9%87%87%E7%94%A8%E5%85%AC%E9%92%A5%E8%A7%A3%E5%AF%86.jpg" alt="采用公钥解密"><br>苏珊收信后，取下数字签名，用鲍勃的公钥解密，得到信件的摘要。由此证明，这封信确实是鲍勃发出的。</p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E6%AF%94%E5%AF%B9%E6%91%98%E8%A6%81%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C.jpg" alt="比对摘要是否相同"><br>苏珊再对信件本身使用Hash函数，将得到的结果，与上一步得到的摘要进行比对。如果两者一致，就证明这封信未被修改过。</p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%81%87%E7%9A%84%E5%85%AC%E9%92%A5.jpg" alt="假的公钥"><br>复杂的情况出现了，道格想欺骗苏珊，他偷偷使用了苏珊的电脑，用自己的公钥换走了鲍勃的公钥。此时苏珊实际拥有的是道格的公钥，但是还以为这是鲍勃的公钥。因此，道格就可以冒充鲍勃，用自己的私钥做成”数字签名”，写信给苏珊，让苏珊用假的鲍勃公钥进行解密。</p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E4%BD%BF%E7%94%A8%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6.jpg" alt="使用数字证书"><br>后来，苏珊感觉不对劲，发现自己无法确定公钥是否真的属于鲍勃。她想到了一个办法，要求鲍勃去找”证书中心”（certificate authority，简称CA），为公钥做认证。证书中心用自己的私钥，对鲍勃的公钥和一些相关信息一起加密，生成”数字证书”（Digital Certificate）。</p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E7%AD%BE%E5%90%8D%E7%9A%84%E5%90%8C%E6%97%B6%EF%BC%8C%E5%86%8D%E4%BD%BF%E7%94%A8%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6.jpg" alt="签名的同时，再加上数字证书"><br>鲍勃拿到数字证书以后，就可以放心了。以后再给苏珊写信，只要在签名的同时，再附上数字证书就行了。</p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E7%94%A8CA%E7%9A%84%E5%85%AC%E9%92%A5%E8%A7%A3%E5%BC%80%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6.jpg" alt="用CA的公钥揭开数字证书将"><br>苏珊收信后，用CA的公钥解开数字证书，就可以拿到鲍勃真实的公钥了，然后就能证明”数字签名”是否真的是鲍勃签的。</p>
 <ul>
 <li>公钥和私钥</li>
 </ul>
@@ -483,18 +498,18 @@
 <li>会话密钥实时产生且周期性变化</li>
 <li>基于其他足够安全的方式进行会话密钥的传输和交换</li>
 </ul>
-<p><img src="" alt="实际的保密会话应用场景"></p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%AE%9E%E9%99%85%E7%9A%84%E4%BC%9A%E8%AF%9D%E5%9C%BA%E6%99%AF.jpg" alt="实际的保密会话应用场景"></p>
 <h2 id="利用公钥密钥来交换会话密钥"><a href="#利用公钥密钥来交换会话密钥" class="headerlink" title="利用公钥密钥来交换会话密钥"></a>利用公钥密钥来交换会话密钥</h2><ul>
 <li>实时随机的会话密钥产生</li>
 <li>使用对端的的公钥对产生的会话密钥加密并传递给对端</li>
 <li>对段使用私钥解密获取会话密钥</li>
-<li><p>双方开始基于共享的会话密钥进行对称加密的保密会话通信<br><img src="" alt=""></p>
+<li>双方开始基于共享的会话密钥进行对称加密的保密会话通信<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%88%A9%E7%94%A8%E5%85%AC%E9%92%A5%E6%9D%A5%E4%BA%A4%E6%8D%A2%E4%BC%9A%E8%AF%9D%E5%AF%86%E9%92%A5.jpg" alt="利用公钥密钥来交换会话密钥"></li>
+</ul>
 <h2 id="其他的密钥交换方式"><a href="#其他的密钥交换方式" class="headerlink" title="其他的密钥交换方式"></a>其他的密钥交换方式</h2><p>Diffie-Hellman密钥交换协议</p>
-</li>
-<li><p>基于以大素数为模计算离散对数的困难度</p>
-</li>
+<ul>
+<li>基于以大素数为模计算离散对数的困难度</li>
 <li>双方各自选定Key，然后以一定算法变换（使得Key不以明文传输）后传输给对方</li>
-<li>双方利用对方交换过来的数据和自己选定的key做变换，获得一个一致的结果，作为会话密钥<br><img src="" alt=""></li>
+<li>双方利用对方交换过来的数据和自己选定的key做变换，获得一个一致的结果，作为会话密钥<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%85%B6%E4%BB%96%E7%9A%84%E5%AF%86%E9%92%A5%E4%BA%A4%E6%8D%A2.jpg" alt="其他的密钥交换方式"></li>
 </ul>
 <h1 id="消息摘要"><a href="#消息摘要" class="headerlink" title="消息摘要"></a>消息摘要</h1><ul>
 <li>Hash与散列函数的定义与特点<br>定义：变长的输入变成定长的输出。<br>特点：</li>
