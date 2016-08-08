@@ -29,7 +29,7 @@
 
 
 
-  <meta name="keywords" content="内功修养,Android,安全," />
+  <meta name="keywords" content="内功修养,数据结构,红黑树,树," />
 
 
 
@@ -40,59 +40,27 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="安全要解决什么问题？
-保密（Security、Confidentiality）：只想让部分有权限的人知晓，其他人是看不到的；
-鉴别、认证（Authentication）：确保通信的对方就是自己信得过的人；
-完整性（Integrity）：能够验证信息在传输过程中是否发生了篡改，或者数据丢失等现象
-不可否认性（Non-repudiation）：谁发的信息，能够表明发送者等身份。
-
-一些常用术语：
-
-密">
+<meta name="description" content="背景知识二叉树定义：二叉树（Binary Tree）是n(n &amp;gt;= 0)个节点的有限集合。该集合或者未空集（称为空二叉树），或者由一个根节点和两棵互不相交的，分别称为根节点的左子树和右子树的二叉树组成。
+二叉树特点
+每个节点 最多 有两棵子树。所以二叉树中不存在大于2的节点。
+左子树和右子树是有顺序的，次序不能任一颠倒。就像人的双手和双脚，显然左手和右手，左脚和右脚都是不能颠倒顺序呼唤的，否">
 <meta property="og:type" content="article">
-<meta property="og:title" content="彻底搞懂Android安全架构:基础篇">
-<meta property="og:url" content="http://akathink.com/2016/08/05/彻底搞懂Android安全架构:基础篇/index.html">
+<meta property="og:title" content="彻底搞懂红黑树">
+<meta property="og:url" content="http://akathink.com/2016/08/08/彻底搞懂红黑树/index.html">
 <meta property="og:site_name" content="akathink's blog">
-<meta property="og:description" content="安全要解决什么问题？
-保密（Security、Confidentiality）：只想让部分有权限的人知晓，其他人是看不到的；
-鉴别、认证（Authentication）：确保通信的对方就是自己信得过的人；
-完整性（Integrity）：能够验证信息在传输过程中是否发生了篡改，或者数据丢失等现象
-不可否认性（Non-repudiation）：谁发的信息，能够表明发送者等身份。
-
-一些常用术语：
-
-密">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%8A%A0%E5%AF%86%E6%A8%A1%E5%9E%8B.png">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%AF%86%E9%92%A5%E7%94%B1%E8%B0%81%E4%BA%A7%E7%94%9F.jpg">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%B0%86%E5%85%AC%E9%92%A5%E5%85%AC%E5%BC%80.jpg">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E4%BD%BF%E7%94%A8%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86.jpg">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E9%87%87%E7%94%A8%E7%A7%81%E9%92%A5%E8%A7%A3%E5%AF%86.jpg">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E4%BD%BF%E7%94%A8%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%EF%BC%8C%E7%94%9F%E6%88%90%E6%91%98%E8%A6%81.jpg">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%AF%B9%E6%91%98%E8%A6%81%E5%8A%A0%E5%AF%86%EF%BC%8C%E7%94%9F%E6%88%90%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D.jpg">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%B0%86%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E9%99%84%E5%9C%A8%E4%BF%A1%E4%BB%B6%E7%9A%84%E4%B8%8B%E9%9D%A2.jpg">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E9%87%87%E7%94%A8%E5%85%AC%E9%92%A5%E8%A7%A3%E5%AF%86.jpg">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E6%AF%94%E5%AF%B9%E6%91%98%E8%A6%81%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C.jpg">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%81%87%E7%9A%84%E5%85%AC%E9%92%A5.jpg">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E4%BD%BF%E7%94%A8%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6.jpg">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E7%AD%BE%E5%90%8D%E7%9A%84%E5%90%8C%E6%97%B6%EF%BC%8C%E5%86%8D%E4%BD%BF%E7%94%A8%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6.jpg">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E7%94%A8CA%E7%9A%84%E5%85%AC%E9%92%A5%E8%A7%A3%E5%BC%80%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6.jpg">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%AE%9E%E9%99%85%E7%9A%84%E4%BC%9A%E8%AF%9D%E5%9C%BA%E6%99%AF.jpg">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%88%A9%E7%94%A8%E5%85%AC%E9%92%A5%E6%9D%A5%E4%BA%A4%E6%8D%A2%E4%BC%9A%E8%AF%9D%E5%AF%86%E9%92%A5.jpg">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%85%B6%E4%BB%96%E7%9A%84%E5%AF%86%E9%92%A5%E4%BA%A4%E6%8D%A2.jpg">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81%E6%9C%AF%E7%9A%84%E4%B8%A4%E9%9D%A2%E6%80%A7.png">
-<meta property="og:updated_time" content="2016-08-08T12:59:56.000Z">
+<meta property="og:description" content="背景知识二叉树定义：二叉树（Binary Tree）是n(n &amp;gt;= 0)个节点的有限集合。该集合或者未空集（称为空二叉树），或者由一个根节点和两棵互不相交的，分别称为根节点的左子树和右子树的二叉树组成。
+二叉树特点
+每个节点 最多 有两棵子树。所以二叉树中不存在大于2的节点。
+左子树和右子树是有顺序的，次序不能任一颠倒。就像人的双手和双脚，显然左手和右手，左脚和右脚都是不能颠倒顺序呼唤的，否">
+<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E7%BA%A2%E9%BB%91%E6%A0%91%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
+<meta property="og:updated_time" content="2016-08-08T13:57:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="彻底搞懂Android安全架构:基础篇">
-<meta name="twitter:description" content="安全要解决什么问题？
-保密（Security、Confidentiality）：只想让部分有权限的人知晓，其他人是看不到的；
-鉴别、认证（Authentication）：确保通信的对方就是自己信得过的人；
-完整性（Integrity）：能够验证信息在传输过程中是否发生了篡改，或者数据丢失等现象
-不可否认性（Non-repudiation）：谁发的信息，能够表明发送者等身份。
-
-一些常用术语：
-
-密">
-<meta name="twitter:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%8A%A0%E5%AF%86%E6%A8%A1%E5%9E%8B.png">
+<meta name="twitter:title" content="彻底搞懂红黑树">
+<meta name="twitter:description" content="背景知识二叉树定义：二叉树（Binary Tree）是n(n &amp;gt;= 0)个节点的有限集合。该集合或者未空集（称为空二叉树），或者由一个根节点和两棵互不相交的，分别称为根节点的左子树和右子树的二叉树组成。
+二叉树特点
+每个节点 最多 有两棵子树。所以二叉树中不存在大于2的节点。
+左子树和右子树是有顺序的，次序不能任一颠倒。就像人的双手和双脚，显然左手和右手，左脚和右脚都是不能颠倒顺序呼唤的，否">
+<meta name="twitter:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E7%BA%A2%E9%BB%91%E6%A0%91%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -102,7 +70,7 @@
   };
 </script>
 
-  <title> 彻底搞懂Android安全架构:基础篇 | akathink's blog </title>
+  <title> 彻底搞懂红黑树 | akathink's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -351,7 +319,7 @@
           
           
             
-              彻底搞懂Android安全架构:基础篇
+              彻底搞懂红黑树
             
           
         </h1>
@@ -360,8 +328,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-08-05T10:21:52+08:00" content="2016-08-05">
-            2016-08-05
+          <time itemprop="dateCreated" datetime="2016-08-08T19:29:18+08:00" content="2016-08-08">
+            2016-08-08
           </time>
         </span>
 
@@ -394,8 +362,8 @@
 
             
               <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/内功修养/Android/安全/" itemprop="url" rel="index">
-                  <span itemprop="name">安全</span>
+                <a href="/categories/内功修养/Android/树/" itemprop="url" rel="index">
+                  <span itemprop="name">树</span>
                 </a>
               </span>
 
@@ -411,11 +379,11 @@
             <span class="post-comments-count">
               &nbsp; | &nbsp;
               <!--
-              <a href="/2016/08/05/彻底搞懂Android安全架构:基础篇/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/05/彻底搞懂Android安全架构:基础篇/" itemprop="commentsCount"></span>
+              <a href="/2016/08/08/彻底搞懂红黑树/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/08/彻底搞懂红黑树/" itemprop="commentsCount"></span>
               </a>
               -->
-              <a href="/2016/08/05/彻底搞懂Android安全架构:基础篇/#comments" itemprop="discussionUrl">
+              <a href="/2016/08/08/彻底搞懂红黑树/#comments" itemprop="discussionUrl">
                 <span>评论</span>
               </a>
             </span>
@@ -430,132 +398,36 @@
       
 
       
-        <span itemprop="articleBody"><h1 id="安全要解决什么问题？"><a href="#安全要解决什么问题？" class="headerlink" title="安全要解决什么问题？"></a>安全要解决什么问题？</h1><ul>
-<li>保密（Security、Confidentiality）：只想让部分有权限的人知晓，其他人是看不到的；</li>
-<li>鉴别、认证（Authentication）：确保通信的对方就是自己信得过的人；</li>
-<li>完整性（Integrity）：能够验证信息在传输过程中是否发生了篡改，或者数据丢失等现象</li>
-<li>不可否认性（Non-repudiation）：谁发的信息，能够表明发送者等身份。</li>
+        <span itemprop="articleBody"><h1 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h1><h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><p>二叉树（Binary Tree）是n(n &gt;= 0)个节点的有限集合。该集合或者未空集（称为空二叉树），或者由一个根节点和两棵互不相交的，分别称为根节点的左子树和右子树的二叉树组成。</p>
+<h3 id="二叉树特点"><a href="#二叉树特点" class="headerlink" title="二叉树特点"></a>二叉树特点</h3><ul>
+<li>每个节点 <strong><font color="#00ffff" size="4">最多</font></strong> 有两棵子树。所以二叉树中不存在大于2的节点。</li>
+<li>左子树和右子树是有顺序的，次序不能任一颠倒。就像人的双手和双脚，显然左手和右手，左脚和右脚都是不能颠倒顺序呼唤的，否则那也太别扭了。</li>
+<li>即使树中某节点只有一棵子树，也要区分它是左子树还是右子树。</li>
 </ul>
-<p>一些常用术语：</p>
-<ul>
-<li>密钥：分为加密密钥和解密密钥。</li>
-<li>明文：没有进行加密，能够直接代表原文含义的信息。</li>
-<li>密文：经过加密处理之后，隐藏原文含义的信息。</li>
-<li>加密：将原文转换成密文的实施过程。</li>
-<li>解密：将密文转换成明文的实施过程。</li>
-</ul>
-<h1 id="密码术"><a href="#密码术" class="headerlink" title="密码术"></a>密码术</h1><p>说到密码术似乎感觉很高大上，这不都是各种谍战片里面经常出现的吗？其实，在我们现实生活中，多多少少也会接触一些简单的密码术，例如：字母加密、藏头诗、倒写文等。我们可以采用任何规则来定义密码术，但是通常我们并不会自己去写新的密码术，为什么呢？</p>
-<p>这主要是因为：</p>
-<ol>
-<li>安全性：没有经过验证的密码术，确保不了该密码术一定安全。</li>
-<li>密码术里面是否有后门，因为自己定义的密码术不公开，不知道里面是否包含一些其他后门的类似程序。</li>
-</ol>
-<p>概括来讲，加密主要分为：<strong><font color="#00ffff" size="4">置换加密</font></strong> 、<strong><font color="#00ffff" size="4">转置加密</font></strong>、<strong><font color="#00ffff" size="4">乘积加密</font></strong>（多次置换加密和转置加密的混合使用）。</p>
-<h1 id="加密模型"><a href="#加密模型" class="headerlink" title="加密模型"></a>加密模型</h1><p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%8A%A0%E5%AF%86%E6%A8%A1%E5%9E%8B.png" alt="加密模型"></p>
-<h2 id="对称加密模型"><a href="#对称加密模型" class="headerlink" title="对称加密模型"></a>对称加密模型</h2><ul>
-<li><p>DES</p>
+<h2 id="特殊二叉树"><a href="#特殊二叉树" class="headerlink" title="特殊二叉树"></a>特殊二叉树</h2><ul>
+<li>斜树：顾名思义，斜树一定是斜的，所有的节点都只有左子树的二叉树叫左斜树，所有节点都是只有右子树的二叉树叫右斜树，两者统称为斜树。</li>
+<li>满二叉树：在一棵二叉树中，如果所有分支节点都存在左子树和右子树，并且所有叶子都在同一层上，这样的二叉树称为满二叉树。</li>
+<li>完全二叉树：对一棵具有n个节点的二叉树按层序编号，如果编号为i(1&lt;=i&lt;=n)的节点与同样深度的满二叉树编号为i的节点在二叉树中位置完全相同，则称该二叉树为完全二叉树。满二叉树一定是完全二叉树，但完全二叉树不一定是满的。</li>
+<li>赫夫曼树：是一种带权路径长度最短的树。</li>
+<li><p>平衡二叉树：是一种 <strong><font color="#00ffff" size="4">二叉排序树（或者叫二叉查找树）</font></strong>，其中每个节点的左子树和右子树的高度差至多等于1.<br>那么什么是二叉排序树呢？二叉排序树（Binary Sort Tree），又称为二叉查找树。它或者是一棵空树，或者是具有下列性质的二叉树：</p>
+<p>若它的左子树不空，则左子树上所有节点的值均小于它的根节点的值；<br>若它的右子树不空，则右子树上所有节点的值均大于它的根节点的值；<br>它的左右子树也分别为二叉排序树。</p>
 </li>
-<li><p>AES</p>
-</li>
-<li><p>应用场景</p>
-</li>
-<li><p>存在的问题：密钥如何交换？</p>
+<li><p>红黑树：具体定义和性质请往下看。</p>
 </li>
 </ul>
-<h2 id="非对称加密模型"><a href="#非对称加密模型" class="headerlink" title="非对称加密模型"></a>非对称加密模型</h2><p>下面首先通过一个例子来简单说明公钥私钥、数字签名、消息摘要是什么，然后再详细分析非对称加密模型里面的重要知识点:</p>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%AF%86%E9%92%A5%E7%94%B1%E8%B0%81%E4%BA%A7%E7%94%9F.jpg" alt="产生公钥和私钥"><br>鲍勃采用某种产生密钥的算法，生成两把密钥：一把是公钥，一把是私钥。</p>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%B0%86%E5%85%AC%E9%92%A5%E5%85%AC%E5%BC%80.jpg" alt="将公钥公开"><br>鲍勃将自己的公钥发送给他的朋友－－帕蒂、道格、苏珊－－每人一把，以后谁想给鲍勃写私密邮件，则可以使用该公钥进行加密。</p>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E4%BD%BF%E7%94%A8%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86.jpg" alt="采用公钥加密"><br>现在苏珊想给鲍勃写一封保密邮件，他写完之后用鲍勃的公钥加密，就可以达到保密的效果。</p>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E9%87%87%E7%94%A8%E7%A7%81%E9%92%A5%E8%A7%A3%E5%AF%86.jpg" alt="采用私钥解密"><br>鲍勃收到信之后，用自己的私钥解密，看到了信件的内容。这里要强调的是，只要鲍勃的私钥不泄漏，这封信就是安全的，即使落在别人的手里，也无法解密。</p>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E4%BD%BF%E7%94%A8%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%EF%BC%8C%E7%94%9F%E6%88%90%E6%91%98%E8%A6%81.jpg" alt="使用数字签名，生成摘要"><br>鲍勃给苏珊回信，决定采用“数字签名”。他写完之后先用Hash函数，生成信件的摘要（Digest）。</p>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%AF%B9%E6%91%98%E8%A6%81%E5%8A%A0%E5%AF%86%EF%BC%8C%E7%94%9F%E6%88%90%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D.jpg" alt="对摘要进行加密，生成数字签名"><br>然后，鲍勃再使用私钥对这个摘要加密，生成“数字签名”。</p>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%B0%86%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E9%99%84%E5%9C%A8%E4%BF%A1%E4%BB%B6%E7%9A%84%E4%B8%8B%E9%9D%A2.jpg" alt="将数字签名附在信件的下面"><br>鲍勃将这个签名附在邮件下方，一起发给苏珊。</p>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E9%87%87%E7%94%A8%E5%85%AC%E9%92%A5%E8%A7%A3%E5%AF%86.jpg" alt="采用公钥解密"><br>苏珊收信后，取下数字签名，用鲍勃的公钥解密，得到信件的摘要。由此证明，这封信确实是鲍勃发出的。</p>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E6%AF%94%E5%AF%B9%E6%91%98%E8%A6%81%E6%98%AF%E5%90%A6%E7%9B%B8%E5%90%8C.jpg" alt="比对摘要是否相同"><br>苏珊再对信件本身使用Hash函数，将得到的结果，与上一步得到的摘要进行比对。如果两者一致，就证明这封信未被修改过。</p>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%81%87%E7%9A%84%E5%85%AC%E9%92%A5.jpg" alt="假的公钥"><br>复杂的情况出现了，道格想欺骗苏珊，他偷偷使用了苏珊的电脑，用自己的公钥换走了鲍勃的公钥。此时苏珊实际拥有的是道格的公钥，但是还以为这是鲍勃的公钥。因此，道格就可以冒充鲍勃，用自己的私钥做成”数字签名”，写信给苏珊，让苏珊用假的鲍勃公钥进行解密。</p>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E4%BD%BF%E7%94%A8%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6.jpg" alt="使用数字证书"><br>后来，苏珊感觉不对劲，发现自己无法确定公钥是否真的属于鲍勃。她想到了一个办法，要求鲍勃去找”证书中心”（certificate authority，简称CA），为公钥做认证。证书中心用自己的私钥，对鲍勃的公钥和一些相关信息一起加密，生成”数字证书”（Digital Certificate）。</p>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E7%AD%BE%E5%90%8D%E7%9A%84%E5%90%8C%E6%97%B6%EF%BC%8C%E5%86%8D%E4%BD%BF%E7%94%A8%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6.jpg" alt="签名的同时，再加上数字证书"><br>鲍勃拿到数字证书以后，就可以放心了。以后再给苏珊写信，只要在签名的同时，再附上数字证书就行了。</p>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E7%94%A8CA%E7%9A%84%E5%85%AC%E9%92%A5%E8%A7%A3%E5%BC%80%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6.jpg" alt="用CA的公钥揭开数字证书将"><br>苏珊收信后，用CA的公钥解开数字证书，就可以拿到鲍勃真实的公钥了，然后就能证明”数字签名”是否真的是鲍勃签的。</p>
-<ul>
-<li>公钥和私钥</li>
+<h1 id="什么是红黑树？"><a href="#什么是红黑树？" class="headerlink" title="什么是红黑树？"></a>什么是红黑树？</h1><h2 id="定义：-1"><a href="#定义：-1" class="headerlink" title="定义："></a>定义：</h2><p>红黑树，一种自平衡的 <strong><font color="#00ffff" size="4">二叉查找树</font></strong>，但在每个节点上有一个额外的存储位表示节点的颜色，可以是Red或者Black。这些颜色位用来确保红黑树在插入和删除操作后仍能近乎平衡。</p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E7%BA%A2%E9%BB%91%E6%A0%91%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="红黑树示意图"></p>
+<h2 id="红黑树的五个性质："><a href="#红黑树的五个性质：" class="headerlink" title="红黑树的五个性质："></a>红黑树的五个性质：</h2><ul>
+<li>性质一：节点要么是红色要么是黑色。</li>
+<li>性质二：根节点是黑色。</li>
+<li>性质三：所有叶子节点都是黑色（叶子是NIL节点，被称为黑哨兵）。</li>
+<li>性质四：每个红色节点的两个子节点都是黑色（从每个叶子到根的所有路径上不能有两个连续的红色节点）。</li>
+<li>性质五：从任一节点到每个叶子节点的所有路径都包含相同数目的黑色节点。</li>
 </ul>
-<p>通过上面的例子，我们可以很轻松的知道，公钥和私钥都是由鲍勃产生的，私钥由自己保管，公钥交可以交给任何人。</p>
-<p>应用场景：</p>
-<ul>
-<li>公钥算法的理论基石<br>数学是科学之基<br>基础学科研究之物，虚虚实实，先虚后实<br>公钥算法的最重要的两大数学基础<br>  建立在分解大数的困难度<br>  建立在以大素数为模来计算离散对数的困难度</li>
-<li>RSA算法<br>  RSA的名字由来？就是三个科学家的名字首字母的组合<br>  建立在分解大数的困难度<br>  公钥私钥的长度至少1024bit</li>
-</ul>
-<p>两大加密模型的优缺点：</p>
-<pre><code>优点：相对于非对称加密非常高效。
-缺点：密钥交换问题
-     不如RSA的加密安全程度高，但是当选择256bit的AES时，仍然能胜任绝大多数的安全领域
-</code></pre><p>非对称加密的优缺点：</p>
-<pre><code>优点：安全性足够高
-     没有密钥交换的问题
-缺点：效率低，对于大数据加密很慢
-</code></pre><h1 id="密钥交换"><a href="#密钥交换" class="headerlink" title="密钥交换"></a>密钥交换</h1><h2 id="实际的保密会话场景："><a href="#实际的保密会话场景：" class="headerlink" title="实际的保密会话场景："></a>实际的保密会话场景：</h2><ul>
-<li>基于高效的 <strong><font color="#00ffff" size="4">对称加密</font></strong> 算法对会话进行加密</li>
-<li>会话密钥实时产生且周期性变化</li>
-<li>基于其他足够安全的方式进行会话密钥的传输和交换</li>
-</ul>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%AE%9E%E9%99%85%E7%9A%84%E4%BC%9A%E8%AF%9D%E5%9C%BA%E6%99%AF.jpg" alt="实际的保密会话应用场景"></p>
-<h2 id="利用公钥密钥来交换会话密钥"><a href="#利用公钥密钥来交换会话密钥" class="headerlink" title="利用公钥密钥来交换会话密钥"></a>利用公钥密钥来交换会话密钥</h2><ul>
-<li>实时随机的会话密钥产生</li>
-<li>使用对端的的公钥对产生的会话密钥加密并传递给对端</li>
-<li>对段使用私钥解密获取会话密钥</li>
-<li>双方开始基于共享的会话密钥进行对称加密的保密会话通信<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%88%A9%E7%94%A8%E5%85%AC%E9%92%A5%E6%9D%A5%E4%BA%A4%E6%8D%A2%E4%BC%9A%E8%AF%9D%E5%AF%86%E9%92%A5.jpg" alt="利用公钥密钥来交换会话密钥"></li>
-</ul>
-<h2 id="其他的密钥交换方式"><a href="#其他的密钥交换方式" class="headerlink" title="其他的密钥交换方式"></a>其他的密钥交换方式</h2><p>Diffie-Hellman密钥交换协议</p>
-<ul>
-<li>基于以大素数为模计算离散对数的困难度</li>
-<li>双方各自选定Key，然后以一定算法变换（使得Key不以明文传输）后传输给对方</li>
-<li>双方利用对方交换过来的数据和自己选定的key做变换，获得一个一致的结果，作为会话密钥<br><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%85%B6%E4%BB%96%E7%9A%84%E5%AF%86%E9%92%A5%E4%BA%A4%E6%8D%A2.jpg" alt="其他的密钥交换方式"></li>
-</ul>
-<h1 id="消息摘要"><a href="#消息摘要" class="headerlink" title="消息摘要"></a>消息摘要</h1><ul>
-<li>Hash与散列函数的定义与特点<br>定义：变长的输入变成定长的输出。<br>特点：</li>
-</ul>
-<p>易变性：即便原始信息发生1bit的变化，Hash的输出将会有不可预知的巨大变化。<br>不可逆性：通过Hash的结果构造出满足的输入信息是不可能的，或者极其困难的。</p>
-<p>常见的Hash算法：MD5（128位）、SHA1（160位）</p>
-<ul>
-<li>消息摘要和数字指纹</li>
-</ul>
-<p>人的指纹的特点：<br>    双胞胎的指纹不同<br>    通过指纹猜不出它的主人<br>与Hash的对应关系：<br>    易变性<br>    不可逆<br>数字指纹由此而来，通过对消息采用某种Hash算法得到的输出就是消息摘要，也叫数字指纹。</p>
-<ul>
-<li>Hash的应用场景</li>
-</ul>
-<ol>
-<li>防篡改<br> 基于易变特性<br> 保证完整性<br> 示例：<br> 网络下载某个文件时，都会指定该文件的一个MD5值，确保文件没有被替换<br> 消息传送时尾部额外传MD</li>
-<li><p>防损坏<br> 基于易变特性<br> 保证完整性<br> 示例：<br> CRC校验的作用和不足<br> MD校验消息恶劣环境传输的完整性和未受损坏<br> 应用程序中对于核心文件／数据库读写的鲁棒性保护，防止掉电和Crash</p>
-</li>
-<li><p>认证<br> 基于不可逆特性<br> 可认证对端<br> 示例：<br> HTTP的Basic和Digest认证<br> PPP的PAP和CHAP认证<br> 手机登陆密码和隐藏MMI的设计</p>
-</li>
-</ol>
-<ul>
-<li><p>HMAC<br>  我们遇到了什么问题？<br>  直接尾部附带消息摘要的问题（篡改内容的同时篡改摘要）<br>  直接对密码做Hash传输的认证的问题（重放攻击）</p>
-<p>  HMAC怎么解决的？<br>  HMAC就是使用Key对原始信息变换后再进行Hash</p>
-</li>
-</ul>
-<h1 id="电子签名"><a href="#电子签名" class="headerlink" title="电子签名"></a>电子签名</h1><h2 id="签名要解决什么问题？"><a href="#签名要解决什么问题？" class="headerlink" title="签名要解决什么问题？"></a>签名要解决什么问题？</h2><ul>
-<li>签什么？<br>签的内容的完整性保护</li>
-<li>谁在签<br>签名人的不可否认性<h2 id="公钥密码术的两面性"><a href="#公钥密码术的两面性" class="headerlink" title="公钥密码术的两面性"></a>公钥密码术的两面性</h2></li>
-</ul>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%85%AC%E9%92%A5%E5%AF%86%E7%A0%81%E6%9C%AF%E7%9A%84%E4%B8%A4%E9%9D%A2%E6%80%A7.png" alt="公钥密码术的两面性"></p>
-<p>通过上面的图例说明我们知道对于公钥密码术，我们不仅可以使用公钥加密，反过来也可以通过公钥来实现电子签名。</p>
-<h1 id="证书与PKI"><a href="#证书与PKI" class="headerlink" title="证书与PKI"></a>证书与PKI</h1><ul>
-<li>证书的作用</li>
-</ul>
-<ol>
-<li><p>证书的存储和交换<br>公钥作为一个字段存储于数字证书中<br>证书的交换和传输即可传输／交换公钥</p>
-</li>
-<li><p>现代信任基石</p>
-</li>
-</ol>
-<p>证书只是存储和交换公钥的吗？那我不可以吧公钥直接作为一个文件来存储和交换吗？<br>另外，我不可以篡改证书吗？我作为第三者，篡改苏珊发给鲍勃的证书，把里面的公钥改成我自己的，由此来HACK别人发给鲍勃的信息。<br>利用签名来保护数字证书本身。</p>
-<ul>
-<li>证书链和PKI</li>
-</ul>
-<p>根证书自签名，非根证书父签名<br>证书的限制：约束、拥堵、有效期</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://www.youdzone.com/signature.html" target="_blank" rel="external">http://www.youdzone.com/signature.html</a><br><a href="http://www.jikexueyuan.com/course/32_7.html?ss=1" target="_blank" rel="external">http://www.jikexueyuan.com/course/32_7.html?ss=1</a><br><a href="http://www.cnblogs.com/f1194361820/archive/2015/01/29/4260025.html" target="_blank" rel="external">http://www.cnblogs.com/f1194361820/archive/2015/01/29/4260025.html</a></p>
+<h2 id="红黑树的应用场景"><a href="#红黑树的应用场景" class="headerlink" title="红黑树的应用场景"></a>红黑树的应用场景</h2><p>到此，我们可能已经对红黑树有了一点初步的认识了，但是我们却不知道为什么要有红黑树，红黑树是为了解决什么问题被提出来的呢？<br>我们知道，二叉查找树在大多数情况下查找和插入在效率上是没有问题的，但是在最坏的情况下效率比较低，但是平衡二叉树能够保证在最坏的情况下也能达到lgN，要实现这一目标，我们就要保证在插入完成后始终保持平衡状态。在一棵具有N个节点的树中，我们希望该树的高度能够维持在lgN左右，这样我们就能保证只需要lgN次比较操作就可以查找到想要的值。不幸的是，每次插入元素之后维持树的平衡状态太昂贵。所以就出现一些新的数据结构来保证在最坏的情况下插入和查找效率都能保证在对数的时间复杂度内完成。而我们所讲的红黑树就属于此新的数据结构之一，除此之外还有B树等数据结构。</p>
+<p>待续……</p>
+<p><strong><font color="#00ffff" size="4">后天补齐：2016-08-10</font></strong></p>
+<h1 id="完整参考代码"><a href="#完整参考代码" class="headerlink" title="完整参考代码"></a>完整参考代码</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>《大话数据结构》<br><a href="http://blog.csdn.net/eric491179912/article/details/6179908" target="_blank" rel="external">http://blog.csdn.net/eric491179912/article/details/6179908</a><br><a href="http://www.cnblogs.com/yangecnu/p/Introduce-2-3-Search-Tree.html" target="_blank" rel="external">http://www.cnblogs.com/yangecnu/p/Introduce-2-3-Search-Tree.html</a><br><a href="http://www.cnblogs.com/daoluanxiaozi/p/3340382.html" target="_blank" rel="external">http://www.cnblogs.com/daoluanxiaozi/p/3340382.html</a><br><a href="http://blog.csdn.net/loongshawn/article/details/50414608" target="_blank" rel="external">http://blog.csdn.net/loongshawn/article/details/50414608</a></p>
 </span>
       
     </div>
@@ -566,9 +438,11 @@
           
             <a href="/tags/内功修养/" rel="tag">#内功修养</a>
           
-            <a href="/tags/Android/" rel="tag">#Android</a>
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
           
-            <a href="/tags/安全/" rel="tag">#安全</a>
+            <a href="/tags/红黑树/" rel="tag">#红黑树</a>
+          
+            <a href="/tags/树/" rel="tag">#树</a>
           
         </div>
       
@@ -577,13 +451,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/08/彻底搞懂红黑树/" rel="prev">彻底搞懂红黑树</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/03/排序二：快速排序/" rel="next">排序二：快速排序</a>
+              <a href="/2016/08/05/彻底搞懂Android安全架构:基础篇/" rel="next">彻底搞懂Android安全架构:基础篇</a>
             
           </div>
         </div>
@@ -751,8 +623,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2016/08/05/彻底搞懂Android安全架构:基础篇/"
-                   data-title="彻底搞懂Android安全架构:基础篇" data-url="http://akathink.com/2016/08/05/彻底搞懂Android安全架构:基础篇/">
+              <div class="ds-thread" data-thread-key="2016/08/08/彻底搞懂红黑树/"
+                   data-title="彻底搞懂红黑树" data-url="http://akathink.com/2016/08/08/彻底搞懂红黑树/">
               </div>
             
           </div>
@@ -841,7 +713,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安全要解决什么问题？"><span class="nav-number">1.</span> <span class="nav-text">安全要解决什么问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#密码术"><span class="nav-number">2.</span> <span class="nav-text">密码术</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加密模型"><span class="nav-number">3.</span> <span class="nav-text">加密模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对称加密模型"><span class="nav-number">3.1.</span> <span class="nav-text">对称加密模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非对称加密模型"><span class="nav-number">3.2.</span> <span class="nav-text">非对称加密模型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#密钥交换"><span class="nav-number">4.</span> <span class="nav-text">密钥交换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实际的保密会话场景："><span class="nav-number">4.1.</span> <span class="nav-text">实际的保密会话场景：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用公钥密钥来交换会话密钥"><span class="nav-number">4.2.</span> <span class="nav-text">利用公钥密钥来交换会话密钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他的密钥交换方式"><span class="nav-number">4.3.</span> <span class="nav-text">其他的密钥交换方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#消息摘要"><span class="nav-number">5.</span> <span class="nav-text">消息摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#电子签名"><span class="nav-number">6.</span> <span class="nav-text">电子签名</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#签名要解决什么问题？"><span class="nav-number">6.1.</span> <span class="nav-text">签名要解决什么问题？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公钥密码术的两面性"><span class="nav-number">6.2.</span> <span class="nav-text">公钥密码术的两面性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#证书与PKI"><span class="nav-number">7.</span> <span class="nav-text">证书与PKI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景知识"><span class="nav-number">1.</span> <span class="nav-text">背景知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树"><span class="nav-number">1.1.</span> <span class="nav-text">二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义："><span class="nav-number">1.1.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉树特点"><span class="nav-number">1.1.2.</span> <span class="nav-text">二叉树特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊二叉树"><span class="nav-number">1.2.</span> <span class="nav-text">特殊二叉树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是红黑树？"><span class="nav-number">2.</span> <span class="nav-text">什么是红黑树？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义：-1"><span class="nav-number">2.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树的五个性质："><span class="nav-number">2.2.</span> <span class="nav-text">红黑树的五个性质：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树的应用场景"><span class="nav-number">2.3.</span> <span class="nav-text">红黑树的应用场景</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完整参考代码"><span class="nav-number">3.</span> <span class="nav-text">完整参考代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://akathink.com/"/>
-  <updated>2016-08-05T13:02:43.000Z</updated>
+  <updated>2016-08-08T13:57:42.000Z</updated>
   <id>http://akathink.com/</id>
   
   <author>
@@ -16,11 +16,73 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>彻底搞懂红黑树</title>
+    <link href="http://akathink.com/2016/08/08/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82%E7%BA%A2%E9%BB%91%E6%A0%91/"/>
+    <id>http://akathink.com/2016/08/08/彻底搞懂红黑树/</id>
+    <published>2016-08-08T11:29:18.000Z</published>
+    <updated>2016-08-08T13:57:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h1><h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><p>二叉树（Binary Tree）是n(n &gt;= 0)个节点的有限集合。该集合或者未空集（称为空二叉树），或者由一个根节点和两棵互不相交的，分别称为根节点的左子树和右子树的二叉树组成。</p>
+<h3 id="二叉树特点"><a href="#二叉树特点" class="headerlink" title="二叉树特点"></a>二叉树特点</h3><ul>
+<li>每个节点 <strong><font color="#00ffff" size="4">最多</font></strong> 有两棵子树。所以二叉树中不存在大于2的节点。</li>
+<li>左子树和右子树是有顺序的，次序不能任一颠倒。就像人的双手和双脚，显然左手和右手，左脚和右脚都是不能颠倒顺序呼唤的，否则那也太别扭了。</li>
+<li>即使树中某节点只有一棵子树，也要区分它是左子树还是右子树。</li>
+</ul>
+<h2 id="特殊二叉树"><a href="#特殊二叉树" class="headerlink" title="特殊二叉树"></a>特殊二叉树</h2><ul>
+<li>斜树：顾名思义，斜树一定是斜的，所有的节点都只有左子树的二叉树叫左斜树，所有节点都是只有右子树的二叉树叫右斜树，两者统称为斜树。</li>
+<li>满二叉树：在一棵二叉树中，如果所有分支节点都存在左子树和右子树，并且所有叶子都在同一层上，这样的二叉树称为满二叉树。</li>
+<li>完全二叉树：对一棵具有n个节点的二叉树按层序编号，如果编号为i(1&lt;=i&lt;=n)的节点与同样深度的满二叉树编号为i的节点在二叉树中位置完全相同，则称该二叉树为完全二叉树。满二叉树一定是完全二叉树，但完全二叉树不一定是满的。</li>
+<li>赫夫曼树：是一种带权路径长度最短的树。</li>
+<li><p>平衡二叉树：是一种 <strong><font color="#00ffff" size="4">二叉排序树（或者叫二叉查找树）</font></strong>，其中每个节点的左子树和右子树的高度差至多等于1.<br>那么什么是二叉排序树呢？二叉排序树（Binary Sort Tree），又称为二叉查找树。它或者是一棵空树，或者是具有下列性质的二叉树：</p>
+<p>若它的左子树不空，则左子树上所有节点的值均小于它的根节点的值；<br>若它的右子树不空，则右子树上所有节点的值均大于它的根节点的值；<br>它的左右子树也分别为二叉排序树。</p>
+</li>
+<li><p>红黑树：具体定义和性质请往下看。</p>
+</li>
+</ul>
+<h1 id="什么是红黑树？"><a href="#什么是红黑树？" class="headerlink" title="什么是红黑树？"></a>什么是红黑树？</h1><h2 id="定义：-1"><a href="#定义：-1" class="headerlink" title="定义："></a>定义：</h2><p>红黑树，一种自平衡的 <strong><font color="#00ffff" size="4">二叉查找树</font></strong>，但在每个节点上有一个额外的存储位表示节点的颜色，可以是Red或者Black。这些颜色位用来确保红黑树在插入和删除操作后仍能近乎平衡。</p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E7%BA%A2%E9%BB%91%E6%A0%91%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="红黑树示意图"></p>
+<h2 id="红黑树的五个性质："><a href="#红黑树的五个性质：" class="headerlink" title="红黑树的五个性质："></a>红黑树的五个性质：</h2><ul>
+<li>性质一：节点要么是红色要么是黑色。</li>
+<li>性质二：根节点是黑色。</li>
+<li>性质三：所有叶子节点都是黑色（叶子是NIL节点，被称为黑哨兵）。</li>
+<li>性质四：每个红色节点的两个子节点都是黑色（从每个叶子到根的所有路径上不能有两个连续的红色节点）。</li>
+<li>性质五：从任一节点到每个叶子节点的所有路径都包含相同数目的黑色节点。</li>
+</ul>
+<h2 id="红黑树的应用场景"><a href="#红黑树的应用场景" class="headerlink" title="红黑树的应用场景"></a>红黑树的应用场景</h2><p>到此，我们可能已经对红黑树有了一点初步的认识了，但是我们却不知道为什么要有红黑树，红黑树是为了解决什么问题被提出来的呢？<br>我们知道，二叉查找树在大多数情况下查找和插入在效率上是没有问题的，但是在最坏的情况下效率比较低，但是平衡二叉树能够保证在最坏的情况下也能达到lgN，要实现这一目标，我们就要保证在插入完成后始终保持平衡状态。在一棵具有N个节点的树中，我们希望该树的高度能够维持在lgN左右，这样我们就能保证只需要lgN次比较操作就可以查找到想要的值。不幸的是，每次插入元素之后维持树的平衡状态太昂贵。所以就出现一些新的数据结构来保证在最坏的情况下插入和查找效率都能保证在对数的时间复杂度内完成。而我们所讲的红黑树就属于此新的数据结构之一，除此之外还有B树等数据结构。</p>
+<p>待续……</p>
+<p><strong><font color="#00ffff" size="4">后天补齐：2016-08-10</font></strong></p>
+<h1 id="完整参考代码"><a href="#完整参考代码" class="headerlink" title="完整参考代码"></a>完整参考代码</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>《大话数据结构》<br><a href="http://blog.csdn.net/eric491179912/article/details/6179908" target="_blank" rel="external">http://blog.csdn.net/eric491179912/article/details/6179908</a><br><a href="http://www.cnblogs.com/yangecnu/p/Introduce-2-3-Search-Tree.html" target="_blank" rel="external">http://www.cnblogs.com/yangecnu/p/Introduce-2-3-Search-Tree.html</a><br><a href="http://www.cnblogs.com/daoluanxiaozi/p/3340382.html" target="_blank" rel="external">http://www.cnblogs.com/daoluanxiaozi/p/3340382.html</a><br><a href="http://blog.csdn.net/loongshawn/article/details/50414608" target="_blank" rel="external">http://blog.csdn.net/loongshawn/article/details/50414608</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;背景知识&quot;&gt;&lt;a href=&quot;#背景知识&quot; class=&quot;headerlink&quot; title=&quot;背景知识&quot;&gt;&lt;/a&gt;背景知识&lt;/h1&gt;&lt;h2 id=&quot;二叉树&quot;&gt;&lt;a href=&quot;#二叉树&quot; class=&quot;headerlink&quot; title=&quot;二叉树&quot;&gt;&lt;/a&gt;二叉
+    
+    </summary>
+    
+      <category term="内功修养" scheme="http://akathink.com/categories/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/"/>
+    
+      <category term="Android" scheme="http://akathink.com/categories/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/Android/"/>
+    
+      <category term="树" scheme="http://akathink.com/categories/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/Android/%E6%A0%91/"/>
+    
+    
+      <category term="内功修养" scheme="http://akathink.com/tags/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/"/>
+    
+      <category term="数据结构" scheme="http://akathink.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="红黑树" scheme="http://akathink.com/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/"/>
+    
+      <category term="树" scheme="http://akathink.com/tags/%E6%A0%91/"/>
+    
+  </entry>
+  
+  <entry>
     <title>彻底搞懂Android安全架构:基础篇</title>
     <link href="http://akathink.com/2016/08/05/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82Android%E5%AE%89%E5%85%A8%E6%9E%B6%E6%9E%84:%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
     <id>http://akathink.com/2016/08/05/彻底搞懂Android安全架构:基础篇/</id>
     <published>2016-08-05T02:21:52.000Z</published>
-    <updated>2016-08-05T13:02:43.000Z</updated>
+    <updated>2016-08-08T12:59:56.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="安全要解决什么问题？"><a href="#安全要解决什么问题？" class="headerlink" title="安全要解决什么问题？"></a>安全要解决什么问题？</h1><ul>
 <li>保密（Security、Confidentiality）：只想让部分有权限的人知晓，其他人是看不到的；</li>
@@ -177,7 +239,7 @@
     <link href="http://akathink.com/2016/08/03/%E6%8E%92%E5%BA%8F%E4%BA%8C%EF%BC%9A%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"/>
     <id>http://akathink.com/2016/08/03/排序二：快速排序/</id>
     <published>2016-08-03T02:26:25.000Z</published>
-    <updated>2016-08-03T04:30:37.000Z</updated>
+    <updated>2016-08-08T13:00:02.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h1><p>快速排序是一种交换排序。<br>快速排序最早是由图灵获得者Tony Hoare设计出来的，被列为20世纪十大算法之一。</p>
 <h2 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a><strong><font color="#00ffff" size="4">算法思想</font></strong></h2><p>通过一趟排序将待排序记录分割成独立的两部分，其中一部分记录的关键字均比另一部分记录的关键字小，则可分别对这两部分记录继续进行排序，以达到整个序列有序的目的。</p>
@@ -226,7 +288,7 @@
     <link href="http://akathink.com/2016/08/01/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"/>
     <id>http://akathink.com/2016/08/01/彻底搞懂工厂模式/</id>
     <published>2016-08-01T14:57:07.000Z</published>
-    <updated>2016-08-02T15:51:51.000Z</updated>
+    <updated>2016-08-08T13:00:14.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>定义一个用于创建对象的接口，让子类决定实例化哪个类。</p>
 <h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><p>在任何需要生成复杂对象的地方，都可以使用工厂方法模式。</p>
@@ -342,7 +404,7 @@
     <link href="http://akathink.com/2016/07/29/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB%EF%BC%9A%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93%E4%B9%8B%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
     <id>http://akathink.com/2016/07/29/内功修养：数据结构总结之排序算法/</id>
     <published>2016-07-29T05:32:42.000Z</published>
-    <updated>2016-08-03T04:35:41.000Z</updated>
+    <updated>2016-08-08T13:00:06.000Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E6%8E%92%E5%BA%8F.png" alt="排序的分类"></p>
 <h1 id="稳定排序和不稳定排序"><a href="#稳定排序和不稳定排序" class="headerlink" title="稳定排序和不稳定排序"></a>稳定排序和不稳定排序</h1><p>如果Ri = Rj,Ri排序前在位置前，排序后还是要在Rj位置前，我们称该排序算法属于稳定排序，否则称为不稳定排序。</p>
@@ -387,7 +449,7 @@
     <link href="http://akathink.com/2016/07/28/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82HTTP%E5%8D%8F%E8%AE%AE/"/>
     <id>http://akathink.com/2016/07/28/彻底搞懂HTTP协议/</id>
     <published>2016-07-28T08:16:42.000Z</published>
-    <updated>2016-08-01T15:17:04.000Z</updated>
+    <updated>2016-08-08T12:59:45.000Z</updated>
     
     <content type="html"><![CDATA[<p>在做网络编程（无论传统的Web开发，还是当前比较流行的的移动开发）的时候，我们用到最多的网络传输协议，可能就是HTTP协议了。作为开发者的我们可能更多的也只是去关注哪个第三方类库传输效率更高，哪个库使用最为方便，或者是哪个类库更为易于维护，但是，作为想要长期在该专业道路上行走的我们，仅仅学会使用这些类库的招式显然是不够的，我们还要了解其精髓，去分析源码，看看到底是如何实现的，那么问题来了，如果我们不懂HTTP协议的基础及核心内容，我们又该如何去分析那些源代码呢？无论哪个类库，最终的实现机制都是建立在对HTTP协议熟练掌握的基础上的。那么，让我们一起去彻底征服HTTP协议吧。</p>
 <p>在了解之前，我先提几个问题，方便下面分析的时候，能够更好的去理解HTTP协议。</p>
@@ -502,7 +564,7 @@
 </ul>
 <h2 id="8-基于HTTP的功能追加协议"><a href="#8-基于HTTP的功能追加协议" class="headerlink" title="8. 基于HTTP的功能追加协议"></a>8. 基于HTTP的功能追加协议</h2><p>待续…<br>下面将会整体做个总结，完整的说明HTTP的工作机制。</p>
 <h1 id="三-后记"><a href="#三-后记" class="headerlink" title="三. 后记"></a>三. 后记</h1><p>本文是在阅读《图解HTTP》一书的基础上并同时参考一些优秀文章之后进行总结的，不仅整体认识了HTTP，也方便下次复习的时候，能够用更短的时间去理解这些虽然基础但是却很重要的知识。</p>
-<h1 id="四：参考资料"><a href="#四：参考资料" class="headerlink" title="四：参考资料"></a>四：参考资料</h1><p><a href="http://www.cnblogs.com/jingmoxukong/p/5115055.html" target="_blank" rel="external">http://www.cnblogs.com/jingmoxukong/p/5115055.html</a><br><a href="http://www.cnblogs.com/gaojing/archive/2012/02/04/2413626.html" target="_blank" rel="external">http://www.cnblogs.com/gaojing/archive/2012/02/04/2413626.html</a><br><a href="http://network.chinabyte.com/401/13238901.shtml" target="_blank" rel="external">http://network.chinabyte.com/401/13238901.shtml</a></p>
+<h1 id="四：参考"><a href="#四：参考" class="headerlink" title="四：参考"></a>四：参考</h1><p><a href="http://www.cnblogs.com/jingmoxukong/p/5115055.html" target="_blank" rel="external">http://www.cnblogs.com/jingmoxukong/p/5115055.html</a><br><a href="http://www.cnblogs.com/gaojing/archive/2012/02/04/2413626.html" target="_blank" rel="external">http://www.cnblogs.com/gaojing/archive/2012/02/04/2413626.html</a><br><a href="http://network.chinabyte.com/401/13238901.shtml" target="_blank" rel="external">http://network.chinabyte.com/401/13238901.shtml</a></p>
 ]]></content>
     
     <summary type="html">
