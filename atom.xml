@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://akathink.com/"/>
-  <updated>2016-08-10T03:43:20.000Z</updated>
+  <updated>2016-08-10T05:41:58.000Z</updated>
   <id>http://akathink.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://akathink.com/2016/08/08/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82%E7%BA%A2%E9%BB%91%E6%A0%91/"/>
     <id>http://akathink.com/2016/08/08/彻底搞懂红黑树/</id>
     <published>2016-08-08T11:29:18.000Z</published>
-    <updated>2016-08-10T03:43:20.000Z</updated>
+    <updated>2016-08-10T05:41:58.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h1><h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><p>二叉树（Binary Tree）是n(n &gt;= 0)个节点的有限集合。该集合或者未空集（称为空二叉树），或者由一个根节点和两棵互不相交的，分别称为根节点的左子树和右子树的二叉树组成。</p>
 <h3 id="二叉树特点"><a href="#二叉树特点" class="headerlink" title="二叉树特点"></a>二叉树特点</h3><ul>
@@ -71,17 +71,17 @@
 <li>黑“父”</li>
 </ul>
 <p>如下图所示，如果“新”节点的父节点为黑色，那么插入一个红节点，将不会影响红黑树的平衡，此时插入操作完成。红黑树比AVL树优秀的地方之一在于黑父的情况比较常见，从而使红黑树需要旋转的概率相对AVL树来说会少一些。</p>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E9%BB%91%E7%88%B6.jpg" alt="黑父"></p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E9%BB%91%E7%88%B6new.jpg" alt="黑父"></p>
 <ul>
 <li>红“父”</li>
 </ul>
 <p>如下图所示。如果“新”节点的父节点为红色，若要新插入红色的“新”节点就违背了性质四：每条路径上不能有连续的两个红节点。由于”父”节点为红色，那么“祖”节点肯定为黑色。</p>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E7%BA%A2%E7%88%B6.jpg" alt="红父"></p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E7%BA%A2%E7%88%B6new.jpg" alt="红父"></p>
 <ol>
-<li>红叔</li>
+<li>红”叔”</li>
 </ol>
 <ol>
-<li>黑叔</li>
+<li>黑“叔”</li>
 </ol>
 <h2 id="红黑树删除操作"><a href="#红黑树删除操作" class="headerlink" title="红黑树删除操作"></a>红黑树删除操作</h2><p>相对于红黑树的查询和插入操作来说，删除操作相对会更复杂一些，也就是我们传说中所说的“请神容易送神难”！</p>
 <p>待续……</p>
