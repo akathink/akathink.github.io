@@ -57,7 +57,12 @@
 <meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E7%BA%A2%E9%BB%91%E6%A0%91%E4%B9%8B%E6%8F%92%E5%85%A5%E7%BA%A2%E8%89%B2%E8%8A%82%E7%82%B9.jpg">
 <meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E9%BB%91%E7%88%B6new.jpg">
 <meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E7%BA%A2%E7%88%B6new.jpg">
-<meta property="og:updated_time" content="2016-08-10T12:30:49.000Z">
+<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E7%BA%A2%E5%8F%94.jpg">
+<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E9%BB%91%E5%8F%94LL%E6%97%8B%E8%BD%AC.jpg">
+<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E9%BB%91%E6%A0%91LR%E6%97%8B%E8%BD%AC.jpg">
+<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E9%BB%91%E5%8F%94RR%E6%97%8B%E8%BD%AC.jpg">
+<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E9%BB%91%E5%8F%94RL%E6%97%8B%E8%BD%AC.jpg">
+<meta property="og:updated_time" content="2016-08-10T13:25:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="彻底搞懂红黑树">
 <meta name="twitter:description" content="背景知识二叉树定义：二叉树（Binary Tree）是n(n &amp;gt;= 0)个节点的有限集合。该集合或者未空集（称为空二叉树），或者由一个根节点和两棵互不相交的，分别称为根节点的左子树和右子树的二叉树组成。
@@ -461,7 +466,7 @@
 <li>红”叔”</li>
 </ol>
 <p>当“叔”节点为红色时，如下图所示，无需进行旋转操作，只要将父和叔节点变为黑色，将”祖”节点变为红色即可。但由于祖父节点的父节点有可能为红色，从而违反红黑树性质。此时必须将祖父节点作为新的判定点继续向上进行平衡操作。</p>
-<p><img src="" alt=""></p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E7%BA%A2%E5%8F%94.jpg" alt="红叔"></p>
 <p>需要注意，无论“父”在”叔“的左边还是右边，无论“新”是”父”的左孩子还是右孩子，它们的操作都是完全一样的。</p>
 <ol>
 <li>黑“叔”</li>
@@ -469,16 +474,37 @@
 <ul>
 <li>情形1：</li>
 </ul>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E9%BB%91%E5%8F%94LL%E6%97%8B%E8%BD%AC.jpg" alt="黑叔LL旋转"></p>
 <ul>
 <li>情形2：</li>
 </ul>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E9%BB%91%E6%A0%91LR%E6%97%8B%E8%BD%AC.jpg" alt="黑叔LR旋转"></p>
 <ul>
 <li>情形3：</li>
 </ul>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E9%BB%91%E5%8F%94RR%E6%97%8B%E8%BD%AC.jpg" alt="黑叔RR旋转"></p>
 <ul>
 <li>情形4：</li>
 </ul>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E9%BB%91%E5%8F%94RL%E6%97%8B%E8%BD%AC.jpg" alt="黑叔RL旋转"></p>
+<p>可以观察到，当旋转完成后，新的旋转根全部为黑色，此时不需要再向上回溯进行平衡操作，插入操作完成。需要注意，上面四张图的“叔”、“1”、“2”、“3”结点有可能为黑哨兵结点。</p>
 <h2 id="红黑树删除操作"><a href="#红黑树删除操作" class="headerlink" title="红黑树删除操作"></a>红黑树删除操作</h2><p>相对于红黑树的查询和插入操作来说，删除操作相对会更复杂一些，也就是我们传说中所说的“请神容易送神难”！</p>
+<p>那么如果我们删除一个节点，需要执行哪些操作呢？</p>
+<ul>
+<li>首先，将红黑树当作一棵二叉查找树，将该节点从二叉查找树中删除；</li>
+<li>然后，通过“旋转和着色”等一系列操作来修正该树，使之重新成为一棵红黑树。</li>
+</ul>
+<p>下面分别解释一下这两步操作：</p>
+<h3 id="第一步：将红黑树当作一棵二叉查找树，将节点删除。"><a href="#第一步：将红黑树当作一棵二叉查找树，将节点删除。" class="headerlink" title="第一步：将红黑树当作一棵二叉查找树，将节点删除。"></a>第一步：将红黑树当作一棵二叉查找树，将节点删除。</h3><p>这和“删除常规二叉查找树中删除节点的方法是一样的”，分三种情况：</p>
+<ol>
+<li>被删除节点为叶子节点，那么直接删除该节点就OK了；</li>
+<li>被删除节点只有一个孩子节点，那么直接删除该节点，利用该节点的孩子节点直接顶替它的位置；</li>
+<li>被删除节点有两个儿子，真正的删除点应该是n的中序遍在前驱。</li>
+</ol>
+<h3 id="第二步：通过“旋转和着色”等一系列操作来修正该树，使之重新成为一棵红黑树。"><a href="#第二步：通过“旋转和着色”等一系列操作来修正该树，使之重新成为一棵红黑树。" class="headerlink" title="第二步：通过“旋转和着色”等一系列操作来修正该树，使之重新成为一棵红黑树。"></a>第二步：通过“旋转和着色”等一系列操作来修正该树，使之重新成为一棵红黑树。</h3><p>因为”第一步”中删除节点之后，可能会违背红黑树的特性。所以需要通过”旋转和重新着色”来修正该树，使之重新成为一棵红黑树。</p>
+<p><img src="" alt=""></p>
+<p>所以可以推断出，在进行删除操作时，真正的删除点必定是只有一个孩子或没有孩子的结点。而根据红黑树的性质可以得出以下两个结论：</p>
+<p><strong><font color="#ff0000" size="4">1、 删除操作中真正被删除的必定是只有一个红色孩子或没有孩子的结点。</font></strong><br><strong><font color="#ff0000" size="4">2、 如果真正的删除点是一个红色结点，那么它必定是一个叶子结点。</font></strong></p>
 <p>待续……</p>
 <p>HashMap Java1.8版本对HashMap做了优化，采用红黑树的数据结构。</p>
 <p><strong><font color="#00ffff" size="4">后天补齐：2016-08-10</font></strong></p>
@@ -774,7 +800,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景知识"><span class="nav-number">1.</span> <span class="nav-text">背景知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树"><span class="nav-number">1.1.</span> <span class="nav-text">二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义："><span class="nav-number">1.1.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉树特点"><span class="nav-number">1.1.2.</span> <span class="nav-text">二叉树特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊二叉树"><span class="nav-number">1.2.</span> <span class="nav-text">特殊二叉树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#红黑树"><span class="nav-number">2.</span> <span class="nav-text">红黑树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义：-1"><span class="nav-number">2.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树的五个性质："><span class="nav-number">2.2.</span> <span class="nav-text">红黑树的五个性质：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树的应用场景"><span class="nav-number">2.3.</span> <span class="nav-text">红黑树的应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#旋转操作"><span class="nav-number">2.4.</span> <span class="nav-text">旋转操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树查询操作"><span class="nav-number">2.5.</span> <span class="nav-text">红黑树查询操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树插入操作"><span class="nav-number">2.6.</span> <span class="nav-text">红黑树插入操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：将红黑树当作一棵二叉查找树，将节点插入"><span class="nav-number">2.6.1.</span> <span class="nav-text">第一步：将红黑树当作一棵二叉查找树，将节点插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：将待插入节点着色为红色"><span class="nav-number">2.6.2.</span> <span class="nav-text">第二步：将待插入节点着色为红色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：通过“旋转和重新着色”等一系列操作来修正该树，使之重新成为一棵红黑树"><span class="nav-number">2.6.3.</span> <span class="nav-text">第三步：通过“旋转和重新着色”等一系列操作来修正该树，使之重新成为一棵红黑树</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树删除操作"><span class="nav-number">2.7.</span> <span class="nav-text">红黑树删除操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完整参考代码"><span class="nav-number">3.</span> <span class="nav-text">完整参考代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景知识"><span class="nav-number">1.</span> <span class="nav-text">背景知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树"><span class="nav-number">1.1.</span> <span class="nav-text">二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义："><span class="nav-number">1.1.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉树特点"><span class="nav-number">1.1.2.</span> <span class="nav-text">二叉树特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊二叉树"><span class="nav-number">1.2.</span> <span class="nav-text">特殊二叉树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#红黑树"><span class="nav-number">2.</span> <span class="nav-text">红黑树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义：-1"><span class="nav-number">2.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树的五个性质："><span class="nav-number">2.2.</span> <span class="nav-text">红黑树的五个性质：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树的应用场景"><span class="nav-number">2.3.</span> <span class="nav-text">红黑树的应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#旋转操作"><span class="nav-number">2.4.</span> <span class="nav-text">旋转操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树查询操作"><span class="nav-number">2.5.</span> <span class="nav-text">红黑树查询操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树插入操作"><span class="nav-number">2.6.</span> <span class="nav-text">红黑树插入操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：将红黑树当作一棵二叉查找树，将节点插入"><span class="nav-number">2.6.1.</span> <span class="nav-text">第一步：将红黑树当作一棵二叉查找树，将节点插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：将待插入节点着色为红色"><span class="nav-number">2.6.2.</span> <span class="nav-text">第二步：将待插入节点着色为红色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：通过“旋转和重新着色”等一系列操作来修正该树，使之重新成为一棵红黑树"><span class="nav-number">2.6.3.</span> <span class="nav-text">第三步：通过“旋转和重新着色”等一系列操作来修正该树，使之重新成为一棵红黑树</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树删除操作"><span class="nav-number">2.7.</span> <span class="nav-text">红黑树删除操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：将红黑树当作一棵二叉查找树，将节点删除。"><span class="nav-number">2.7.1.</span> <span class="nav-text">第一步：将红黑树当作一棵二叉查找树，将节点删除。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：通过“旋转和着色”等一系列操作来修正该树，使之重新成为一棵红黑树。"><span class="nav-number">2.7.2.</span> <span class="nav-text">第二步：通过“旋转和着色”等一系列操作来修正该树，使之重新成为一棵红黑树。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完整参考代码"><span class="nav-number">3.</span> <span class="nav-text">完整参考代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
