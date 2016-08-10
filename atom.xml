@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://akathink.com/"/>
-  <updated>2016-08-10T01:28:57.000Z</updated>
+  <updated>2016-08-10T02:31:43.000Z</updated>
   <id>http://akathink.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://akathink.com/2016/08/08/%E5%BD%BB%E5%BA%95%E6%90%9E%E6%87%82%E7%BA%A2%E9%BB%91%E6%A0%91/"/>
     <id>http://akathink.com/2016/08/08/彻底搞懂红黑树/</id>
     <published>2016-08-08T11:29:18.000Z</published>
-    <updated>2016-08-10T01:28:57.000Z</updated>
+    <updated>2016-08-10T02:31:43.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h1><h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><h3 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h3><p>二叉树（Binary Tree）是n(n &gt;= 0)个节点的有限集合。该集合或者未空集（称为空二叉树），或者由一个根节点和两棵互不相交的，分别称为根节点的左子树和右子树的二叉树组成。</p>
 <h3 id="二叉树特点"><a href="#二叉树特点" class="headerlink" title="二叉树特点"></a>二叉树特点</h3><ul>
@@ -45,11 +45,31 @@
 <p>这些约束强制了红黑树的关键性质: 从根到叶子的最长的可能路径不多于最短的可能路径的两倍长。结果是这个树大致上是平衡的。因为操作比如插入、删除和查找某个值的最坏情况时间都要求与树的高度成比例，这个在高度上的理论上限允许红黑树在最坏情况下都是高效的，而不同于普通的二叉查找树。</p>
 <h2 id="红黑树的应用场景"><a href="#红黑树的应用场景" class="headerlink" title="红黑树的应用场景"></a>红黑树的应用场景</h2><p>到此，我们可能已经对红黑树有了一点初步的认识了，但是我们却不知道为什么要有红黑树，红黑树是为了解决什么问题被提出来的呢？<br>我们知道，二叉查找树在大多数情况下查找和插入在效率上是没有问题的，但是在最坏的情况下效率比较低，但是平衡二叉树能够保证在最坏的情况下也能达到lgN，要实现这一目标，我们就要保证在插入完成后始终保持平衡状态。在一棵具有N个节点的树中，我们希望该树的高度能够维持在lgN左右，这样我们就能保证只需要lgN次比较操作就可以查找到想要的值。不幸的是，每次插入元素之后维持树的平衡状态太昂贵。所以就出现一些新的数据结构来保证在最坏的情况下插入和查找效率都能保证在对数的时间复杂度内完成。而我们所讲的红黑树就属于此新的数据结构之一，除此之外还有B树等数据结构。</p>
 <h2 id="旋转操作"><a href="#旋转操作" class="headerlink" title="旋转操作"></a>旋转操作</h2><p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%B7%A6%E6%97%8B%E5%8F%B3%E6%97%8B%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="左旋和右旋"></p>
-<h2 id="红黑树查询操作"><a href="#红黑树查询操作" class="headerlink" title="红黑树查询操作"></a>红黑树查询操作</h2><h2 id="红黑树插入操作"><a href="#红黑树插入操作" class="headerlink" title="红黑树插入操作"></a>红黑树插入操作</h2><h2 id="红黑树删除操作"><a href="#红黑树删除操作" class="headerlink" title="红黑树删除操作"></a>红黑树删除操作</h2><p>相对于红黑树的查询和插入操作来说，删除操作相对会更复杂一些，也就是我们经常说的“请神容易送神难”！</p>
+<h2 id="红黑树查询操作"><a href="#红黑树查询操作" class="headerlink" title="红黑树查询操作"></a>红黑树查询操作</h2><h2 id="红黑树插入操作"><a href="#红黑树插入操作" class="headerlink" title="红黑树插入操作"></a>红黑树插入操作</h2><p>若将一个节点插入到红黑树中，我们需要执行哪些操作呢？</p>
+<ul>
+<li>首先，将红黑树当作一棵二叉查找树，将节点插入；</li>
+<li>其次，将待插入节点着色为红色；</li>
+<li>最后，通过“旋转和重新着色”等一系列操作来修正该树，使之重新成为一棵红黑树。</li>
+</ul>
+<p>下面分别解释一下这三步操作：</p>
+<h3 id="第一步：将红黑树当作一棵二叉查找树，将节点插入"><a href="#第一步：将红黑树当作一棵二叉查找树，将节点插入" class="headerlink" title="第一步：将红黑树当作一棵二叉查找树，将节点插入"></a>第一步：将红黑树当作一棵二叉查找树，将节点插入</h3><p>红黑树本身就是一棵二叉查找树，将新节点插入后，该树仍然是一棵二叉查找树。也就意味着，树的键值仍然是有序的。此外，无论是左旋还是右旋，若旋转之前这棵树是二叉查找树，那么旋转之后它一定还是二叉查找树。这也就意味着，任何的旋转和重新着色操作，都不会改变它仍然是一棵二叉查找树的事实。</p>
+<h3 id="第二步：将待插入节点着色为红色"><a href="#第二步：将待插入节点着色为红色" class="headerlink" title="第二步：将待插入节点着色为红色"></a>第二步：将待插入节点着色为红色</h3><p>为什么插入的节点是红色，而不是黑色呢？</p>
+<p>如果插入的是黑色节点，则肯定会在某条路径上增加黑色节点的数目，从而导致整棵树高度的不平衡，也就违反了红黑树的第五条性质；但如果新节点的父节点为红色时（如下图），将会违反红黑树性质四：一条路径上不能出现连续的两个红色节点，这时就需要通过一系列操作来使红黑树保持平衡。</p>
+<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E7%BA%A2%E9%BB%91%E6%A0%91%E4%B9%8B%E6%8F%92%E5%85%A5%E7%BA%A2%E8%89%B2%E8%8A%82%E7%82%B9.jpg" alt="红黑树之插入红色节点"></p>
+<h3 id="第三步：通过“旋转和重新着色”等一系列操作来修正该树，使之重新成为一棵红黑树"><a href="#第三步：通过“旋转和重新着色”等一系列操作来修正该树，使之重新成为一棵红黑树" class="headerlink" title="第三步：通过“旋转和重新着色”等一系列操作来修正该树，使之重新成为一棵红黑树"></a>第三步：通过“旋转和重新着色”等一系列操作来修正该树，使之重新成为一棵红黑树</h3><p>若将插入节点更改为“红色”节点，会违背红黑树的哪些性质呢？</p>
+<ul>
+<li>对于性质一，因为我们已经将插入节点涂成红色了，所以肯定不会违背。</li>
+<li>对于性质二，因为我们是将红黑树当作二叉查找树，然后执行的插入操作。而根据二叉查找树的特点。插入操作不会改变根节点，所以根节点依然是黑色，也不会违背该性质。</li>
+<li>对于性质三：因为叶子节点是黑哨兵，都是一些空节点，我们此时插入的是非空节点，所以也不会违背该性质。</li>
+<li>对于性质四：<strong><font color="#0891ff" size="4">有可能会违背</font></strong>。</li>
+<li>对于性质五：因为插入的是红色节点，肯定不会影响某条路径上的黑色节点的数目的，所以肯定不会违背性质五。</li>
+</ul>
+<p>经过上面的分析可知，想办法使之满足“性质四”，就可以将树重新构造成红黑树了。</p>
+<h2 id="红黑树删除操作"><a href="#红黑树删除操作" class="headerlink" title="红黑树删除操作"></a>红黑树删除操作</h2><p>相对于红黑树的查询和插入操作来说，删除操作相对会更复杂一些，也就是我们经常说的“请神容易送神难”！</p>
 <p>待续……</p>
 <p>HashMap Java1.8版本对HashMap做了优化，采用红黑树的数据结构。</p>
 <p><strong><font color="#00ffff" size="4">后天补齐：2016-08-10</font></strong></p>
-<h1 id="完整参考代码"><a href="#完整参考代码" class="headerlink" title="完整参考代码"></a>完整参考代码</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>《大话数据结构》<br><a href="http://blog.csdn.net/eric491179912/article/details/6179908" target="_blank" rel="external">http://blog.csdn.net/eric491179912/article/details/6179908</a><br><a href="http://www.cnblogs.com/yangecnu/p/Introduce-2-3-Search-Tree.html" target="_blank" rel="external">http://www.cnblogs.com/yangecnu/p/Introduce-2-3-Search-Tree.html</a><br><a href="http://www.cnblogs.com/daoluanxiaozi/p/3340382.html" target="_blank" rel="external">http://www.cnblogs.com/daoluanxiaozi/p/3340382.html</a><br><a href="http://blog.csdn.net/loongshawn/article/details/50414608" target="_blank" rel="external">http://blog.csdn.net/loongshawn/article/details/50414608</a></p>
+<h1 id="完整参考代码"><a href="#完整参考代码" class="headerlink" title="完整参考代码"></a>完整参考代码</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>《大话数据结构》<br><a href="http://www.tuicool.com/articles/J3iMf2R" target="_blank" rel="external">http://www.tuicool.com/articles/J3iMf2R</a><br><a href="http://blog.csdn.net/eric491179912/article/details/6179908" target="_blank" rel="external">http://blog.csdn.net/eric491179912/article/details/6179908</a><br><a href="http://www.cnblogs.com/yangecnu/p/Introduce-2-3-Search-Tree.html" target="_blank" rel="external">http://www.cnblogs.com/yangecnu/p/Introduce-2-3-Search-Tree.html</a><br><a href="http://www.cnblogs.com/daoluanxiaozi/p/3340382.html" target="_blank" rel="external">http://www.cnblogs.com/daoluanxiaozi/p/3340382.html</a><br><a href="http://blog.csdn.net/loongshawn/article/details/50414608" target="_blank" rel="external">http://blog.csdn.net/loongshawn/article/details/50414608</a></p>
 ]]></content>
     
     <summary type="html">
