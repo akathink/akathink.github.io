@@ -58,7 +58,7 @@
 
 注解的功能
 作为特定的标记，用于告诉编">
-<meta property="og:updated_time" content="2016-08-11T05:26:47.000Z">
+<meta property="og:updated_time" content="2016-08-11T05:27:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="彻底搞懂Java注解Annotation">
 <meta name="twitter:description" content="注解的定义注解（也被成为元数据）为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。 ———摘自《Thinking in Java》简单来说注解的作用就是将我们的需要的数据储存起来，在以后的某一个时刻（可能是编译时，也可能是运行时）去调用它。
@@ -493,11 +493,11 @@
 <li>Class类型</li>
 <li>enum类型</li>
 <li>Annotation类型</li>
-<li><p>以上所有类型的数组</p>
-<p>Annotation类型里面的参数该怎么设定:</p>
-</li>
-<li><p>首先,只能用public或默认(default)这两个访问权修饰.例如,String value();这里把方法设为defaul默认类型；　 　</p>
-</li>
+<li>以上所有类型的数组</li>
+</ol>
+<p>Annotation类型里面的参数该怎么设定:  </p>
+<ol>
+<li>首先,只能用public或默认(default)这两个访问权修饰.例如,String value();这里把方法设为defaul默认类型；　 　</li>
 <li>其次,参数成员只能用基本类型byte,short,char,int,long,float,double,boolean八种基本数据类型和 String,Enum,Class,annotations等数据类型,以及这一些类型的数组.例如,String value();这里的参数成员就为String;　　</li>
 <li>最后,如果只有一个参数成员,最好把参数名称设为”value”,后加小括号.例:下面的例子FruitName注解就只有一个参数成员。</li>
 </ol>
