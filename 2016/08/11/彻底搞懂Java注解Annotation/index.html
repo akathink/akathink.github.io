@@ -40,34 +40,34 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="注解的定义注解（也被成为元数据）为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。 ——————摘自《Thinking in Java》简单来说注解的作用就是将我们的需要的数据储存起来，在以后的某一个时刻（可能是编译时，也可能是运行时）去调用它。
+<meta name="description" content="注解的定义注解（也被成为元数据）为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。 ———摘自《Thinking in Java》简单来说注解的作用就是将我们的需要的数据储存起来，在以后的某一个时刻（可能是编译时，也可能是运行时）去调用它。
 为什么要学习注解？
 能够读懂别人使用注解实现的开源库
 让编程变得更加简洁
 
 注解的功能
-作为特定的标记，用于">
+作为特定的标记，用于告诉编">
 <meta property="og:type" content="article">
 <meta property="og:title" content="彻底搞懂Java注解Annotation">
 <meta property="og:url" content="http://akathink.com/2016/08/11/彻底搞懂Java注解Annotation/index.html">
 <meta property="og:site_name" content="akathink's blog">
-<meta property="og:description" content="注解的定义注解（也被成为元数据）为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。 ——————摘自《Thinking in Java》简单来说注解的作用就是将我们的需要的数据储存起来，在以后的某一个时刻（可能是编译时，也可能是运行时）去调用它。
+<meta property="og:description" content="注解的定义注解（也被成为元数据）为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。 ———摘自《Thinking in Java》简单来说注解的作用就是将我们的需要的数据储存起来，在以后的某一个时刻（可能是编译时，也可能是运行时）去调用它。
 为什么要学习注解？
 能够读懂别人使用注解实现的开源库
 让编程变得更加简洁
 
 注解的功能
-作为特定的标记，用于">
-<meta property="og:updated_time" content="2016-08-11T05:21:57.000Z">
+作为特定的标记，用于告诉编">
+<meta property="og:updated_time" content="2016-08-11T05:26:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="彻底搞懂Java注解Annotation">
-<meta name="twitter:description" content="注解的定义注解（也被成为元数据）为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。 ——————摘自《Thinking in Java》简单来说注解的作用就是将我们的需要的数据储存起来，在以后的某一个时刻（可能是编译时，也可能是运行时）去调用它。
+<meta name="twitter:description" content="注解的定义注解（也被成为元数据）为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。 ———摘自《Thinking in Java》简单来说注解的作用就是将我们的需要的数据储存起来，在以后的某一个时刻（可能是编译时，也可能是运行时）去调用它。
 为什么要学习注解？
 能够读懂别人使用注解实现的开源库
 让编程变得更加简洁
 
 注解的功能
-作为特定的标记，用于">
+作为特定的标记，用于告诉编">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -417,7 +417,7 @@
       
 
       
-        <span itemprop="articleBody"><h1 id="注解的定义"><a href="#注解的定义" class="headerlink" title="注解的定义"></a>注解的定义</h1><p>注解（也被成为元数据）为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。 ——————摘自《Thinking in Java》<br>简单来说注解的作用就是将我们的需要的数据储存起来，在以后的某一个时刻（可能是编译时，也可能是运行时）去调用它。</p>
+        <span itemprop="articleBody"><h1 id="注解的定义"><a href="#注解的定义" class="headerlink" title="注解的定义"></a>注解的定义</h1><p>注解（也被成为元数据）为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。 ———摘自《Thinking in Java》<br>简单来说注解的作用就是将我们的需要的数据储存起来，在以后的某一个时刻（可能是编译时，也可能是运行时）去调用它。</p>
 <h1 id="为什么要学习注解？"><a href="#为什么要学习注解？" class="headerlink" title="为什么要学习注解？"></a>为什么要学习注解？</h1><ul>
 <li>能够读懂别人使用注解实现的开源库</li>
 <li>让编程变得更加简洁</li>
@@ -481,11 +481,11 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Target</span>(ElementType.ANNOTATION_TYPE)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Inherited &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="实现和使用自定义注解"><a href="#实现和使用自定义注解" class="headerlink" title="实现和使用自定义注解"></a>实现和使用自定义注解</h2><p>使用@interface自定义注解时，自动继承了java.lang.annotation.Annotation接口，由编译程序自动完成其他细节。在定义注解时，不能继承其他的注解或接口。@interface用来声明一个注解，其中的每一个方法实际上是声明了一个配置参数。方法的名称就是参数的名称，返回值类型就是参数的类型（返回值类型只能是基本类型、Class、String、enum）。可以通过default来声明参数的默认值。</p>
 <ul>
-<li>定义注解格式</li>
-</ul>
+<li><p>定义注解格式</p>
 <p>public <em>@interface</em> 注解名 {定义体}</p>
-<ul>
-<li>注解参数的可支持数据类型</li>
+</li>
+<li><p>注解参数的可支持数据类型</p>
+</li>
 </ul>
 <ol>
 <li>所有基本数据类型（int,float,boolean,byte,double,char,long,short)</li>
@@ -493,11 +493,11 @@
 <li>Class类型</li>
 <li>enum类型</li>
 <li>Annotation类型</li>
-<li>以上所有类型的数组</li>
-</ol>
+<li><p>以上所有类型的数组</p>
 <p>Annotation类型里面的参数该怎么设定:</p>
-<ol>
-<li>首先,只能用public或默认(default)这两个访问权修饰.例如,String value();这里把方法设为defaul默认类型；　 　</li>
+</li>
+<li><p>首先,只能用public或默认(default)这两个访问权修饰.例如,String value();这里把方法设为defaul默认类型；　 　</p>
+</li>
 <li>其次,参数成员只能用基本类型byte,short,char,int,long,float,double,boolean八种基本数据类型和 String,Enum,Class,annotations等数据类型,以及这一些类型的数组.例如,String value();这里的参数成员就为String;　　</li>
 <li>最后,如果只有一个参数成员,最好把参数名称设为”value”,后加小括号.例:下面的例子FruitName注解就只有一个参数成员。</li>
 </ol>
