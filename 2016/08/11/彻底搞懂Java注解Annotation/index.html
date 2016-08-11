@@ -29,7 +29,7 @@
 
 
 
-  <meta name="keywords" content="内功修养,数据结构,排序," />
+  <meta name="keywords" content="内功修养,Java,注解,公共基础知识," />
 
 
 
@@ -40,28 +40,34 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="要点快速排序是一种交换排序。快速排序最早是由图灵获得者Tony Hoare设计出来的，被列为20世纪十大算法之一。
-算法思想通过一趟排序将待排序记录分割成独立的两部分，其中一部分记录的关键字均比另一部分记录的关键字小，则可分别对这两部分记录继续进行排序，以达到整个序列有序的目的。
-从上面的文字描述理解起来可能很费力，下面直接通过图解的方式来说明：
-通过上面的图解分析我们知道第一轮排序结束，得到的序">
+<meta name="description" content="注解的定义注解（也被成为元数据）为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。 ——————摘自《Thinking in Java》简单来说注解的作用就是将我们的需要的数据储存起来，在以后的某一个时刻（可能是编译时，也可能是运行时）去调用它。
+为什么要学习注解？
+能够读懂别人使用注解实现的开源库
+让编程变得更加简洁
+
+注解的功能
+作为特定的标记，用于">
 <meta property="og:type" content="article">
-<meta property="og:title" content="排序二：快速排序">
-<meta property="og:url" content="http://akathink.com/2016/08/03/排序二：快速排序/index.html">
+<meta property="og:title" content="彻底搞懂Java注解Annotation">
+<meta property="og:url" content="http://akathink.com/2016/08/11/彻底搞懂Java注解Annotation/index.html">
 <meta property="og:site_name" content="akathink's blog">
-<meta property="og:description" content="要点快速排序是一种交换排序。快速排序最早是由图灵获得者Tony Hoare设计出来的，被列为20世纪十大算法之一。
-算法思想通过一趟排序将待排序记录分割成独立的两部分，其中一部分记录的关键字均比另一部分记录的关键字小，则可分别对这两部分记录继续进行排序，以达到整个序列有序的目的。
-从上面的文字描述理解起来可能很费力，下面直接通过图解的方式来说明：
-通过上面的图解分析我们知道第一轮排序结束，得到的序">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%A4%BA%E4%BE%8B%E5%9B%BE.png">
-<meta property="og:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90.jpg">
-<meta property="og:updated_time" content="2016-08-08T13:00:02.000Z">
+<meta property="og:description" content="注解的定义注解（也被成为元数据）为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。 ——————摘自《Thinking in Java》简单来说注解的作用就是将我们的需要的数据储存起来，在以后的某一个时刻（可能是编译时，也可能是运行时）去调用它。
+为什么要学习注解？
+能够读懂别人使用注解实现的开源库
+让编程变得更加简洁
+
+注解的功能
+作为特定的标记，用于">
+<meta property="og:updated_time" content="2016-08-11T05:18:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="排序二：快速排序">
-<meta name="twitter:description" content="要点快速排序是一种交换排序。快速排序最早是由图灵获得者Tony Hoare设计出来的，被列为20世纪十大算法之一。
-算法思想通过一趟排序将待排序记录分割成独立的两部分，其中一部分记录的关键字均比另一部分记录的关键字小，则可分别对这两部分记录继续进行排序，以达到整个序列有序的目的。
-从上面的文字描述理解起来可能很费力，下面直接通过图解的方式来说明：
-通过上面的图解分析我们知道第一轮排序结束，得到的序">
-<meta name="twitter:image" content="http://7xt310.com1.z0.glb.clouddn.com/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%A4%BA%E4%BE%8B%E5%9B%BE.png">
+<meta name="twitter:title" content="彻底搞懂Java注解Annotation">
+<meta name="twitter:description" content="注解的定义注解（也被成为元数据）为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。 ——————摘自《Thinking in Java》简单来说注解的作用就是将我们的需要的数据储存起来，在以后的某一个时刻（可能是编译时，也可能是运行时）去调用它。
+为什么要学习注解？
+能够读懂别人使用注解实现的开源库
+让编程变得更加简洁
+
+注解的功能
+作为特定的标记，用于">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -71,7 +77,7 @@
   };
 </script>
 
-  <title> 排序二：快速排序 | akathink's blog </title>
+  <title> 彻底搞懂Java注解Annotation | akathink's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -320,7 +326,7 @@
           
           
             
-              排序二：快速排序
+              彻底搞懂Java注解Annotation
             
           
         </h1>
@@ -329,8 +335,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-08-03T10:26:25+08:00" content="2016-08-03">
-            2016-08-03
+          <time itemprop="dateCreated" datetime="2016-08-11T10:29:25+08:00" content="2016-08-11">
+            2016-08-11
           </time>
         </span>
 
@@ -351,8 +357,8 @@
 
             
               <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/内功修养/数据结构/" itemprop="url" rel="index">
-                  <span itemprop="name">数据结构</span>
+                <a href="/categories/内功修养/Java/" itemprop="url" rel="index">
+                  <span itemprop="name">Java</span>
                 </a>
               </span>
 
@@ -363,8 +369,20 @@
 
             
               <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/内功修养/数据结构/排序/" itemprop="url" rel="index">
-                  <span itemprop="name">排序</span>
+                <a href="/categories/内功修养/Java/注解/" itemprop="url" rel="index">
+                  <span itemprop="name">注解</span>
+                </a>
+              </span>
+
+              
+              
+                ， 
+              
+
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/内功修养/Java/注解/公共基础知识/" itemprop="url" rel="index">
+                  <span itemprop="name">公共基础知识</span>
                 </a>
               </span>
 
@@ -380,11 +398,11 @@
             <span class="post-comments-count">
               &nbsp; | &nbsp;
               <!--
-              <a href="/2016/08/03/排序二：快速排序/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/03/排序二：快速排序/" itemprop="commentsCount"></span>
+              <a href="/2016/08/11/彻底搞懂Java注解Annotation/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/11/彻底搞懂Java注解Annotation/" itemprop="commentsCount"></span>
               </a>
               -->
-              <a href="/2016/08/03/排序二：快速排序/#comments" itemprop="discussionUrl">
+              <a href="/2016/08/11/彻底搞懂Java注解Annotation/#comments" itemprop="discussionUrl">
                 <span>评论</span>
               </a>
             </span>
@@ -399,24 +417,88 @@
       
 
       
-        <span itemprop="articleBody"><h1 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h1><p>快速排序是一种交换排序。<br>快速排序最早是由图灵获得者Tony Hoare设计出来的，被列为20世纪十大算法之一。</p>
-<h2 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a><strong><font color="#00ffff" size="4">算法思想</font></strong></h2><p>通过一趟排序将待排序记录分割成独立的两部分，其中一部分记录的关键字均比另一部分记录的关键字小，则可分别对这两部分记录继续进行排序，以达到整个序列有序的目的。</p>
-<p>从上面的文字描述理解起来可能很费力，下面直接通过图解的方式来说明：</p>
-<p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%A4%BA%E4%BE%8B%E5%9B%BE.png" alt="快速排序示例图"><br>通过上面的图解分析我们知道第一轮排序结束，得到的序列为：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">2</span>，<span class="number">1</span>，<span class="number">3</span>，<span class="number">4</span>，<span class="number">5</span></div></pre></td></tr></table></figure></p>
-<p>并得到重合点的位置为3，然后分别对3左边的序列和右边的序列进行排序，直至整个序列都是有序的。</p>
-<h1 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h1><h2 id="快速排序算法的性能"><a href="#快速排序算法的性能" class="headerlink" title="快速排序算法的性能"></a><strong><font color="#00ffff" size="4">快速排序算法的性能</font></strong></h2><p><img src="http://7xt310.com1.z0.glb.clouddn.com/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90.jpg" alt="快速排序算法的性能"></p>
-<h2 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a><strong><font color="#00ffff" size="4">空间复杂度</font></strong></h2><p>快速排序在每次分割的过程中，需要 1 个空间存储基准值。而快速排序的大概需要 Nlog2N次 的分割处理，所以占用空间也是 Nlog2N 个。</p>
-<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a><strong><font color="#00ffff" size="4">时间复杂度</font></strong></h2><ul>
-<li>快速排序的时间性能取决于快速排序递归的深度；</li>
-<li>当数据有序时，以第一个关键字为基准分为两个子序列，前一个子序列为空，此时执行效率最差；</li>
-<li>当数据随机分布时，以第一个关键字为基准分为两个子序列，两个子序列的元素个数接近相等，此时执行效率最好；</li>
-<li>当数据随机分布时，以第一个关键字为基准分为两个子序列，两个子序列的元素个数接近相等，此时执行效率最好。</li>
+        <span itemprop="articleBody"><h1 id="注解的定义"><a href="#注解的定义" class="headerlink" title="注解的定义"></a>注解的定义</h1><p>注解（也被成为元数据）为我们在代码中添加信息提供了一种形式化的方法，使我们可以在稍后某个时刻非常方便地使用这些数据。 ——————摘自《Thinking in Java》<br>简单来说注解的作用就是将我们的需要的数据储存起来，在以后的某一个时刻（可能是编译时，也可能是运行时）去调用它。</p>
+<h1 id="为什么要学习注解？"><a href="#为什么要学习注解？" class="headerlink" title="为什么要学习注解？"></a>为什么要学习注解？</h1><ul>
+<li>能够读懂别人使用注解实现的开源库</li>
+<li>让编程变得更加简洁</li>
 </ul>
-<h2 id="算法的稳定性"><a href="#算法的稳定性" class="headerlink" title="算法的稳定性"></a><strong><font color="#00ffff" size="4">算法的稳定性</font></strong></h2><p>在快速排序中，相等元素可能会因为分区而交换顺序，所以它是不稳定的算法。</p>
-<h1 id="完整参考代码"><a href="#完整参考代码" class="headerlink" title="完整参考代码"></a>完整参考代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.akathink.sort;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuickSort</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">division</span><span class="params">(<span class="keyword">int</span>[] list, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</div><div class="line">		<span class="comment">// 以最左边的数(left)为基准</span></div><div class="line">		<span class="keyword">int</span> base = list[left];</div><div class="line">		<span class="keyword">while</span> (left &lt; right) &#123;</div><div class="line">			<span class="comment">// 从序列右端开始，向左遍历，直到找到小于base的数</span></div><div class="line">			<span class="keyword">while</span> (left &lt; right &amp;&amp; list[right] &gt;= base)</div><div class="line">				right--;</div><div class="line">			<span class="comment">// 找到了比base小的元素，将这个元素放到最左边的位置</span></div><div class="line">			list[left] = list[right];</div><div class="line"></div><div class="line">			<span class="comment">// 从序列左端开始，向右遍历，直到找到大于base的数</span></div><div class="line">			<span class="keyword">while</span> (left &lt; right &amp;&amp; list[left] &lt;= base)</div><div class="line">				left++;</div><div class="line">			<span class="comment">// 找到了比base大的元素，将这个元素放到最右边的位置</span></div><div class="line">			list[right] = list[left];</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="comment">// 最后将base放到left位置。此时，left位置的左侧数值应该都比left小；</span></div><div class="line">		<span class="comment">// 而left位置的右侧数值应该都比left大。</span></div><div class="line">		list[left] = base;</div><div class="line">		<span class="keyword">return</span> left;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] list, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</div><div class="line"></div><div class="line">		<span class="comment">// 左下标一定小于右下标，否则就越界了</span></div><div class="line">		<span class="keyword">if</span> (left &lt; right) &#123;</div><div class="line">			<span class="comment">// 对数组进行分割，取出下次分割的基准标号</span></div><div class="line">			<span class="keyword">int</span> base = division(list, left, right);</div><div class="line"></div><div class="line">			System.out.format(<span class="string">"base = %d:\t"</span>, list[base]);</div><div class="line">			printPart(list, left, right);</div><div class="line"></div><div class="line">			<span class="comment">// 对“基准标号“左侧的一组数值进行递归的切割，以至于将这些数值完整的排序</span></div><div class="line">			quickSort(list, left, base - <span class="number">1</span>);</div><div class="line"></div><div class="line">			<span class="comment">// 对“基准标号“右侧的一组数值进行递归的切割，以至于将这些数值完整的排序</span></div><div class="line">			quickSort(list, base + <span class="number">1</span>, right);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="comment">// 打印序列</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printPart</span><span class="params">(<span class="keyword">int</span>[] list, <span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; begin; i++) &#123;</div><div class="line">			System.out.print(<span class="string">"\t"</span>);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = begin; i &lt;= end; i++) &#123;</div><div class="line">			System.out.print(list[i] + <span class="string">"\t"</span>);</div><div class="line">		&#125;</div><div class="line">		System.out.println();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		<span class="comment">// 初始化一个序列</span></div><div class="line">		<span class="keyword">int</span>[] array = &#123; <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span> &#125;;</div><div class="line"></div><div class="line">		<span class="comment">// 调用快速排序方法</span></div><div class="line">		QuickSort quick = <span class="keyword">new</span> QuickSort();</div><div class="line">		System.out.print(<span class="string">"排序前:\t\t"</span>);</div><div class="line">		quick.printPart(array, <span class="number">0</span>, array.length - <span class="number">1</span>);</div><div class="line">		quick.quickSort(array, <span class="number">0</span>, array.length - <span class="number">1</span>);</div><div class="line">		System.out.print(<span class="string">"排序后:\t\t"</span>);</div><div class="line">		quick.printPart(array, <span class="number">0</span>, array.length - <span class="number">1</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>运行结果</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">排序前:		<span class="number">3</span>	<span class="number">4</span>	<span class="number">1</span>	<span class="number">2</span>	<span class="number">5</span></div><div class="line">base = <span class="number">3</span>:	<span class="number">2</span>	<span class="number">1</span>	<span class="number">3</span>	<span class="number">4</span>	<span class="number">5</span></div><div class="line">base = <span class="number">2</span>:	<span class="number">1</span>	<span class="number">2</span></div><div class="line">base = <span class="number">4</span>:				<span class="number">4</span>	<span class="number">5</span></div><div class="line">排序后:		<span class="number">1</span>	<span class="number">2</span>	<span class="number">3</span>	<span class="number">4</span>	<span class="number">5</span></div></pre></td></tr></table></figure></p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>《大话数据结构》<br><a href="http://www.cnblogs.com/jingmoxukong/p/4302718.html" target="_blank" rel="external">http://www.cnblogs.com/jingmoxukong/p/4302718.html</a></p>
-<h1 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a>相关阅读</h1><p><a href="http://www.akathink.com/2016/07/29/内功修养：数据结构总结之排序算法/" target="_blank" rel="external">内功修养：数据结构总结之排序算法</a></p>
+<h1 id="注解的功能"><a href="#注解的功能" class="headerlink" title="注解的功能"></a>注解的功能</h1><ul>
+<li>作为特定的标记，用于告诉编译器一些信息</li>
+<li>编译时动态处理，如动态生成代码</li>
+<li>运行时动态处理，作为额外信息的载体，如得到注解信息</li>
+</ul>
+<h1 id="注解的分类"><a href="#注解的分类" class="headerlink" title="注解的分类"></a>注解的分类</h1><ul>
+<li>标准注解：Override、Deprecated、SuppressWarnings<br>标准 Annotation 是指 Java 自带的几个 Annotation，上面三个分别表示重写函数，不鼓励使用(有更好方式、使用有风险或已不在维护)，忽略某项 Warning;</li>
+<li>元注解：@Retention、@Target、@Inherited、@Documented<br>元 Annotation 是指用来定义 Annotation 的 Annotation，在自定义注解部分将会详细介绍；</li>
+<li>自定义注解<br>自定义 Annotation 表示自己根据需要定义的 Annotation，定义时需要用到上面的元 Annotation<br>这里是一种分类而已，也可以根据作用域分为源码时、编译时、运行时 Annotation，后面在自定义 Annotation 时会具体介绍。</li>
+</ul>
+<h1 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h1><p>因为自定义注解，是使用元注解来实现的，所以我们先详细的了解一下元注解，然后再通过一个例子来讲解如何实现和使用自定义注解。</p>
+<h2 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h2><ul>
+<li><strong>@Target</strong></li>
+</ul>
+<p>说明了Annotation所修饰的对象范围：Annotation可被用于 packages、types（类、接口、枚举、Annotation类型）、类型成员（方法、构造方法、成员变量、枚举值）、方法参数和本地变量（如循环变量、catch参数）。在Annotation类型的声明中使用了target可更加明晰其修饰的目标。</p>
+<p><strong><font color="#ff0000" size="4">作用：表示需要在什么级别保存该注释信息，用于描述注解的生命周期（即：被描述的注解在什么范围内有效）</font></strong></p>
+<p><strong>@Target的源码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Target</span>(ElementType.ANNOTATION_TYPE)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Target &#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Returns an array of the kinds of elements an annotation type</div><div class="line">     * can be applied to.</div><div class="line">     * <span class="doctag">@return</span> an array of the kinds of elements an annotation type</div><div class="line">     * can be applied to</div><div class="line">     */</div><div class="line">    ElementType[] value();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> ElementType &#123;</div><div class="line">    <span class="comment">/** Class, interface (including annotation type), or enum declaration */</span></div><div class="line">    TYPE,</div><div class="line"></div><div class="line">    <span class="comment">/** Field declaration (includes enum constants) */</span></div><div class="line">    FIELD,</div><div class="line"></div><div class="line">    <span class="comment">/** Method declaration */</span></div><div class="line">    METHOD,</div><div class="line"></div><div class="line">    <span class="comment">/** Formal parameter declaration */</span></div><div class="line">    PARAMETER,</div><div class="line"></div><div class="line">    <span class="comment">/** Constructor declaration */</span></div><div class="line">    CONSTRUCTOR,</div><div class="line"></div><div class="line">    <span class="comment">/** Local variable declaration */</span></div><div class="line">    LOCAL_VARIABLE,</div><div class="line"></div><div class="line">    <span class="comment">/** Annotation type declaration */</span></div><div class="line">    ANNOTATION_TYPE,</div><div class="line"></div><div class="line">    <span class="comment">/** Package declaration */</span></div><div class="line">    PACKAGE,</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Type parameter declaration</div><div class="line">     *</div><div class="line">     * <span class="doctag">@since</span> 1.8</div><div class="line">     */</div><div class="line">    TYPE_PARAMETER,</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Use of a type</div><div class="line">     *</div><div class="line">     * <span class="doctag">@since</span> 1.8</div><div class="line">     */</div><div class="line">    TYPE_USE</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>@Retention</strong></li>
+</ul>
+<p>定义了该Annotation被保留的时间长短：某些Annotation仅出现在源代码中，而被编译器丢弃；而另一些却被编译在class文件中；编译在class文件中的Annotation可能会被虚拟机忽略，而另一些在class被装载时将被读取（请注意并不影响class的执行，因为Annotation与class在使用上是被分离的）。使用这个meta-Annotation可以对 Annotation的“生命周期”限制。</p>
+<p><strong><font color="#ff0000" size="4">作用：表示需要在什么级别保存该注释信息，用于描述注解的生命周期（即：被描述的注解在什么范围内有效）</font></strong></p>
+<p>取值（RetentionPoicy）有：</p>
+<ol>
+<li>SOURCE:在源文件中有效（即源文件保留）</li>
+<li>CLASS:在class文件中有效（即class保留）</li>
+<li>RUNTIME:在运行时有效（即运行时保留）</li>
+</ol>
+<p><strong>@Retention的源码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Target</span>(ElementType.ANNOTATION_TYPE)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Retention &#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Returns the retention policy.</div><div class="line">     * <span class="doctag">@return</span> the retention policy</div><div class="line">     */</div><div class="line">    <span class="function">RetentionPolicy <span class="title">value</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> RetentionPolicy &#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Annotations are to be discarded by the compiler.</div><div class="line">     */</div><div class="line">    SOURCE,</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Annotations are to be recorded in the class file by the compiler</div><div class="line">     * but need not be retained by the VM at run time.  This is the default</div><div class="line">     * behavior.</div><div class="line">     */</div><div class="line">    CLASS,</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Annotations are to be recorded in the class file by the compiler and</div><div class="line">     * retained by the VM at run time, so they may be read reflectively.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@see</span> java.lang.reflect.AnnotatedElement</div><div class="line">     */</div><div class="line">    RUNTIME</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>@Documented</strong></li>
+</ul>
+<p>用于描述其它类型的annotation应该被作为被标注的程序成员的公共API，因此可以被例如javadoc此类的工具文档化。Documented是一个标记注解，没有成员。</p>
+<p><strong>@Documented的源码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Target</span>(ElementType.ANNOTATION_TYPE)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Documented &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>@Inherited</strong></li>
+</ul>
+<p>@Inherited 元注解是一个标记注解，@Inherited阐述了某个被标注的类型是被继承的。如果一个使用了@Inherited修饰的annotation类型被用于一个class，则这个annotation将被用于该class的子类。</p>
+<p>注意：@Inherited annotation类型是被标注过的class的子类所继承。类并不从它所实现的接口继承annotation，方法并不从它所重载的方法继承annotation。</p>
+<p>当@Inherited annotation类型标注的annotation的Retention是RetentionPolicy.RUNTIME，则反射API增强了这种继承性。如果我们使用java.lang.reflect去查询一个@Inherited annotation类型的annotation时，反射代码检查将展开工作：检查class和其父类，直到发现指定的annotation类型被发现，或者到达类继承结构的顶层。</p>
+<p><strong>@Inherited的源码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Documented</span></div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="meta">@Target</span>(ElementType.ANNOTATION_TYPE)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Inherited &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="实现和使用自定义注解"><a href="#实现和使用自定义注解" class="headerlink" title="实现和使用自定义注解"></a>实现和使用自定义注解</h2><p>使用@interface自定义注解时，自动继承了java.lang.annotation.Annotation接口，由编译程序自动完成其他细节。在定义注解时，不能继承其他的注解或接口。@interface用来声明一个注解，其中的每一个方法实际上是声明了一个配置参数。方法的名称就是参数的名称，返回值类型就是参数的类型（返回值类型只能是基本类型、Class、String、enum）。可以通过default来声明参数的默认值。</p>
+<ul>
+<li>定义注解格式</li>
+</ul>
+<p>public <em>@interface</em> 注解名 {定义体}</p>
+<ul>
+<li>注解参数的可支持数据类型</li>
+</ul>
+<ol>
+<li>所有基本数据类型（int,float,boolean,byte,double,char,long,short)</li>
+<li>String类型</li>
+<li>Class类型</li>
+<li>enum类型</li>
+<li>Annotation类型</li>
+<li>以上所有类型的数组</li>
+</ol>
+<p>Annotation类型里面的参数该怎么设定:</p>
+<ol>
+<li>首先,只能用public或默认(default)这两个访问权修饰.例如,String value();这里把方法设为defaul默认类型；　 　</li>
+<li>其次,参数成员只能用基本类型byte,short,char,int,long,float,double,boolean八种基本数据类型和 String,Enum,Class,annotations等数据类型,以及这一些类型的数组.例如,String value();这里的参数成员就为String;　　</li>
+<li>最后,如果只有一个参数成员,最好把参数名称设为”value”,后加小括号.例:下面的例子FruitName注解就只有一个参数成员。</li>
+</ol>
+<h3 id="下面通过源码来展示自定义注解："><a href="#下面通过源码来展示自定义注解：" class="headerlink" title="下面通过源码来展示自定义注解："></a>下面通过源码来展示自定义注解：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<h3 id="注解解析"><a href="#注解解析" class="headerlink" title="注解解析"></a>注解解析</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ul>
+<li>对局部变量的注解只能在源码级别上进行处理，class文件并不描述局部变量。因此，所有的局部变量注解在编译完一个类的时候就会被遗弃掉。同样的，对包的注解不能在源码级别之外存在。</li>
+<li>一条没有@Target限制的注解可以应用于任何项上。</li>
+<li>@Inherited元注解只能应用于对类的注解</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>《Java核心技术卷二》<br>《Thinking in Java》<br><a href="http://a.codekk.com/detail/Android/Trinea/公共技术点之%20Java%20注解%20Annotation" target="_blank" rel="external">http://a.codekk.com/detail/Android/Trinea/公共技术点之%20Java%20注解%20Annotation</a><br><a href="http://www.cnblogs.com/peida/archive/2013/04/24/3036689.html" target="_blank" rel="external">http://www.cnblogs.com/peida/archive/2013/04/24/3036689.html</a></p>
 </span>
       
     </div>
@@ -427,9 +509,11 @@
           
             <a href="/tags/内功修养/" rel="tag">#内功修养</a>
           
-            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+            <a href="/tags/Java/" rel="tag">#Java</a>
           
-            <a href="/tags/排序/" rel="tag">#排序</a>
+            <a href="/tags/注解/" rel="tag">#注解</a>
+          
+            <a href="/tags/公共基础知识/" rel="tag">#公共基础知识</a>
           
         </div>
       
@@ -438,13 +522,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/05/彻底搞懂Android安全架构:基础篇/" rel="prev">彻底搞懂Android安全架构:基础篇</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/01/彻底搞懂工厂模式/" rel="next">彻底搞懂工厂模式</a>
+              <a href="/2016/08/08/彻底搞懂红黑树/" rel="next">彻底搞懂红黑树</a>
             
           </div>
         </div>
@@ -612,8 +694,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2016/08/03/排序二：快速排序/"
-                   data-title="排序二：快速排序" data-url="http://akathink.com/2016/08/03/排序二：快速排序/">
+              <div class="ds-thread" data-thread-key="2016/08/11/彻底搞懂Java注解Annotation/"
+                   data-title="彻底搞懂Java注解Annotation" data-url="http://akathink.com/2016/08/11/彻底搞懂Java注解Annotation/">
               </div>
             
           </div>
@@ -702,7 +784,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#要点"><span class="nav-number">1.</span> <span class="nav-text">要点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法思想"><span class="nav-number">1.1.</span> <span class="nav-text">算法思想</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#算法分析"><span class="nav-number">2.</span> <span class="nav-text">算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#快速排序算法的性能"><span class="nav-number">2.1.</span> <span class="nav-text">快速排序算法的性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#空间复杂度"><span class="nav-number">2.2.</span> <span class="nav-text">空间复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间复杂度"><span class="nav-number">2.3.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法的稳定性"><span class="nav-number">2.4.</span> <span class="nav-text">算法的稳定性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#完整参考代码"><span class="nav-number">3.</span> <span class="nav-text">完整参考代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关阅读"><span class="nav-number">5.</span> <span class="nav-text">相关阅读</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#注解的定义"><span class="nav-number">1.</span> <span class="nav-text">注解的定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要学习注解？"><span class="nav-number">2.</span> <span class="nav-text">为什么要学习注解？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注解的功能"><span class="nav-number">3.</span> <span class="nav-text">注解的功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注解的分类"><span class="nav-number">4.</span> <span class="nav-text">注解的分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义注解"><span class="nav-number">5.</span> <span class="nav-text">自定义注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#元注解"><span class="nav-number">5.1.</span> <span class="nav-text">元注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现和使用自定义注解"><span class="nav-number">5.2.</span> <span class="nav-text">实现和使用自定义注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下面通过源码来展示自定义注解："><span class="nav-number">5.2.1.</span> <span class="nav-text">下面通过源码来展示自定义注解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注解解析"><span class="nav-number">5.2.2.</span> <span class="nav-text">注解解析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意"><span class="nav-number">6.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
