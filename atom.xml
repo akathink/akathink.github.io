@@ -76,9 +76,9 @@
     
       <category term="Java" scheme="http://akathink.com/tags/Java/"/>
     
-      <category term="公共基础知识" scheme="http://akathink.com/tags/%E5%85%AC%E5%85%B1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
       <category term="反射" scheme="http://akathink.com/tags/%E5%8F%8D%E5%B0%84/"/>
+    
+      <category term="公共基础知识" scheme="http://akathink.com/tags/%E5%85%AC%E5%85%B1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     
   </entry>
   
@@ -229,9 +229,9 @@
     
       <category term="Java" scheme="http://akathink.com/tags/Java/"/>
     
-      <category term="注解" scheme="http://akathink.com/tags/%E6%B3%A8%E8%A7%A3/"/>
-    
       <category term="公共基础知识" scheme="http://akathink.com/tags/%E5%85%AC%E5%85%B1%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="注解" scheme="http://akathink.com/tags/%E6%B3%A8%E8%A7%A3/"/>
     
   </entry>
   
