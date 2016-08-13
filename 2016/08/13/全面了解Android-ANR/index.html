@@ -40,37 +40,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="什么是ANR？ANR:Application Not Responding，即应用无响应
-ANR的类型ANR一般有三种类型：
-
-KeyDispatchTimeout(5 seconds) –主要类型按键或触摸事件在特定时间内无响应
-
-BroadcastTimeout(10 seconds) –BroadcastReceiver在特定时间内无法处理完成
-
-ServiceTimeout(20 seco">
+<meta name="description" content="什么是ANR？1ANR:Application Not Responding，即应用无响应
+ANR的类型ANR一般有三种类型：123451. KeyDispatchTimeout(5 seconds) --主要类型按键或触摸事件在特定时间内无响应2. BroadcastTimeout(10 seconds) --BroadcastReceiver在特定时间内无法处理完成3. ServiceTime">
 <meta property="og:type" content="article">
 <meta property="og:title" content="全面了解Android ANR">
 <meta property="og:url" content="http://akathink.com/2016/08/13/全面了解Android-ANR/index.html">
 <meta property="og:site_name" content="akathink's blog">
-<meta property="og:description" content="什么是ANR？ANR:Application Not Responding，即应用无响应
-ANR的类型ANR一般有三种类型：
-
-KeyDispatchTimeout(5 seconds) –主要类型按键或触摸事件在特定时间内无响应
-
-BroadcastTimeout(10 seconds) –BroadcastReceiver在特定时间内无法处理完成
-
-ServiceTimeout(20 seco">
-<meta property="og:updated_time" content="2016-08-13T10:03:02.000Z">
+<meta property="og:description" content="什么是ANR？1ANR:Application Not Responding，即应用无响应
+ANR的类型ANR一般有三种类型：123451. KeyDispatchTimeout(5 seconds) --主要类型按键或触摸事件在特定时间内无响应2. BroadcastTimeout(10 seconds) --BroadcastReceiver在特定时间内无法处理完成3. ServiceTime">
+<meta property="og:updated_time" content="2016-08-13T10:06:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="全面了解Android ANR">
-<meta name="twitter:description" content="什么是ANR？ANR:Application Not Responding，即应用无响应
-ANR的类型ANR一般有三种类型：
-
-KeyDispatchTimeout(5 seconds) –主要类型按键或触摸事件在特定时间内无响应
-
-BroadcastTimeout(10 seconds) –BroadcastReceiver在特定时间内无法处理完成
-
-ServiceTimeout(20 seco">
+<meta name="twitter:description" content="什么是ANR？1ANR:Application Not Responding，即应用无响应
+ANR的类型ANR一般有三种类型：123451. KeyDispatchTimeout(5 seconds) --主要类型按键或触摸事件在特定时间内无响应2. BroadcastTimeout(10 seconds) --BroadcastReceiver在特定时间内无法处理完成3. ServiceTime">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -408,45 +390,16 @@ ServiceTimeout(20 seco">
       
 
       
-        <span itemprop="articleBody"><h1 id="什么是ANR？"><a href="#什么是ANR？" class="headerlink" title="什么是ANR？"></a>什么是ANR？</h1><p>ANR:Application Not Responding，即应用无响应</p>
-<h1 id="ANR的类型"><a href="#ANR的类型" class="headerlink" title="ANR的类型"></a>ANR的类型</h1><p>ANR一般有三种类型：</p>
-<ol>
-<li><p>KeyDispatchTimeout(5 seconds) –主要类型按键或触摸事件在特定时间内无响应</p>
-</li>
-<li><p>BroadcastTimeout(10 seconds) –BroadcastReceiver在特定时间内无法处理完成</p>
-</li>
-<li><p>ServiceTimeout(20 seconds) –小概率类型 Service在特定的时间内无法处理完成</p>
-</li>
-</ol>
+        <span itemprop="articleBody"><h1 id="什么是ANR？"><a href="#什么是ANR？" class="headerlink" title="什么是ANR？"></a>什么是ANR？</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ANR:Application Not Responding，即应用无响应</div></pre></td></tr></table></figure>
+<h1 id="ANR的类型"><a href="#ANR的类型" class="headerlink" title="ANR的类型"></a>ANR的类型</h1><p>ANR一般有三种类型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1. KeyDispatchTimeout(5 seconds) --主要类型按键或触摸事件在特定时间内无响应</div><div class="line"></div><div class="line">2. BroadcastTimeout(10 seconds) --BroadcastReceiver在特定时间内无法处理完成</div><div class="line"></div><div class="line">3. ServiceTimeout(20 seconds) --小概率类型 Service在特定的时间内无法处理完成</div></pre></td></tr></table></figure></p>
 <h1 id="KeyDispatchTimeout"><a href="#KeyDispatchTimeout" class="headerlink" title="KeyDispatchTimeout"></a>KeyDispatchTimeout</h1><p>A key or touch event was not dispatched within the specified time（按键或触摸事件在特定时间内无响应）<br>具体的超时时间的定义在framework下的ActivityManagerService.java</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// How long we wait until we timeout on key dispatching.</span></div><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> KEY_DISPATCHING_TIMEOUT = <span class="number">5</span>*<span class="number">1000</span>;</div></pre></td></tr></table></figure>
 <h1 id="为什么会超时呢？"><a href="#为什么会超时呢？" class="headerlink" title="为什么会超时呢？"></a>为什么会超时呢？</h1><p>超时时间的计数一般是从按键分发给app开始。超时的原因一般有两种：</p>
-<ol>
-<li><p>当前的事件没有机会得到处理（即UI线程正在处理前一个事件，没有及时的完成或者looper被某种原因阻塞住了）</p>
-</li>
-<li><p>当前的事件正在处理，但没有及时完成</p>
-</li>
-</ol>
-<h1 id="如何避免KeyDispatchTimeout"><a href="#如何避免KeyDispatchTimeout" class="headerlink" title="如何避免KeyDispatchTimeout"></a>如何避免KeyDispatchTimeout</h1><ol>
-<li><p>UI线程尽量只做跟UI相关的工作</p>
-</li>
-<li><p>耗时的工作（比如数据库操作，I/O，连接网络或者别的有可能阻碍UI线程的操作）把它放入单独的线程处理</p>
-</li>
-<li><p>尽量用Handler来处理UIthread和别的thread之间的交互</p>
-</li>
-</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1. 当前的事件没有机会得到处理（即UI线程正在处理前一个事件，没有及时的完成或者looper被某种原因阻塞住了）</div><div class="line"></div><div class="line">2. 当前的事件正在处理，但没有及时完成</div></pre></td></tr></table></figure>
+<h1 id="如何避免KeyDispatchTimeout"><a href="#如何避免KeyDispatchTimeout" class="headerlink" title="如何避免KeyDispatchTimeout"></a>如何避免KeyDispatchTimeout</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1. UI线程尽量只做跟UI相关的工作</div><div class="line"></div><div class="line">2. 耗时的工作（比如数据库操作，I/O，连接网络或者别的有可能阻碍UI线程的操作）把它放入单独的线程处理</div><div class="line"></div><div class="line">3. 尽量用Handler来处理UIthread和别的thread之间的交互</div></pre></td></tr></table></figure>
 <h1 id="UI线程"><a href="#UI线程" class="headerlink" title="UI线程"></a>UI线程</h1><p>说了那么多的UI线程，那么哪些属于UI线程呢？</p>
 <p>UI线程主要包括如下：</p>
-<ol>
-<li><p>Activity:onCreate(), onResume(), onDestroy(), onKeyDown(), onClick(),etc</p>
-</li>
-<li><p>AsyncTask: onPreExecute(), onProgressUpdate(), onPostExecute(), onCancel,etc</p>
-</li>
-<li><p>Mainthread handler: handleMessage(), post*(runnable r), etc</p>
-</li>
-<li><p>other</p>
-</li>
-</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1. Activity:onCreate(), onResume(), onDestroy(), onKeyDown(), onClick(),etc</div><div class="line"></div><div class="line">2. AsyncTask: onPreExecute(), onProgressUpdate(), onPostExecute(), onCancel,etc</div><div class="line"></div><div class="line">3. Mainthread handler: handleMessage(), post*(runnable r), etc</div><div class="line"></div><div class="line">4. other</div></pre></td></tr></table></figure>
 <h1 id="如何去分析ANR"><a href="#如何去分析ANR" class="headerlink" title="如何去分析ANR"></a>如何去分析ANR</h1><p>先看个LOG：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">04-01 13:12:11.572 I/InputDispatcher( 220): Application is not responding:Window&#123;2b263310com.android.email/com.android.email.activity.SplitScreenActivitypaused=false&#125;.</div><div class="line">5009.8ms since event, 5009.5ms since waitstarted</div><div class="line">04-0113:12:11.572 I/WindowManager( 220): Input event</div><div class="line">dispatching timedout sending</div><div class="line">tocom.android.email/com.android.email.activity.SplitScreenActivity</div><div class="line">04-01 13:12:14.123 I/Process( 220): Sending signal. PID: 21404 SIG: 3---发生ANR的时间和生成trace.txt的时间</div><div class="line">04-01 13:12:14.123 I/dalvikvm(21404):threadid=4: reacting to</div><div class="line">signal 3</div><div class="line">……</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220): ANR in</div><div class="line">com.android.email(com.android.email/.activity.SplitScreenActivity)</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220):</div><div class="line">Reason:keyDispatchingTimedOut</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220): Load: 8.68 / 8.37 / 8.53</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220): CPUusage from 4361ms to 699ms ago ----CPU在ANR发生前的使用情况</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220): 5.5%21404/com.android.email: 1.3% user + 4.1% kernel / faults:</div><div class="line">10 minor</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220): 4.3%220/system_server: 2.7% user + 1.5% kernel / faults: 11</div><div class="line">minor 2 major</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220): 0.9%52/spi_qsd.0: 0% user + 0.9% kernel</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220): 0.5%65/irq/170-cyttsp-: 0% user + 0.5% kernel</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220): 0.5%296/com.android.systemui: 0.5% user + 0% kernel</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220): 100%TOTAL: 4.8% user + 7.6% kernel + 87% iowait</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220): CPUusage from 3697ms to 4223ms later:-- ANR后CPU的使用量</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220): 25%21404/com.android.email: 25% user + 0% kernel / faults: 191 minor</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220): 16% 21603/__eas(par.hakan: 16% user + 0% kernel</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220): 7.2% 21406/GC: 7.2% user + 0% kernel</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220): 1.8% 21409/Compiler: 1.8% user + 0% kernel</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220): 5.5%220/system_server: 0% user + 5.5% kernel / faults: 1 minor</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220): 5.5% 263/InputDispatcher: 0% user + 5.5% kernel</div><div class="line">04-0113:12:15.872 E/ActivityManager( 220): 32%TOTAL: 28% user + 3.7% kernel</div></pre></td></tr></table></figure>
 <p>从LOG可以看出ANR的类型，CPU的使用情况，如果CPU使用量接近100%，说明当前设备很忙，有可能是CPU饥饿导致了ANR</p>
@@ -460,16 +413,7 @@ ServiceTimeout(20 seco">
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">-----pid 21404 at 2011-04-01 13:12:14 -----</div><div class="line">Cmdline: com.android.email</div><div class="line"></div><div class="line">DALVIK THREADS:</div><div class="line">(mutexes: tll=0tsl=0 tscl=0 ghl=0 hwl=0 hwll=0)</div><div class="line">&quot;main&quot; prio=5 tid=1NATIVE</div><div class="line">| group=&quot;main&quot; sCount=1 dsCount=0obj=0x2aad2248 self=0xcf70</div><div class="line">| sysTid=21404 nice=0 sched=0/0cgrp=[fopen-error:2]</div><div class="line">handle=1876218976</div><div class="line">atandroid.os.MessageQueue.nativePollOnce(Native Method)</div><div class="line">atandroid.os.MessageQueue.next(MessageQueue.java:119)</div><div class="line">atandroid.os.Looper.loop(Looper.java:110)</div><div class="line">at android.app.ActivityThread.main(ActivityThread.java:3688)</div><div class="line">at java.lang.reflect.Method.invokeNative(Native Method)</div><div class="line">atjava.lang.reflect.Method.invoke(Method.java:507)</div><div class="line"></div><div class="line">atcom.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:866)</div><div class="line">at</div><div class="line">com.android.internal.os.ZygoteInit.main(ZygoteInit.java:624)</div><div class="line">at dalvik.system.NativeStart.main(Native Method)</div></pre></td></tr></table></figure>
 <p>说明主线程在等待下条消息进入消息队列</p>
 <h1 id="Thread状态"><a href="#Thread状态" class="headerlink" title="Thread状态"></a>Thread状态</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">ThreadState (defined at “dalvik/vm/thread.h “)</div><div class="line"></div><div class="line">THREAD_UNDEFINED = -1, /* makes enum compatible with int32_t */</div><div class="line"></div><div class="line">THREAD_ZOMBIE = 0, /* TERMINATED */</div><div class="line"></div><div class="line">THREAD_RUNNING = 1, /* RUNNABLE or running now */</div><div class="line"></div><div class="line">THREAD_TIMED_WAIT = 2, /* TIMED_WAITING in Object.wait() */</div><div class="line"></div><div class="line">THREAD_MONITOR = 3, /* BLOCKED on a monitor */</div><div class="line"></div><div class="line">THREAD_WAIT = 4, /* WAITING in Object.wait() */</div><div class="line"></div><div class="line">THREAD_INITIALIZING= 5, /* allocated, not yet running */</div><div class="line"></div><div class="line">THREAD_STARTING = 6, /* started, not yet on thread list */</div><div class="line"></div><div class="line">THREAD_NATIVE = 7, /* off in a JNI native method */</div><div class="line"></div><div class="line">THREAD_VMWAIT = 8, /* waiting on a VM resource */</div><div class="line"></div><div class="line">THREAD_SUSPENDED = 9, /* suspended, usually by GC or debugger */</div></pre></td></tr></table></figure>
-<h1 id="如何调查并解决ANR"><a href="#如何调查并解决ANR" class="headerlink" title="如何调查并解决ANR"></a>如何调查并解决ANR</h1><ol>
-<li><p>首先分析log</p>
-</li>
-<li><p>从trace.txt文件查看调用stack.</p>
-</li>
-<li><p>看代码</p>
-</li>
-<li><p>仔细查看ANR的成因（iowait?block?memoryleak?）</p>
-</li>
-</ol>
+<h1 id="如何调查并解决ANR"><a href="#如何调查并解决ANR" class="headerlink" title="如何调查并解决ANR"></a>如何调查并解决ANR</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1. 首先分析log</div><div class="line"></div><div class="line">2. 从trace.txt文件查看调用stack.</div><div class="line"></div><div class="line">3. 看代码</div><div class="line"></div><div class="line">4. 仔细查看ANR的成因（iowait?block?memoryleak?）</div></pre></td></tr></table></figure>
 <h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1><ul>
 <li>案例1：关键词:ContentResolver in AsyncTask onPostExecute, high iowait</li>
 </ul>
