@@ -60,7 +60,7 @@ KeyDispatchTimeout(5 seconds) –主要类型按键或触摸事件在特定时�
 BroadcastTimeout(10 seconds) –BroadcastReceiver在特定时间内无法处理完成
 
 ServiceTimeout(20 seco">
-<meta property="og:updated_time" content="2016-08-13T10:00:29.000Z">
+<meta property="og:updated_time" content="2016-08-13T10:03:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="全面了解Android ANR">
 <meta name="twitter:description" content="什么是ANR？ANR:Application Not Responding，即应用无响应
@@ -497,6 +497,8 @@ ServiceTimeout(20 seco">
 <p>allocated: 16484 20675 N/A 37159</p>
 <p>free: 296 2436 N/A 2732</p>
 <p>解决：如果机器的内存族，可以修改虚拟机的内存为36M或更大，不过最好是复查代码，查看哪些内存没有释放</p>
+<h1 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h1><p>本篇博客转自于下<a href="http://www.cnblogs.com/purediy/p/3225060.html" target="_blank" rel="external">http://www.cnblogs.com/purediy/p/3225060.html</a></p>
+<p>感谢作者的总结和分享！</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://www.cnblogs.com/purediy/p/3225060.html" target="_blank" rel="external">http://www.cnblogs.com/purediy/p/3225060.html</a></p>
 </span>
       
@@ -781,7 +783,7 @@ ServiceTimeout(20 seco">
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是ANR？"><span class="nav-number">1.</span> <span class="nav-text">什么是ANR？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ANR的类型"><span class="nav-number">2.</span> <span class="nav-text">ANR的类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#KeyDispatchTimeout"><span class="nav-number">3.</span> <span class="nav-text">KeyDispatchTimeout</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么会超时呢？"><span class="nav-number">4.</span> <span class="nav-text">为什么会超时呢？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何避免KeyDispatchTimeout"><span class="nav-number">5.</span> <span class="nav-text">如何避免KeyDispatchTimeout</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UI线程"><span class="nav-number">6.</span> <span class="nav-text">UI线程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何去分析ANR"><span class="nav-number">7.</span> <span class="nav-text">如何去分析ANR</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Thread状态"><span class="nav-number">8.</span> <span class="nav-text">Thread状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何调查并解决ANR"><span class="nav-number">9.</span> <span class="nav-text">如何调查并解决ANR</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#案例"><span class="nav-number">10.</span> <span class="nav-text">案例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">11.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是ANR？"><span class="nav-number">1.</span> <span class="nav-text">什么是ANR？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ANR的类型"><span class="nav-number">2.</span> <span class="nav-text">ANR的类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#KeyDispatchTimeout"><span class="nav-number">3.</span> <span class="nav-text">KeyDispatchTimeout</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么会超时呢？"><span class="nav-number">4.</span> <span class="nav-text">为什么会超时呢？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何避免KeyDispatchTimeout"><span class="nav-number">5.</span> <span class="nav-text">如何避免KeyDispatchTimeout</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UI线程"><span class="nav-number">6.</span> <span class="nav-text">UI线程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何去分析ANR"><span class="nav-number">7.</span> <span class="nav-text">如何去分析ANR</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Thread状态"><span class="nav-number">8.</span> <span class="nav-text">Thread状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何调查并解决ANR"><span class="nav-number">9.</span> <span class="nav-text">如何调查并解决ANR</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#案例"><span class="nav-number">10.</span> <span class="nav-text">案例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#感谢"><span class="nav-number">11.</span> <span class="nav-text">感谢</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">12.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
