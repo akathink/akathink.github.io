@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://akathink.com/"/>
-  <updated>2016-08-13T10:06:29.000Z</updated>
+  <updated>2016-10-12T14:19:47.000Z</updated>
   <id>http://akathink.com/</id>
   
   <author>
@@ -14,6 +14,406 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android开发规范</title>
+    <link href="http://akathink.com/2016/10/12/Android%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/"/>
+    <id>http://akathink.com/2016/10/12/Android开发规范/</id>
+    <published>2016-10-12T14:16:53.000Z</published>
+    <updated>2016-10-12T14:19:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Android编码规范"><a href="#Android编码规范" class="headerlink" title="Android编码规范"></a>Android编码规范</h1><blockquote>
+<p>因为要进行混合开发，RN所需环境是JDK1.8以上，所以统一使用JDK1.8以上。<br>IDE统一采用AndroidStudio最新版</p>
+</blockquote>
+<h2 id="1-源文件基础"><a href="#1-源文件基础" class="headerlink" title="1  源文件基础"></a>1  源文件基础</h2><h5 id="1-1-文件名"><a href="#1-1-文件名" class="headerlink" title="1.1 文件名"></a>1.1 文件名</h5><p>源文件以功能模块名称来命名，大小写敏感。</p>
+<h5 id="1-2-文件编码：UTF-8"><a href="#1-2-文件编码：UTF-8" class="headerlink" title="1.2 文件编码：UTF-8"></a>1.2 文件编码：UTF-8</h5><p>源文件编码格式为UTF-8。</p>
+<p>特殊字符：统一采用符号表来获取。</p>
+<h2 id="2-命名规范"><a href="#2-命名规范" class="headerlink" title="2  命名规范"></a>2  命名规范</h2><p>注意：</p>
+<ul>
+<li>使用完整的英文描述命名</li>
+<li>避免命名超长</li>
+<li>避免相似的命名</li>
+<li>慎用缩写，如果用到缩写，参考下一跳</li>
+<li>按照缩写规则使用缩写</li>
+</ul>
+<h5 id="2-1-包命名规范"><a href="#2-1-包命名规范" class="headerlink" title="2.1 包命名规范"></a>2.1 包命名规范</h5><p> 采用反域名命名规则，包名全部小写，连续的单词只是简单地连接起来，不使用下划线，一级包名为com，二级包名为xxx（可以是公司域名或者个人命名），三级包名根据应用进行命名，四级包名为模块名或层级名。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">com.akathink.yinhua</div><div class="line">com.akathink.yinhua.ui</div></pre></td></tr></table></figure>
+<h5 id="2-2-类命名规范"><a href="#2-2-类命名规范" class="headerlink" title="2.2 类命名规范"></a>2.2 类命名规范</h5><p>采用<strong>大驼峰式命名法</strong>，尽量避免缩写，除非该缩写是众所周知的，比如HTML，URL;如果类名称包含单词缩写，则单词缩写的每个字母均应大写。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseActivity</span> | <span class="title">class</span> <span class="title">BaseListAdapter</span> | <span class="title">class</span> <span class="title">HomeLogic</span></span></div></pre></td></tr></table></figure>
+<h5 id="2-3-接口命名规范"><a href="#2-3-接口命名规范" class="headerlink" title="2.3 接口命名规范"></a>2.3 接口命名规范</h5><p>  采用<strong>大驼峰命名法</strong>，多以<code>able</code>或<code>ible</code>结尾。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Runnabe</span> | <span class="title">interface</span> <span class="title">Accessible</span></span></div></pre></td></tr></table></figure>
+<h5 id="2-4-变量命名"><a href="#2-4-变量命名" class="headerlink" title="2.4 变量命名"></a>2.4 变量命名</h5><p>  非静态成员变量Google的m命名法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> String mUserName;</div></pre></td></tr></table></figure>
+<p>  静态成员变量Google的s命名法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> String sUserName;</div></pre></td></tr></table></figure>
+<p>   临时变量、参数均以Java命名方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> String userName;</div></pre></td></tr></table></figure>
+<h5 id="2-5-常量命名"><a href="#2-5-常量命名" class="headerlink" title="2.5 常量命名"></a>2.5 常量命名</h5><p>常量使用全大写字母加下划线的方式命名，避免代码中出现魔法数字和硬编码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"tag"</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MOUDLE_TREAT = <span class="number">0</span>;</div></pre></td></tr></table></figure>
+<h5 id="2-6-控件命名"><a href="#2-6-控件命名" class="headerlink" title="2.6 控件命名"></a>2.6 控件命名</h5><p>类中控件名称必须与xml布局文件中id保持一致。</p>
+<p>在布局文件中Button的id为<code>android:id = &quot;@+id/pay_btn&quot;</code></p>
+<p>类中的控件命名为<code>private Button mPayBtn</code></p>
+<h5 id="2-7方法命名"><a href="#2-7方法命名" class="headerlink" title="2.7方法命名"></a>2.7方法命名</h5><p>采用<strong>小驼峰命名法</strong>，动词或名词。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">run();| onCrete()</div></pre></td></tr></table></figure>
+<h5 id="2-8-layout命名"><a href="#2-8-layout命名" class="headerlink" title="2.8 layout命名"></a>2.8 layout命名</h5><p>全部小写，采用下划线命名法,使用模块名_功能名。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">login_activity.xml |</div></pre></td></tr></table></figure>
+<h5 id="2-9-id命名"><a href="#2-9-id命名" class="headerlink" title="2.9 id命名"></a>2.9 id命名</h5><p>全部小写，采用下划线命名法，能通过id名直接理解当前组件要实现的功能。</p>
+<p>命名模式：模块名称<em>view缩写 </em>逻辑名称</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@+id/login_name_edit 登录界面用户名输入框</div></pre></td></tr></table></figure>
+<h5 id="2-10-资源命名"><a href="#2-10-资源命名" class="headerlink" title="2.10 资源命名"></a>2.10 资源命名</h5><p>全部小写，采用下划线命名法，使用模块名_用途来命名。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">login_btn_normal.9.png</div></pre></td></tr></table></figure>
+<h5 id="2-11-动画文件命名"><a href="#2-11-动画文件命名" class="headerlink" title="2.11 动画文件命名"></a>2.11 动画文件命名</h5><p>全部小写，采用下划线命名法，加前缀区分。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fade_in <span class="comment">//淡入</span></div><div class="line">fade_out<span class="comment">//淡出</span></div></pre></td></tr></table></figure>
+<h2 id="3-类声明"><a href="#3-类声明" class="headerlink" title="3  类声明"></a>3  类声明</h2><h5 id="3-1-类成员顺序"><a href="#3-1-类成员顺序" class="headerlink" title="3.1  类成员顺序"></a>3.1  类成员顺序</h5><p>类成员顺序对易学性有很大的影响，不用的类对成员的排序可能是不同的。</p>
+<p>但每个类应该以某种逻辑去排序。</p>
+<p>类成员排列常用规则：</p>
+<ul>
+<li>按照发生的先后</li>
+<li>常量按照使用先后</li>
+<li>UI控件成员变量按照layout文件中的先后</li>
+<li>普通成员变量按使用先后</li>
+<li>方法基本按调用的先后在各自区块中排列</li>
+<li>相关功能模块作为小区块放在一起</li>
+</ul>
+<h5 id="3-2-区块划分"><a href="#3-2-区块划分" class="headerlink" title="3.2 区块划分"></a>3.2 区块划分</h5><p>建议使用注释将文件分为明显的区块，划分如下</p>
+<ul>
+<li>常量声明区</li>
+<li>UI控件成员变量声明区</li>
+<li>普通成员变量声明区</li>
+<li>内部接口声明区</li>
+<li>初始化相关方法区</li>
+<li>事件响应方法区</li>
+<li>普通逻辑方法区</li>
+<li>重载的逻辑方法区</li>
+<li>发起异步任务方法区</li>
+<li>异步任务回掉方法区</li>
+<li>声明周期回掉方法区（除去onCreate()方法）</li>
+<li>内部类声明区</li>
+</ul>
+<h5 id="3-3-重载：永不分离"><a href="#3-3-重载：永不分离" class="headerlink" title="3.3 重载：永不分离"></a>3.3 重载：永不分离</h5><p>当一个类有多个构造函数，或是多个同名方法，这些函数/方法应该按顺序出现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PeoPle</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">PeoPle</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        System.out.print(<span class="string">"name is "</span> + name);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">PeoPle</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">        System.out.print(<span class="string">"name is "</span> + name + <span class="string">"; age is "</span> + age);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>##</p>
+<h2 id="4-注释"><a href="#4-注释" class="headerlink" title="4 注释"></a>4 注释</h2><h5 id="4-1-文件头注释-使用-注释"><a href="#4-1-文件头注释-使用-注释" class="headerlink" title="4.1 文件头注释 使用/*  /注释"></a>4.1 文件头注释 使用/<em>*  </em>/注释</h5><p>每个文件头都应注释，包含创建时间，作者，主要功能等。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** *</span></div><div class="line">* Created by akathink on 2016/10/12.</div><div class="line">* 登陆界面</div><div class="line">*/</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.login_activity);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="4-2-方法头注释-使用-注释"><a href="#4-2-方法头注释-使用-注释" class="headerlink" title="4.2 方法头注释 使用/*   /注释"></a>4.2 方法头注释 使用/<em>*   </em>/注释</h5><p>每一个成员（包含自定义成员方法，覆盖方法，属性方法）的方法头都必须做方法头注释。应该包含实现功能(用途)，参数，返回值和抛出异常的列表等。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">/**</span></div><div class="line"> * 登陆接口</div><div class="line"> * <span class="doctag">@param</span> context context</div><div class="line"> * <span class="doctag">@param</span> request 回调</div><div class="line"> * <span class="doctag">@param</span> loginName 用户名</div><div class="line"> * <span class="doctag">@param</span> passWord 密码</div><div class="line"> * return null</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Login</span><span class="params">(Context context, JsonRequest request, String loginName, String passWord)</span> </span>&#123;</div><div class="line">  request.addParams(<span class="string">"loginName"</span>, loginName);</div><div class="line">  request.addParams(<span class="string">"passWord"</span>, passWord);</div><div class="line">  BaseNetApi.baseRequest(context, <span class="string">"RMIS.API/api/MCommon/Login"</span>, request);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="4-3-块注释-使用-注释"><a href="#4-3-块注释-使用-注释" class="headerlink" title="4.3 块注释 使用//注释"></a>4.3 块注释 使用//注释</h5><p>在实现一段阶段性功能代码前做快注释。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取历史用户列表</span></div><div class="line">userList = AppContext.getInstance().getUserList();</div><div class="line"><span class="keyword">if</span>(userList != <span class="keyword">null</span> &amp;&amp; userList.userInfoList != <span class="keyword">null</span> &amp;&amp; userList.userInfoList.size() != <span class="number">0</span>) &#123;</div><div class="line">  currentUserConfig = userList.userInfoList.get(<span class="number">0</span>);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  currentUserConfig = <span class="keyword">new</span> MLoginHistory();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="4-4-变量注释-使用-注释"><a href="#4-4-变量注释-使用-注释" class="headerlink" title="4.4 变量注释 使用//注释"></a>4.4 变量注释 使用//注释</h5><p>所有成员变量和大多数局部变量在声明是做功能注释。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> String userName; <span class="comment">// 用户名</span></div><div class="line"><span class="keyword">public</span> String userPwd; <span class="comment">// 密码</span></div></pre></td></tr></table></figure>
+<h5 id="4-5-语句注释-使用-注释"><a href="#4-5-语句注释-使用-注释" class="headerlink" title="4.5 语句注释 使用//注释"></a>4.5 语句注释 使用//注释</h5><p>在关键语句的右侧做单条语句注释。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">initView();<span class="comment">//初始化控件</span></div><div class="line">login();<span class="comment">//登录操作</span></div></pre></td></tr></table></figure>
+<p>一个项目的注释风格要统一，并且要多使用注释。</p>
+<h2 id="5-异常"><a href="#5-异常" class="headerlink" title="5 异常"></a>5 异常</h2><h5 id="5-1-不要忽略异常"><a href="#5-1-不要忽略异常" class="headerlink" title="5.1 不要忽略异常"></a>5.1 不要忽略异常</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(Strng value)</span></span>&#123;</div><div class="line">	<span class="keyword">try</span>&#123;</div><div class="line">    	serverPort = Integer.parseInt(value);</div><div class="line">	&#125;<span class="keyword">catch</span>(NumberFormatException e)&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>有时代码永远不会碰到这种出错情况，或者处理异常并不重要，但必须在代码中以某种规矩来处理所有的异常。根据情况不同，处理方式不同。</p>
+<p>可接受的替代方案包括：</p>
+<ul>
+<li>向方法的调用者抛出异常。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(String value)</span> <span class="keyword">throws</span> NumberFormatException</span>&#123;</div><div class="line">	serverPort = Integer.parseInt(value);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>根据抽象级别抛出新的异常。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(Strng value)</span> <span class="keyword">throws</span> ConfigurationException</span>&#123;</div><div class="line">	<span class="keyword">try</span>&#123;</div><div class="line">    	serverPort = Integer.parseInt(value);</div><div class="line">	&#125;<span class="keyword">catch</span>(NumberFormatException e)&#123;</div><div class="line">     	<span class="keyword">throw</span> <span class="keyword">new</span> ConfigurationException(<span class="string">"port"</span> + value + <span class="string">"is not valid."</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>默默的处理错误并在catch{}语句块中替换为合适的值。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(Strng value)</span> <span class="keyword">throws</span> ConfigurationException</span>&#123;</div><div class="line">	<span class="keyword">try</span>&#123;</div><div class="line">    	serverPort = Integer.parseInt(value);</div><div class="line">	&#125;<span class="keyword">catch</span>(NumberFormatException e)&#123;</div><div class="line">     	serverPort = <span class="number">80</span>;<span class="comment">// default port for server</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>捕获异常并抛出一个新的RuntimeException。这种做法比较危险：只有确信发生该错误时最合适的做法就是崩溃，才会这么做。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(Strng value)</span> <span class="keyword">throws</span> ConfigurationException</span>&#123;</div><div class="line">	<span class="keyword">try</span>&#123;</div><div class="line">    	serverPort = Integer.parseInt(value);</div><div class="line">	&#125;<span class="keyword">catch</span>(NumberFormatException e)&#123;</div><div class="line">     	<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"port "</span> + value <span class="string">" is invalid, "</span>, e);  </div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>如果确信忽略异常比较合适，就忽略，但必须把忽略的原因写出来。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setServerPort</span><span class="params">(Strng value)</span> <span class="keyword">throws</span> ConfigurationException</span>&#123;</div><div class="line">	<span class="keyword">try</span>&#123;</div><div class="line">    	serverPort = Integer.parseInt(value);</div><div class="line">	&#125;<span class="keyword">catch</span>(NumberFormatException e)&#123;</div><div class="line">     	<span class="comment">// Method is documented to just ignore invalid user input.  </span></div><div class="line">        <span class="comment">// serverPort will just be unchanged.  </span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="5-2-不要捕获顶级的exception"><a href="#5-2-不要捕获顶级的exception" class="headerlink" title="5.2 不要捕获顶级的exception"></a>5.2 不要捕获顶级的exception</h5><p>绝大部分情况下，捕获顶级的Exception或Throwable都是不合适的，Throwable更不合适，因为它还包含了Error异常。这种捕获非常危险。这意味着本来不必考虑的Exception（包括类似ClassCastException的RuntimeException）被卷入到应用程序级的错误处理中来。这会让代码运行的错误变得模糊不清。例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span>&#123;</div><div class="line">	someComplicatedIOFunction(); <span class="comment">// may throw IOException  </span></div><div class="line">	someComplicatedParsingFunction(); <span class="comment">// may throw ParsingException  </span></div><div class="line">	someComplicatedSecurityFunction(); <span class="comment">// may throw SecurityException  </span></div><div class="line">&#125;<span class="keyword">catch</span>(Exception e)&#123;</div><div class="line">	handleError();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>比捕获顶级Exception更好的方案：</p>
+<ul>
+<li>分开捕获每一种异常，一条try语句后面跟随多个catch语句</li>
+<li>使用多个try块。</li>
+<li>再次抛出异常。</li>
+</ul>
+<h5 id="5-3-import"><a href="#5-3-import" class="headerlink" title="5.3 import"></a>5.3 import</h5><p>使用完全限定的import，尽量不使用顶级导包、不适用通配符。</p>
+<p>import语句不换行。</p>
+<p>例：当需要使用foo包红的bar类时，存在两种可能：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> foo.*;<span class="comment">//可能会减少import语句，不建议使用</span></div></pre></td></tr></table></figure>
+<p>或者：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> foo.bar;<span class="comment">//代码的可读性更好，便于维护</span></div></pre></td></tr></table></figure>
+<h2 id="6-Log"><a href="#6-Log" class="headerlink" title="6 Log"></a>6 Log</h2><p>记录日志会对性能产生显著的负面影响。如果日志不厚简练的话，很快会丧失可用性。日志包含5中不同的级别。</p>
+<p>使用通用的LogUtil类取代原生Log类。</p>
+<h5 id="6-1-ERROR"><a href="#6-1-ERROR" class="headerlink" title="6.1 ERROR"></a>6.1 ERROR</h5><p>该级别日志应在致命错误发生时使用。也就是说，错误的后果能被用户看到，但是不明确删除部分数据、卸装程序、清除数据区或重新刷机（或更糟糕）就无法恢复。该级别总是记录日志。需要记录ERROR级别日志的事件一般都应该向统计信息收集（statistics-gathering ）服务器报告。  </p>
+<h5 id="6-2-WARNING"><a href="#6-2-WARNING" class="headerlink" title="6.2 WARNING"></a>6.2 WARNING</h5><p>该级别日志应该用于哪些重大的、意外的事件。也就是说，错误的后果能被用户看到，但是不采取明确的动作可能就无法无损恢复，从等待或重启应用开始，直至重新下载新版程序或重启设备。该级别总是记录日志。需记录WARNING级别日志的事件也可以考虑向统计信息收集服务器报告。  </p>
+<h5 id="6-3-INFORMATIVE"><a href="#6-3-INFORMATIVE" class="headerlink" title="6.3 INFORMATIVE"></a>6.3 INFORMATIVE</h5><p>该级别日志应该用于记录大部分人都会感兴趣的事件。也就是说，如果检测到事件的影响面可能很广，但不一定是错误。应该只有那些拥有本区域内最高级别身份认证的模块才能记录这些日志（为了避免级别不足的模块重复记录日志）。该级别总是记录日志。  </p>
+<h5 id="6-4-DEBUG"><a href="#6-4-DEBUG" class="headerlink" title="6.4 DEBUG"></a>6.4 DEBUG</h5><p>该级别日志应该用于进一步记录有关调查、调试意外现象的设备事件。应该只记录那些有关控件运行所必需的信息。如果debug日志占用了太多的日志空间，那就应该使用详细级别日志（verbose）才更为合适。  </p>
+<h5 id="6-5-VERBOSE"><a href="#6-5-VERBOSE" class="headerlink" title="6.5 VERBOSE"></a>6.5 VERBOSE</h5><p>该级别日志应用于所有其余的事件。</p>
+<h2 id="7-代码规约"><a href="#7-代码规约" class="headerlink" title="7 代码规约"></a>7 代码规约</h2><h5 id="7-1-方法"><a href="#7-1-方法" class="headerlink" title="7.1 方法"></a>7.1 方法</h5><p>一个方法尽量不要超过50行。如果方法太长，需要进行方法拆分。</p>
+<p>保证每个方法只做一件事，不要使用try catch处理业务逻辑。</p>
+<h5 id="7-2-参数和返回值"><a href="#7-2-参数和返回值" class="headerlink" title="7.2 参数和返回值"></a>7.2 参数和返回值</h5><p>一个方法的参数尽可能不超过4个；</p>
+<p>如果方法返回一个错误码，请使用异常；</p>
+<p>尽可能不要使用null，替代为异常，或者使用空变量。</p>
+<h5 id="7-3-数字"><a href="#7-3-数字" class="headerlink" title="7.3 数字"></a>7.3 数字</h5><p>代码中不允许出现单独的数字、字符，如果需要使用，将他们按照含义封装成静态变量。</p>
+<h5 id="7-4-控制语句"><a href="#7-4-控制语句" class="headerlink" title="7.4 控制语句"></a>7.4 控制语句</h5><p>判断中如有常量，则应该将常量置于判断式的右侧。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>( isAdmin() == <span class="keyword">true</span>)...</div></pre></td></tr></table></figure>
+<h5 id="7-5-变量赋值"><a href="#7-5-变量赋值" class="headerlink" title="7.5 变量赋值"></a>7.5 变量赋值</h5><p>避免在一个语句中给多个变量赋相同的值。</p>
+<p>不要将赋值运算符用爱容易于相等关系运算符混肴的地方。</p>
+<p>不要使用内嵌赋值运算符视图提高运行时的效率。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//错误</span></div><div class="line">d = (a = b + c) + r;</div><div class="line"><span class="comment">//应该写成</span></div><div class="line">a = b + c;</div><div class="line">d = a + r;</div></pre></td></tr></table></figure>
+<h5 id="7-6-大括号"><a href="#7-6-大括号" class="headerlink" title="7.6 大括号"></a>7.6 大括号</h5><p>大括号与if，else,for,do,while语句一起使用，即使只有一条语句或者空，都应把大括号加上。</p>
+<p>对于非空快和块状结构，大括号遵循Kernighan和Ritchie风格Egyptian brackets:</p>
+<ul>
+<li>左大括号前不换行</li>
+<li>左大括号后换行</li>
+<li>右大括号前换行</li>
+<li>如果右大括号是一个语句、函数体或类的终止，则右大括号后换行; 否则不换行。例如，如果右大括号后面是else或逗号，则不换行。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">loginOnClickListener</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span> </span>&#123;    </div><div class="line">  <span class="meta">@Override</span>    </div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;        </div><div class="line">    <span class="keyword">if</span>((<span class="keyword">int</span>) view.getTag() == currentPos)&#123;            </div><div class="line">      <span class="keyword">return</span>;        </div><div class="line">    &#125;        </div><div class="line">    login();    </div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>一个空的块状结构离什么都不包含，大括号可以简洁写出{}，不需要换行。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">doNothing</span><span class="params">()</span></span>&#123;&#125;;</div></pre></td></tr></table></figure>
+<h5 id="7-7-块缩进：2个空格"><a href="#7-7-块缩进：2个空格" class="headerlink" title="7.7 块缩进：2个空格"></a>7.7 块缩进：2个空格</h5><p>开始一个新的块，缩进增加两个空格，块结束时，缩进返回先前的缩进级别。</p>
+<h5 id="7-8-枚举类"><a href="#7-8-枚举类" class="headerlink" title="7.8 枚举类"></a>7.8 枚举类</h5><p>枚举常量间用逗号隔开，所有适用于其他类的格式也适用于枚举类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">enum</span> Suit&#123;    </div><div class="line">	 CLUBS,</div><div class="line">    HEARTS,</div><div class="line">    SPADES,</div><div class="line">    DIAMONDS</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="7-9-变量声明"><a href="#7-9-变量声明" class="headerlink" title="7.9 变量声明"></a>7.9 变量声明</h5><p>每次只声明一个变量，不要使用组合声明。</p>
+<p>需要时才声明，并尽快进行初始化。</p>
+<p>限制变量的作用范围。</p>
+<h5 id="7-10-switch语句"><a href="#7-10-switch语句" class="headerlink" title="7.10 switch语句"></a>7.10 switch语句</h5><p>switch块中的内容缩进为2个空格，每个switch标签后新起一行。</p>
+<p>在switch块内，每个语句组通过break，continue，return或抛出异常来终止。</p>
+<p>default的情况要写出来，即使什么代码也不包含。</p>
+<h5 id="7-11-其他要求"><a href="#7-11-其他要求" class="headerlink" title="7.11 其他要求"></a>7.11 其他要求</h5><ul>
+<li>代码中尽量不要出现中文。注释除外。代码中通过string.xml引用来来显示中文。</li>
+<li>控件声明放在activity级别。</li>
+<li>在一个View.OnClickListener中处理所有的点击事件逻辑，</li>
+<li>界面之间传值尽量使用intent方式，少用全局变量。</li>
+<li>不建议在布局文件中添加点击事件。</li>
+<li>数据类型转换一定要检验。</li>
+<li>使用常量代替枚举。</li>
+<li>实体不要在不同模块间共享，但可以在统一模块下的不同页面共享。</li>
+</ul>
+<h2 id="8-封装"><a href="#8-封装" class="headerlink" title="8 封装"></a>8 封装</h2><ol>
+<li><p>自定义UI组件替代原生组件</p>
+<p><strong>原因：</strong>有的时候，我们可能更换字体或者Image的加载方式，若是使用自定义组件的话，则需要将用到这些组件的地方都得做相应的处理，若是采用自定义组件的话，则只需更改一处，易于维护。</p>
+<p>若是自定义UI组件，则需要以UI开头，例如UITextView，目的是为了避免在引包的时候，不会引成谷歌官方的包。</p>
+</li>
+<li><p>凡是使用的第三方组件均需做一定的封装，不要直接使用第三方组件。</p>
+</li>
+</ol>
+<h3 id="缩写规则"><a href="#缩写规则" class="headerlink" title="缩写规则"></a>缩写规则</h3><ul>
+<li>view缩写</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>控件</th>
+<th>布局文件中缩写</th>
+<th>代码中缩写</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LinearLayout</td>
+<td>xxx_layout</td>
+<td>xxxLLayout</td>
+</tr>
+<tr>
+<td>RelativeLayout</td>
+<td>xxx_layout</td>
+<td>xxxRLayout</td>
+</tr>
+<tr>
+<td>TextView</td>
+<td>xxx_tv</td>
+<td>xxxTv</td>
+</tr>
+<tr>
+<td>EditText</td>
+<td>xxx_edt</td>
+<td>xxxEdt</td>
+</tr>
+<tr>
+<td>Button</td>
+<td>xxx_btn</td>
+<td>xxxBtn</td>
+</tr>
+<tr>
+<td>ImageView</td>
+<td>xxx_iv</td>
+<td>xxxIv</td>
+</tr>
+<tr>
+<td>RadioButton</td>
+<td>xxx_rbtn</td>
+<td>xxxRbtn</td>
+</tr>
+<tr>
+<td>ListView</td>
+<td>xxx_lv</td>
+<td>xxxLv</td>
+</tr>
+<tr>
+<td>ProgressBar</td>
+<td>xxx_pbar</td>
+<td>xxxPbar</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>包包含</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>包名</th>
+<th>此包中包含</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>com.xx.yinhua.activity</td>
+<td>页面用到的Activity类 (activities层级名用户界面层)</td>
+</tr>
+<tr>
+<td>com.xx.yinhua.base</td>
+<td>页面中每个Activity类共享的可以写成一个BaseActivity类 (所有Activity类均需继承自该类)</td>
+</tr>
+<tr>
+<td>com.xx.yinhua.adapter</td>
+<td>页面用到的Adapter类 (适配器的类)</td>
+</tr>
+<tr>
+<td>com.xx.yinhua.tools</td>
+<td>公共工具方法类（tools模块名）</td>
+</tr>
+<tr>
+<td>com.xx.yinhua.bean//或者.unity</td>
+<td>元素类</td>
+</tr>
+<tr>
+<td>com.xx.yinhua.db</td>
+<td>数据库操作类</td>
+</tr>
+<tr>
+<td>com.xx.yinhua.view//或者.ui</td>
+<td>自定义的View类等</td>
+</tr>
+<tr>
+<td>com.xx.yinhua.service</td>
+<td>Service服务</td>
+</tr>
+<tr>
+<td>com.xx.yinhua.broadcast</td>
+<td>Broadcast服务</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>类缩写描述</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>描述</th>
+<th>例如</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>activity 类</td>
+<td>Activity为后缀标识</td>
+<td>登录页面LoginActivity</td>
+</tr>
+<tr>
+<td>Adapter类</td>
+<td>Adapter为后缀标识</td>
+<td>Adapte 为后缀标识</td>
+</tr>
+<tr>
+<td>解析类</td>
+<td>Hlr为后缀标识</td>
+<td>首页解析类HomePosterHlr</td>
+</tr>
+<tr>
+<td>公共方法类</td>
+<td>Tools或Manager为后缀标识</td>
+<td>日志工具类LogTools</td>
+</tr>
+<tr>
+<td>数据库类</td>
+<td>以DBHelper后缀标识</td>
+<td>用户数据库UserDBHelper</td>
+</tr>
+<tr>
+<td>Service类</td>
+<td>以Service为后缀标识</td>
+<td>时间服务TimeService</td>
+</tr>
+<tr>
+<td>Broadcast类</td>
+<td>Broadcast类</td>
+<td>时间通知TimeBroadcast</td>
+</tr>
+<tr>
+<td>ContentProvider</td>
+<td>以Provider为后缀标识</td>
+<td></td>
+</tr>
+<tr>
+<td>直接写的共享基础类</td>
+<td>以Base开头</td>
+<td>BaseActivity,BaseFragment</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Android编码规范&quot;&gt;&lt;a href=&quot;#Android编码规范&quot; class=&quot;headerlink&quot; title=&quot;Android编码规范&quot;&gt;&lt;/a&gt;Android编码规范&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;因为要进行混合开发，RN所需环境是JDK1
+    
+    </summary>
+    
+      <category term="Android" scheme="http://akathink.com/categories/Android/"/>
+    
+      <category term="开发规范" scheme="http://akathink.com/categories/Android/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/"/>
+    
+    
+      <category term="Android" scheme="http://akathink.com/tags/Android/"/>
+    
+      <category term="开发规范" scheme="http://akathink.com/tags/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>招式：轻松实现HomeLayout</title>
+    <link href="http://akathink.com/2016/09/03/%E6%8B%9B%E5%BC%8F%EF%BC%9A%E8%BD%BB%E6%9D%BE%E5%AE%9E%E7%8E%B0HomeLayout/"/>
+    <id>http://akathink.com/2016/09/03/招式：轻松实现HomeLayout/</id>
+    <published>2016-09-03T04:26:53.000Z</published>
+    <updated>2016-09-03T04:28:37.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="招式" scheme="http://akathink.com/categories/%E6%8B%9B%E5%BC%8F/"/>
+    
+      <category term="Android" scheme="http://akathink.com/categories/%E6%8B%9B%E5%BC%8F/Android/"/>
+    
+      <category term="自定义View" scheme="http://akathink.com/categories/%E6%8B%9B%E5%BC%8F/Android/%E8%87%AA%E5%AE%9A%E4%B9%89View/"/>
+    
+      <category term="HomeLayout" scheme="http://akathink.com/categories/%E6%8B%9B%E5%BC%8F/Android/%E8%87%AA%E5%AE%9A%E4%B9%89View/HomeLayout/"/>
+    
+    
+      <category term="Android" scheme="http://akathink.com/tags/Android/"/>
+    
+      <category term="招式" scheme="http://akathink.com/tags/%E6%8B%9B%E5%BC%8F/"/>
+    
+      <category term="自定义View" scheme="http://akathink.com/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/"/>
+    
+      <category term="HomeLayout" scheme="http://akathink.com/tags/HomeLayout/"/>
+    
+  </entry>
   
   <entry>
     <title>全面了解Android ANR</title>
@@ -91,9 +491,9 @@
       <category term="ANR" scheme="http://akathink.com/categories/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/Android/ANR/"/>
     
     
-      <category term="内功修养" scheme="http://akathink.com/tags/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/"/>
-    
       <category term="Android" scheme="http://akathink.com/tags/Android/"/>
+    
+      <category term="内功修养" scheme="http://akathink.com/tags/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/"/>
     
       <category term="ANR" scheme="http://akathink.com/tags/ANR/"/>
     
@@ -729,9 +1129,9 @@
       <category term="安全" scheme="http://akathink.com/categories/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/Android/%E5%AE%89%E5%85%A8/"/>
     
     
-      <category term="内功修养" scheme="http://akathink.com/tags/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/"/>
-    
       <category term="Android" scheme="http://akathink.com/tags/Android/"/>
+    
+      <category term="内功修养" scheme="http://akathink.com/tags/%E5%86%85%E5%8A%9F%E4%BF%AE%E5%85%BB/"/>
     
       <category term="安全" scheme="http://akathink.com/tags/%E5%AE%89%E5%85%A8/"/>
     
